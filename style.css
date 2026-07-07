@@ -1,0 +1,307 @@
+/* ===========================================================
+   Day Skipper Theory Trainer — styles
+   Nautical light/dark theme, mobile-first, no external assets.
+   =========================================================== */
+
+:root {
+  --navy: #0b2b4a;
+  --navy-deep: #071d33;
+  --sea: #0f6ea8;
+  --sea-bright: #1b8bcf;
+  --sand: #f4efe6;
+  --paper: #ffffff;
+  --ink: #10202e;
+  --ink-soft: #4a5b68;
+  --line: #d9e2ea;
+  --good: #1a8f57;
+  --good-bg: #e6f6ee;
+  --bad: #c23b30;
+  --bad-bg: #fbe9e7;
+  --gold: #e9b949;
+  --shadow: 0 6px 24px rgba(11, 43, 74, 0.10);
+  --radius: 14px;
+  --wrap: 760px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --navy: #0a2338;
+    --navy-deep: #061726;
+    --sea: #2a9fd6;
+    --sea-bright: #4bb6e6;
+    --sand: #0f2233;
+    --paper: #12293c;
+    --ink: #e8f0f6;
+    --ink-soft: #9db3c4;
+    --line: #244259;
+    --good: #37c07f;
+    --good-bg: #10362a;
+    --bad: #ef6b5f;
+    --bad-bg: #3a1c1c;
+    --gold: #f0c766;
+    --shadow: 0 6px 28px rgba(0, 0, 0, 0.4);
+  }
+}
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(1200px 500px at 50% -200px, rgba(27, 139, 207, 0.18), transparent 60%),
+    var(--sand);
+  min-height: 100vh;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  width: 100%;
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 0 18px;
+}
+
+/* ---------------- Header ---------------- */
+.site-header {
+  background: linear-gradient(160deg, var(--navy), var(--navy-deep));
+  color: #fff;
+  box-shadow: var(--shadow);
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+.brand { display: flex; align-items: center; gap: 12px; }
+.brand-mark {
+  font-size: 30px;
+  line-height: 1;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+.site-header h1 { font-size: 1.2rem; margin: 0; letter-spacing: 0.2px; }
+.tagline { margin: 2px 0 0; font-size: 0.8rem; color: #b9d4e8; }
+
+.score-pill {
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ---------------- Cards ---------------- */
+main { padding: 26px 0 60px; }
+.card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 26px;
+}
+.card h2 { margin: 0 0 10px; font-size: 1.35rem; }
+.lede, .lede p { color: var(--ink-soft); }
+
+/* ---------------- Start screen ---------------- */
+.start-card .field { margin: 18px 0; }
+.field label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 6px;
+}
+select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--sand);
+  color: var(--ink);
+  font-size: 1rem;
+  appearance: none;
+}
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 14px 0 22px;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+.checkbox input { width: 18px; height: 18px; accent-color: var(--sea); }
+
+.disclaimer {
+  margin: 22px 0 0;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  border-top: 1px dashed var(--line);
+  padding-top: 14px;
+}
+
+/* ---------------- Buttons ---------------- */
+.btn {
+  font: inherit;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: transform 0.05s ease, background 0.15s ease, opacity 0.15s ease;
+}
+.btn:active { transform: translateY(1px); }
+.btn-primary { background: var(--sea); color: #fff; }
+.btn-primary:hover { background: var(--sea-bright); }
+.btn-primary:disabled { opacity: 0.45; cursor: not-allowed; }
+.btn-ghost {
+  background: transparent;
+  color: var(--ink-soft);
+  border: 1px solid var(--line);
+}
+.btn-ghost:hover { color: var(--ink); border-color: var(--sea); }
+.btn-lg { width: 100%; padding: 15px; font-size: 1.05rem; }
+
+/* ---------------- Quiz ---------------- */
+.progress-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.chip {
+  background: var(--navy);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border-radius: 999px;
+}
+.counter { font-size: 0.85rem; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+
+.progress-bar {
+  height: 6px;
+  background: var(--line);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--sea), var(--sea-bright));
+  transition: width 0.3s ease;
+}
+
+.question-text { font-size: 1.2rem; line-height: 1.4; margin: 0 0 18px; }
+
+.options { list-style: none; margin: 0 0 8px; padding: 0; display: grid; gap: 10px; }
+.option {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+  text-align: left;
+  padding: 14px 16px;
+  border: 1.5px solid var(--line);
+  border-radius: 12px;
+  background: var(--sand);
+  color: var(--ink);
+  font: inherit;
+  cursor: pointer;
+  transition: border-color 0.12s ease, background 0.12s ease;
+}
+.option:hover:not(:disabled) { border-color: var(--sea); }
+.option:disabled { cursor: default; }
+.option .letter {
+  flex: 0 0 auto;
+  width: 26px; height: 26px;
+  border-radius: 7px;
+  background: var(--navy);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+.option.correct { border-color: var(--good); background: var(--good-bg); }
+.option.correct .letter { background: var(--good); }
+.option.wrong { border-color: var(--bad); background: var(--bad-bg); }
+.option.wrong .letter { background: var(--bad); }
+.option .mark { margin-left: auto; font-weight: 700; }
+
+.feedback {
+  margin-top: 16px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: var(--sand);
+  border-left: 4px solid var(--sea);
+}
+.feedback-head { margin: 0 0 6px; font-weight: 700; }
+.feedback-head.good { color: var(--good); }
+.feedback-head.bad { color: var(--bad); }
+.feedback-explain { margin: 0; color: var(--ink); font-size: 0.95rem; }
+
+.quiz-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 22px;
+}
+.quiz-actions.center { justify-content: center; }
+.quiz-actions .btn-primary { min-width: 120px; }
+
+/* ---------------- Results ---------------- */
+.result-score { text-align: center; margin: 18px 0 6px; }
+.result-big {
+  display: block;
+  font-size: 3.2rem;
+  font-weight: 800;
+  color: var(--sea);
+  line-height: 1;
+}
+.result-sub { color: var(--ink-soft); }
+.result-message { text-align: center; font-weight: 600; margin: 12px 0 8px; }
+
+.review-title { margin: 24px 0 10px; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--ink-soft); }
+.review-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.review-item {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 14px 16px;
+  background: var(--sand);
+}
+.review-item .rq { font-weight: 600; margin: 0 0 8px; }
+.review-line { margin: 3px 0; font-size: 0.9rem; }
+.review-line .tag { font-weight: 700; }
+.review-item.ok { border-left: 4px solid var(--good); }
+.review-item.no { border-left: 4px solid var(--bad); }
+.review-line.your.bad-text { color: var(--bad); }
+.review-line.ans { color: var(--good); }
+.review-explain { margin: 8px 0 0; font-size: 0.88rem; color: var(--ink-soft); }
+
+/* ---------------- Footer ---------------- */
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding: 20px 0;
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+  text-align: center;
+}
+.site-footer p { margin: 0; }
+
+/* ---------------- Responsive ---------------- */
+@media (max-width: 520px) {
+  .site-header h1 { font-size: 1.05rem; }
+  .card { padding: 20px 16px; }
+  .question-text { font-size: 1.08rem; }
+  .result-big { font-size: 2.6rem; }
+}

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Free practice quiz for the RYA Day Skipper shorebased theory course — charts, tides, buoyage, lights, collision regulations, meteorology and more." />
+  <title>Day Skipper Theory Trainer</title>
+  <link rel="preconnect" href="#" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">⚓</span>
+        <div>
+          <h1>Day Skipper Theory Trainer</h1>
+          <p class="tagline">RYA shorebased theory practice</p>
+        </div>
+      </div>
+      <div class="score-pill" id="scorePill" hidden>
+        <span id="scoreText">0 / 0</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- ================= START / SETUP ================= -->
+    <section id="startScreen" class="card start-card">
+      <h2>Practise for your Day Skipper theory exam</h2>
+      <p class="lede">
+        Multiple-choice questions across the full shorebased syllabus, each with a
+        worked explanation. Pick a topic or take a mixed test, then work through at
+        your own pace.
+      </p>
+
+      <div class="field">
+        <label for="topicSelect">Topic</label>
+        <select id="topicSelect"></select>
+      </div>
+
+      <div class="field">
+        <label for="lengthSelect">Number of questions</label>
+        <select id="lengthSelect">
+          <option value="10">10 — quick session</option>
+          <option value="20">20 — standard</option>
+          <option value="0" selected>All available</option>
+        </select>
+      </div>
+
+      <label class="checkbox">
+        <input type="checkbox" id="shuffleChk" checked />
+        <span>Shuffle question order</span>
+      </label>
+
+      <button class="btn btn-primary btn-lg" id="startBtn">Start test</button>
+
+      <p class="disclaimer">
+        For study practice only. Always navigate using official, up-to-date charts and
+        publications. Not affiliated with or endorsed by the RYA.
+      </p>
+    </section>
+
+    <!-- ================= QUIZ ================= -->
+    <section id="quizScreen" class="card" hidden>
+      <div class="progress-row">
+        <span class="chip" id="topicChip">Mixed</span>
+        <span class="counter" id="counter">Question 1 of 10</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+      <h2 class="question-text" id="questionText"></h2>
+      <ul class="options" id="optionsList"></ul>
+
+      <div class="feedback" id="feedback" hidden>
+        <p class="feedback-head" id="feedbackHead"></p>
+        <p class="feedback-explain" id="feedbackExplain"></p>
+      </div>
+
+      <div class="quiz-actions">
+        <button class="btn btn-ghost" id="quitBtn">End test</button>
+        <button class="btn btn-primary" id="nextBtn" disabled>Next</button>
+      </div>
+    </section>
+
+    <!-- ================= RESULTS ================= -->
+    <section id="resultScreen" class="card" hidden>
+      <h2>Test complete</h2>
+      <div class="result-score">
+        <span class="result-big" id="resultPercent">0%</span>
+        <span class="result-sub" id="resultFraction">0 of 0 correct</span>
+      </div>
+      <p class="result-message" id="resultMessage"></p>
+
+      <h3 class="review-title">Review</h3>
+      <ul class="review-list" id="reviewList"></ul>
+
+      <div class="quiz-actions center">
+        <button class="btn btn-ghost" id="retryWrongBtn" hidden>Retry incorrect only</button>
+        <button class="btn btn-primary" id="restartBtn">Back to start</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Day Skipper Theory Trainer · practice questions with explanations · open source</p>
+    </div>
+  </footer>
+
+  <script src="questions.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
