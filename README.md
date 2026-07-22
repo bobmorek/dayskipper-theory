@@ -71,6 +71,30 @@ All questions live in [`questions.js`](questions.js) as a simple array. Each ent
 Add a new object to the array, save, and reload — new categories appear in the
 topic menu automatically.
 
+### Image questions
+
+Diagrams are drawn as inline SVG (no image files) by [`diagrams.js`](diagrams.js),
+so they stay crisp and work offline. To attach a diagram to a question, add an
+`image` field using one of the `DIAGRAMS.*` helpers:
+
+```js
+{
+  id: 148,
+  category: "Buoyage",
+  image: DIAGRAMS.cardinal("N"),   // or lateralPort(), safeWater(),
+                                   // lights(["G","W"]), dayShape("ball"),
+                                   // rhythm("flashing"), etc.
+  q: "Identify this mark.",
+  options: [ ... ],
+  answer: 0,
+  explain: "..."
+}
+```
+
+> **Note:** asset links in `index.html` carry a `?v=N` version tag. If you change
+> `app.js`, `style.css`, etc., bump that number so browsers load the new version
+> instead of a cached copy.
+
 ## Licence
 
 MIT — free to use, modify and share.
