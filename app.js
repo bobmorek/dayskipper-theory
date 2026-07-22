@@ -20,6 +20,7 @@
   const topicChip = el("topicChip");
   const counter = el("counter");
   const progressFill = el("progressFill");
+  const qImage = el("qImage");
   const questionText = el("questionText");
   const optionsList = el("optionsList");
   const feedback = el("feedback");
@@ -121,6 +122,16 @@
     topicChip.textContent = q.category;
     counter.textContent = `Question ${index + 1} of ${deck.length}`;
     progressFill.style.width = `${(index / deck.length) * 100}%`;
+
+    // Optional diagram (trusted, app-generated inline SVG — see diagrams.js)
+    if (q.image) {
+      qImage.innerHTML = q.image;
+      qImage.hidden = false;
+    } else {
+      qImage.innerHTML = "";
+      qImage.hidden = true;
+    }
+
     questionText.textContent = q.q;
 
     optionsList.innerHTML = "";
@@ -211,6 +222,13 @@
       rq.className = "rq";
       rq.textContent = `${i + 1}. ${r.question.q}`;
       li.appendChild(rq);
+
+      if (r.question.image) {
+        const img = document.createElement("div");
+        img.className = "q-image review-image";
+        img.innerHTML = r.question.image;
+        li.appendChild(img);
+      }
 
       if (!isRight) {
         const your = document.createElement("p");

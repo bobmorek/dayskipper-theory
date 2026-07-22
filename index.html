@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Free practice quiz for the RYA Day Skipper shorebased theory course — charts, tides, buoyage, lights, collision regulations, meteorology and more." />
   <title>Day Skipper Theory Trainer</title>
-  <link rel="preconnect" href="#" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=2" />
 </head>
 <body>
   <header class="site-header">
@@ -69,6 +68,7 @@
       </div>
       <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
 
+      <div class="q-image" id="qImage" hidden></div>
       <h2 class="question-text" id="questionText"></h2>
       <ul class="options" id="optionsList"></ul>
 
@@ -108,7 +108,8 @@
     </div>
   </footer>
 
-  <script src="questions.js"></script>
-  <script src="app.js"></script>
+  <script src="diagrams.js?v=2"></script>
+  <script src="questions.js?v=2"></script>
+  <script src="app.js?v=2"></script>
 </body>
 </html>

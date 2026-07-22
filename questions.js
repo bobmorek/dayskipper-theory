@@ -1546,6 +1546,245 @@ const QUESTIONS = [
     ],
     answer: 1,
     explain: "Displacement is the weight of the vessel — by Archimedes' principle equal to the weight of the water it pushes aside. It's a truer measure of a boat's size and load-carrying than length alone."
+  },
+
+  // ================= IMAGE QUESTIONS =================
+  // ---------------- Buoyage: cardinal marks ----------------
+  {
+    id: 129, category: "Buoyage", image: DIAGRAMS.cardinal("N"),
+    q: "You see this buoy by day. What is it, and where is the safe water?",
+    options: [
+      "North cardinal — safe water is to the north; pass to the NORTH of it",
+      "South cardinal — pass to the south of it",
+      "Isolated danger mark — the danger is directly beneath it",
+      "Port-hand mark — leave it to port"
+    ],
+    answer: 0,
+    explain: "Both topmark cones point UP and the colour is black above yellow — a North cardinal mark. The safe, deep water lies to the north, so you pass to the north of it."
+  },
+  {
+    id: 130, category: "Buoyage", image: DIAGRAMS.cardinal("E"),
+    q: "Identify this cardinal mark and the side on which to pass it.",
+    options: [
+      "West cardinal — pass to the west",
+      "East cardinal — pass to the EAST of it",
+      "North cardinal — pass to the north",
+      "Safe water mark — pass either side"
+    ],
+    answer: 1,
+    explain: "The cones are base-to-base (an 'egg' shape) and the colours are black-yellow-black — an East cardinal mark. Pass to the east of it. Its light flashes in a group of three."
+  },
+  {
+    id: 131, category: "Buoyage", image: DIAGRAMS.cardinal("S"),
+    q: "What is this mark, and how should you pass it?",
+    options: [
+      "North cardinal — pass to the north",
+      "South cardinal — pass to the SOUTH of it",
+      "Special mark — a non-navigational feature",
+      "Starboard-hand mark — leave to starboard"
+    ],
+    answer: 1,
+    explain: "Both cones point DOWN and the colour is yellow above black — a South cardinal mark. Pass to the south. Its light shows six quick flashes plus one long flash."
+  },
+  {
+    id: 132, category: "Buoyage", image: DIAGRAMS.cardinal("W"),
+    q: "Identify this cardinal mark.",
+    options: [
+      "East cardinal — pass to the east",
+      "West cardinal — pass to the WEST of it",
+      "Isolated danger mark",
+      "Port-hand mark"
+    ],
+    answer: 1,
+    explain: "The cones point towards each other (a 'wine glass' — W for West) and the colours are yellow-black-yellow — a West cardinal mark. Pass to the west of it. Its light flashes in a group of nine."
+  },
+
+  // ---------------- Buoyage: lateral & other marks ----------------
+  {
+    id: 133, category: "Buoyage", image: DIAGRAMS.lateralPort(),
+    q: "In IALA Region A, entering harbour from seaward, how should you treat this mark?",
+    options: [
+      "Leave it to STARBOARD",
+      "Leave it to PORT (keep red to port coming in)",
+      "Pass either side — it marks safe water",
+      "Keep well clear — isolated danger"
+    ],
+    answer: 1,
+    explain: "A red, can-shaped mark is a port-hand mark in Region A. Entering from seaward you keep it on your port (left) side — 'is there any red port left in the can?'."
+  },
+  {
+    id: 134, category: "Buoyage", image: DIAGRAMS.lateralStbd(),
+    q: "Entering harbour from seaward in IALA Region A, this mark should be:",
+    options: [
+      "Left to port",
+      "Left to STARBOARD (kept on your right)",
+      "Passed only on its seaward side",
+      "Treated as a special mark"
+    ],
+    answer: 1,
+    explain: "A green, conical mark is a starboard-hand mark in Region A. Entering from seaward you keep it on your starboard (right) side; leaving, you would keep it to port."
+  },
+  {
+    id: 135, category: "Buoyage", image: DIAGRAMS.isolatedDanger(),
+    q: "What does this mark indicate?",
+    options: [
+      "Safe water all around — a mid-channel mark",
+      "An isolated danger with navigable water all around it",
+      "A port-hand mark",
+      "A special/recreational area"
+    ],
+    answer: 1,
+    explain: "Black with red horizontal band(s) and a topmark of two black spheres is an isolated danger mark. It stands on a small danger (e.g. a rock or wreck) with navigable water all around — keep clear of the mark itself."
+  },
+  {
+    id: 136, category: "Buoyage", image: DIAGRAMS.safeWater(),
+    q: "You reach this red-and-white striped buoy. What is it?",
+    options: [
+      "An isolated danger mark — keep clear",
+      "A safe water mark (e.g. landfall/mid-channel) — safe water all around, pass either side",
+      "A starboard-hand mark",
+      "A north cardinal mark"
+    ],
+    answer: 1,
+    explain: "Red and white VERTICAL stripes with a single red sphere topmark is a safe water mark — a landfall, fairway or mid-channel buoy. There is navigable water all round and you may pass either side."
+  },
+  {
+    id: 137, category: "Buoyage", image: DIAGRAMS.specialMark(),
+    q: "This yellow buoy with a yellow 'X' topmark is a:",
+    options: [
+      "Starboard-hand mark",
+      "Special mark — indicates a special feature, not primarily a navigational danger",
+      "Cardinal mark",
+      "Safe water mark"
+    ],
+    answer: 1,
+    explain: "Yellow with a yellow St Andrew's cross (X) topmark is a special mark. It denotes a special feature such as a spoil ground, cable, pipeline or recreation area, and shows a yellow light if lit."
+  },
+
+  // ---------------- Collision Regs: vessel lights at night ----------------
+  {
+    id: 138, category: "Collision Regs (IRPCS)", image: DIAGRAMS.lights(["R", "R"]),
+    q: "At night you see these two all-round lights in a vertical line. The vessel is:",
+    options: [
+      "At anchor",
+      "Not under command (unable to manoeuvre)",
+      "A pilot vessel",
+      "Engaged in trawling"
+    ],
+    answer: 1,
+    explain: "Two all-round RED lights in a vertical line = 'not under command' — she cannot manoeuvre as required (e.g. steering or engine failure). Keep well clear and do not expect her to give way."
+  },
+  {
+    id: 139, category: "Collision Regs (IRPCS)", image: DIAGRAMS.lights(["G", "W"]),
+    q: "You see these two all-round lights (green over white) at night. This vessel is:",
+    options: [
+      "A pilot vessel",
+      "Trawling",
+      "At anchor",
+      "Aground"
+    ],
+    answer: 1,
+    explain: "'Green over white, trawling at night.' An all-round green light above an all-round white light identifies a vessel engaged in trawling — give her a wide berth as she is towing gear."
+  },
+  {
+    id: 140, category: "Collision Regs (IRPCS)", image: DIAGRAMS.lights(["R", "W"]),
+    q: "These two all-round lights (red over white) at night indicate a vessel:",
+    options: [
+      "Engaged in fishing (other than trawling)",
+      "Not under command",
+      "Restricted in her ability to manoeuvre",
+      "Constrained by her draught"
+    ],
+    answer: 0,
+    explain: "'Red over white, fishing at night.' Red over white marks a vessel fishing other than trawling (e.g. with nets or lines out) — keep clear of her and any gear that may extend from her."
+  },
+  {
+    id: 141, category: "Collision Regs (IRPCS)", image: DIAGRAMS.lights(["W", "R"]),
+    q: "A vessel showing an all-round white light above an all-round red light is a:",
+    options: [
+      "Trawler",
+      "Vessel not under command",
+      "Pilot vessel on duty",
+      "Vessel at anchor"
+    ],
+    answer: 2,
+    explain: "'White over red, pilot ahead.' An all-round white over all-round red identifies a pilot vessel engaged on pilotage duty. Expect her to be manoeuvring near a ship she is boarding or leaving."
+  },
+
+  // ---------------- Collision Regs: day shapes ----------------
+  {
+    id: 142, category: "Collision Regs (IRPCS)", image: DIAGRAMS.dayShape("ball"),
+    q: "By day a vessel displays this single black shape forward. She is:",
+    options: [
+      "Motor-sailing",
+      "At anchor",
+      "Not under command",
+      "Restricted in ability to manoeuvre"
+    ],
+    answer: 1,
+    explain: "A single black ball displayed forward is the day signal for a vessel at anchor. At night she would instead show an all-round white anchor light (two if 50 m or longer)."
+  },
+  {
+    id: 143, category: "Collision Regs (IRPCS)", image: DIAGRAMS.dayShape("cone-down"),
+    q: "A sailing yacht displays this black shape (point down). This means she is:",
+    options: [
+      "At anchor",
+      "Also being driven by her engine (motor-sailing)",
+      "Fishing",
+      "Aground"
+    ],
+    answer: 1,
+    explain: "A black cone, point DOWN, shows that a sailing vessel is also using her engine (motor-sailing). Under the rules she then counts as a power-driven vessel and must give way accordingly."
+  },
+  {
+    id: 144, category: "Collision Regs (IRPCS)", image: DIAGRAMS.dayShape("ball-diamond-ball"),
+    q: "By day you see this ball–diamond–ball shape hoisted vertically. The vessel is:",
+    options: [
+      "At anchor",
+      "Restricted in her ability to manoeuvre",
+      "Not under command",
+      "A sailing vessel"
+    ],
+    answer: 1,
+    explain: "Ball–diamond–ball (in a vertical line) is the day signal for a vessel restricted in her ability to manoeuvre — e.g. dredging, laying cable or servicing a mark. Keep clear and pass on her safe side."
+  },
+
+  // ---------------- Lights: characteristics ----------------
+  {
+    id: 145, category: "Lights", image: DIAGRAMS.rhythm("iso"),
+    q: "A light shows this rhythm — equal periods of light and darkness. Its characteristic is:",
+    options: [
+      "Flashing (Fl)",
+      "Isophase (Iso)",
+      "Occulting (Oc)",
+      "Quick flashing (Q)"
+    ],
+    answer: 1,
+    explain: "Equal durations of light and dark is 'isophase' (Iso). Compare: occulting is light longer than dark, and flashing is dark longer than light."
+  },
+  {
+    id: 146, category: "Lights", image: DIAGRAMS.rhythm("occulting"),
+    q: "This light is on for longer than it is off, with brief eclipses. It is:",
+    options: [
+      "Occulting (Oc)",
+      "Flashing (Fl)",
+      "Isophase (Iso)",
+      "Fixed (F)"
+    ],
+    answer: 0,
+    explain: "When the light period is longer than the dark period (short eclipses), the light is 'occulting' (Oc) — effectively the opposite of a flashing light."
+  },
+  {
+    id: 147, category: "Lights", image: DIAGRAMS.rhythm("flashing"),
+    q: "This light shows brief flashes with longer periods of darkness between them. It is:",
+    options: [
+      "Isophase (Iso)",
+      "Occulting (Oc)",
+      "Flashing (Fl)",
+      "Fixed (F)"
+    ],
+    answer: 2,
+    explain: "Short flashes separated by longer dark periods (dark longer than light) is a 'flashing' (Fl) light. If the flashes came in groups you would see e.g. Fl(2); very rapid flashes would be quick (Q)."
   }
 ];
 
