@@ -746,6 +746,806 @@ const QUESTIONS = [
     ],
     answer: 0,
     explain: "Freeboard is the height of the hull between the waterline and the main deck edge. Greater freeboard generally means a drier, more seaworthy boat in a seaway; low freeboard is more easily swamped."
+  },
+
+  // ---------------- Charts & Chartwork (more) ----------------
+  {
+    id: 61, category: "Charts & Chartwork",
+    q: "How is a position conventionally written?",
+    options: [
+      "Longitude first, then latitude",
+      "Latitude first, then longitude",
+      "In any order as long as N/S and E/W are shown",
+      "Always as a bearing and distance from a landmark"
+    ],
+    answer: 1,
+    explain: "Position is written latitude first, then longitude, e.g. 50°45'.3N 001°17'.6W. Latitude is measured N/S of the equator, longitude E/W of the Greenwich meridian."
+  },
+  {
+    id: 62, category: "Charts & Chartwork",
+    q: "One degree of latitude is equal to how many nautical miles?",
+    options: ["10", "60", "100", "360"],
+    answer: 1,
+    explain: "One degree = 60 minutes, and 1 minute of latitude = 1 nautical mile, so one degree of latitude equals 60 nautical miles. This is why the latitude scale is used for distance."
+  },
+  {
+    id: 63, category: "Charts & Chartwork",
+    q: "Lines of latitude (parallels) on a chart run:",
+    options: [
+      "North–south, from pole to pole",
+      "East–west, parallel to the equator",
+      "Diagonally across the chart",
+      "Only around the compass rose"
+    ],
+    answer: 1,
+    explain: "Parallels of latitude run east–west (parallel to the equator). Meridians of longitude run north–south from pole to pole. Distance is measured on the latitude (side) scale."
+  },
+  {
+    id: 64, category: "Charts & Chartwork",
+    q: "On a chart's compass rose, the OUTER ring shows:",
+    options: [
+      "Magnetic directions",
+      "True directions",
+      "Tidal stream directions",
+      "Deviation values"
+    ],
+    answer: 1,
+    explain: "The outer ring of the compass rose is aligned to True north; the inner ring is offset to Magnetic north, with the variation and its annual change printed at the centre."
+  },
+  {
+    id: 65, category: "Charts & Chartwork",
+    q: "A depth measured on a chart is given in:",
+    options: [
+      "Fathoms only",
+      "Metres and decimetres below chart datum",
+      "Feet above sea level",
+      "Metres above mean high water"
+    ],
+    answer: 1,
+    explain: "Modern metric Admiralty charts show soundings in metres and decimetres (the small subscript) below chart datum. Older fathoms charts exist but metric is standard — always check the units in the chart title."
+  },
+
+  // ---------------- Compass & Position (more) ----------------
+  {
+    id: 66, category: "Compass & Position",
+    q: "A bearing taken with a hand-bearing compass is a:",
+    options: [
+      "True bearing",
+      "Magnetic bearing (still needs deviation/variation applied to plot as true)",
+      "Relative bearing only",
+      "Grid bearing"
+    ],
+    answer: 1,
+    explain: "A hand-bearing compass gives a magnetic bearing. To plot it against the chart's true rose you apply variation (and any deviation), or plot it against the magnetic rose directly."
+  },
+  {
+    id: 67, category: "Compass & Position",
+    q: "Using 'Error East, compass least', if variation is 6°E, a compass reading of 090° converts to a True bearing of:",
+    options: ["084°T", "090°T", "096°T", "086°T"],
+    answer: 2,
+    explain: "'Error East, compass least' means the compass reads LESS than true when the error is easterly. Going compass → true you ADD easterly error: 090° + 6° = 096°T."
+  },
+  {
+    id: 68, category: "Compass & Position",
+    q: "Why must deviation be read for the vessel's current heading rather than used as a single fixed value?",
+    options: [
+      "Because variation changes each year",
+      "Because deviation changes as the boat's heading changes relative to its own magnetic field",
+      "Because the tide alters the compass",
+      "It doesn't — deviation is always constant"
+    ],
+    answer: 1,
+    explain: "The boat's own magnetism sits at a fixed position in the hull, so as the boat turns, its effect on the compass changes. Deviation is therefore listed against heading on a deviation card."
+  },
+  {
+    id: 69, category: "Compass & Position",
+    q: "A 'cocked hat' on a chart is:",
+    options: [
+      "A symbol for an anchorage",
+      "The small triangle formed when three position lines of a fix don't cross at a single point",
+      "A type of tidal diamond",
+      "The give-way marking in a channel"
+    ],
+    answer: 1,
+    explain: "When three bearings are plotted they rarely meet exactly, forming a small triangle — the cocked hat. Assume your position is at the corner nearest any danger, and re-check if the triangle is large."
+  },
+  {
+    id: 70, category: "Compass & Position",
+    q: "For the most reliable three-bearing fix, the charted objects should be:",
+    options: [
+      "As close together in bearing as possible",
+      "Well spread out, ideally with bearings roughly 60°–120° apart",
+      "All dead ahead",
+      "All astern"
+    ],
+    answer: 1,
+    explain: "Objects spread around 60°–120° apart give position lines that cross at good angles, producing a tight, accurate fix. Objects close together in bearing give a shallow cut and a poor fix."
+  },
+
+  // ---------------- Tides (more) ----------------
+  {
+    id: 71, category: "Tides",
+    q: "Neap tides (the smallest range) occur around:",
+    options: [
+      "Full and new moon",
+      "The first and last quarter of the moon",
+      "The spring equinox",
+      "Every high water"
+    ],
+    answer: 1,
+    explain: "Neaps occur near the quarter moons, when the sun and moon pull at right angles, giving the smallest range — lower HW and higher LW. Springs (largest range) occur near full and new moon."
+  },
+  {
+    id: 72, category: "Tides",
+    q: "Around the UK coast there are typically how many high waters each day?",
+    options: [
+      "One (diurnal)",
+      "Two (semi-diurnal), roughly every 12 hours 25 minutes",
+      "Four",
+      "It varies randomly"
+    ],
+    answer: 1,
+    explain: "UK tides are semi-diurnal — two highs and two lows a day, each HW about 12h25m after the last. This is why HW times advance by roughly 50 minutes each day."
+  },
+  {
+    id: 73, category: "Tides",
+    q: "In the almanac, tidal predictions for a 'secondary port' are found by:",
+    options: [
+      "Reading them directly from a full tide table",
+      "Applying time and height differences to a related 'standard port'",
+      "Using the Rule of Twelfths only",
+      "Assuming they are the same as the nearest standard port"
+    ],
+    answer: 1,
+    explain: "Secondary ports don't have full daily predictions; instead you apply published time and height differences to the associated standard port's HW and LW to work out the secondary port's tide."
+  },
+  {
+    id: 74, category: "Tides",
+    q: "The actual depth of water at a spot equals:",
+    options: [
+      "Charted depth minus height of tide",
+      "Charted depth plus height of tide",
+      "Height of tide only",
+      "Charted depth only"
+    ],
+    answer: 1,
+    explain: "Actual depth = charted depth (sounding below datum) + height of tide (water above datum). Over a drying patch, actual depth = height of tide − drying height, and is only positive once the tide covers it."
+  },
+  {
+    id: 75, category: "Tides",
+    q: "A tidal curve in the almanac is used to find:",
+    options: [
+      "The set and rate of the tidal stream",
+      "The height of tide at a time between HW and LW (or the time a required height occurs)",
+      "The variation for the year",
+      "The distance to the next port"
+    ],
+    answer: 1,
+    explain: "The tidal curve lets you interpolate the height of tide at any time between HW and LW — essential for checking clearance over a bar or under a bridge, and for finding your tidal window."
+  },
+  {
+    id: 76, category: "Tides",
+    q: "The best time to cross a shallow, drying harbour bar is usually:",
+    options: [
+      "At low water",
+      "Around high water, within a calculated tidal window of sufficient depth",
+      "Exactly at mid-tide on the ebb",
+      "It makes no difference"
+    ],
+    answer: 1,
+    explain: "You cross when there is enough height of tide over the bar — normally around HW. Calculate the window (rise and fall) from the tidal curve so you enter and, importantly, still have water to leave."
+  },
+
+  // ---------------- Buoyage (more) ----------------
+  {
+    id: 77, category: "Buoyage",
+    q: "In IALA Region A, a starboard-hand mark (entering from seaward) is:",
+    options: [
+      "Red and can-shaped",
+      "Green and conical",
+      "Yellow with a cross",
+      "Black with red bands"
+    ],
+    answer: 1,
+    explain: "Starboard-hand marks in Region A are green cones, kept to starboard when entering from seaward. Port-hand marks are red cans kept to port — 'red to port coming home'."
+  },
+  {
+    id: 78, category: "Buoyage",
+    q: "The topmark of an East cardinal mark is two black cones arranged:",
+    options: [
+      "Points up",
+      "Points down",
+      "Base to base (bases together, like an egg)",
+      "Point to point"
+    ],
+    answer: 2,
+    explain: "East cardinal cones are base-to-base (egg-shaped), and the buoy is black with a single broad yellow band (black-yellow-black). Pass to the east of it."
+  },
+  {
+    id: 79, category: "Buoyage",
+    q: "A West cardinal mark's two black cone topmarks:",
+    options: [
+      "Point away from each other",
+      "Point towards each other (points together, like a wine glass 'W')",
+      "Both point up",
+      "Both point down"
+    ],
+    answer: 1,
+    explain: "West cardinal cones point together (a 'wine glass' shape — W for West). Colour is yellow-black-yellow. Pass to the west of it, where the safe water lies."
+  },
+  {
+    id: 80, category: "Buoyage",
+    q: "A red buoy with a single broad green horizontal band is a:",
+    options: [
+      "Special mark",
+      "Preferred channel to STARBOARD mark (treat mainly as a port-hand mark)",
+      "Isolated danger mark",
+      "Safe water mark"
+    ],
+    answer: 1,
+    explain: "At a channel division, a red buoy with a green band marks the preferred (main) channel to starboard — its body colour (red) tells you the primary rule: keep it to port if following the main channel."
+  },
+  {
+    id: 81, category: "Buoyage",
+    q: "What colour light is shown by a cardinal mark?",
+    options: [
+      "Red or green depending on side",
+      "Always white (quick or very quick flashing)",
+      "Yellow",
+      "Blue"
+    ],
+    answer: 1,
+    explain: "Cardinal marks always show a WHITE light, quick (Q) or very quick (VQ) flashing. The flash pattern indicates the quadrant: N continuous, E three, S six + a long flash, W nine."
+  },
+  {
+    id: 82, category: "Buoyage",
+    q: "An East cardinal light flashes in a group of:",
+    options: ["Three", "Six plus a long flash", "Nine", "Continuous"],
+    answer: 0,
+    explain: "Think of a clock face: East = 3 o'clock = 3 flashes; South = 6 o'clock = 6 flashes plus a long flash; West = 9 o'clock = 9 flashes; North = continuous quick/very-quick flashing."
+  },
+
+  // ---------------- Lights (more) ----------------
+  {
+    id: 83, category: "Lights",
+    q: "A 'Q' (quick flashing) light flashes at about:",
+    options: [
+      "10 flashes per minute",
+      "50–60 flashes per minute",
+      "120 flashes per minute",
+      "One flash every 10 seconds"
+    ],
+    answer: 1,
+    explain: "Quick flashing (Q) is about 50–60 per minute; Very Quick (VQ) is about 100–120 per minute. Both are commonly used on cardinal marks to attract attention."
+  },
+  {
+    id: 84, category: "Lights",
+    q: "A light charted as 'Mo(A)' flashes:",
+    options: [
+      "Two flashes then a pause",
+      "The Morse code letter A (short-long), often marking safe water",
+      "A continuous beam",
+      "Alternating red and green"
+    ],
+    answer: 1,
+    explain: "Mo(A) repeats the Morse letter 'A' (dot-dash: a short flash then a long flash). It is frequently used on safe water / landfall marks and by some offshore structures."
+  },
+  {
+    id: 85, category: "Lights",
+    q: "Leading lights (a leading line) are used to:",
+    options: [
+      "Warn of an isolated danger",
+      "Guide a vessel along a safe track when the two lights are kept vertically in line",
+      "Indicate tidal height",
+      "Mark the centre of a traffic separation scheme"
+    ],
+    answer: 1,
+    explain: "Two leading lights (or marks) at different heights are kept in transit — one above the other — to hold a precise safe track into or out of a harbour. If they open out, you have drifted off the line."
+  },
+  {
+    id: 86, category: "Lights",
+    q: "'Fl(2) 10s' describes a light that shows:",
+    options: [
+      "Two flashes every 2 seconds",
+      "A group of two flashes repeating every 10 seconds",
+      "A steady light for 10 seconds",
+      "Ten flashes then darkness"
+    ],
+    answer: 1,
+    explain: "Fl(2) is a group of two flashes, and 10s is the period of the whole pattern — so two flashes, then a pause, repeating every 10 seconds. Timing the period helps you identify the light."
+  },
+
+  // ---------------- Collision Regs (more) ----------------
+  {
+    id: 87, category: "Collision Regs (IRPCS)",
+    q: "One short blast on the horn from a power-driven vessel means:",
+    options: [
+      "I am altering my course to STARBOARD",
+      "I am altering my course to PORT",
+      "I am operating astern propulsion",
+      "I am in distress"
+    ],
+    answer: 0,
+    explain: "Manoeuvring signals: one short blast = 'I am altering to starboard', two = 'altering to port', three = 'operating astern propulsion'. They signal your action, they are not a request."
+  },
+  {
+    id: 88, category: "Collision Regs (IRPCS)",
+    q: "Two short blasts on the horn mean:",
+    options: [
+      "I am altering to starboard",
+      "I am altering my course to PORT",
+      "I am going astern",
+      "I do not understand your intentions"
+    ],
+    answer: 1,
+    explain: "Two short blasts = 'I am altering my course to port'. Remember: one short = starboard, two short = port, three short = engines astern."
+  },
+  {
+    id: 89, category: "Collision Regs (IRPCS)",
+    q: "Five or more short, rapid blasts on the horn indicate:",
+    options: [
+      "A friendly greeting",
+      "Doubt about the other vessel's intentions or actions — a warning of danger",
+      "A vessel leaving harbour",
+      "A request to pass on the port side"
+    ],
+    answer: 1,
+    explain: "Five (or more) short rapid blasts is the 'doubt' or wake-up signal, used when you do not understand another vessel's intentions or think she is not taking enough action to avoid collision."
+  },
+  {
+    id: 90, category: "Collision Regs (IRPCS)",
+    q: "In restricted visibility, a power-driven vessel making way through the water sounds:",
+    options: [
+      "Two prolonged blasts every 2 minutes",
+      "One prolonged blast at intervals of not more than 2 minutes",
+      "Rapid ringing of a bell",
+      "One short blast every minute"
+    ],
+    answer: 1,
+    explain: "Making way: one prolonged blast every ≤2 minutes. Underway but stopped (not making way): two prolonged blasts every ≤2 minutes. These fog signals warn others you cannot yet see them."
+  },
+  {
+    id: 91, category: "Collision Regs (IRPCS)",
+    q: "By day, a vessel at anchor displays:",
+    options: [
+      "A single black ball forward",
+      "A black cone point down",
+      "Two black balls",
+      "A black cylinder"
+    ],
+    answer: 0,
+    explain: "One black ball (a 'day shape') hoisted forward indicates a vessel at anchor. Two black balls or a ball-diamond-ball arrangement indicate other statuses (e.g. not under command / restricted in ability to manoeuvre)."
+  },
+  {
+    id: 92, category: "Collision Regs (IRPCS)",
+    q: "A sailing vessel that is also being driven by her engine (motor-sailing) must, by day, display:",
+    options: [
+      "A black ball",
+      "A black cone, point DOWN, forward",
+      "A black cone, point up",
+      "Nothing extra"
+    ],
+    answer: 1,
+    explain: "Motor-sailing counts as a power-driven vessel under the rules, and by day must show a black cone point-down forward. At night she shows the lights of a power-driven vessel, not a sailing vessel."
+  },
+  {
+    id: 93, category: "Collision Regs (IRPCS)",
+    q: "Under Rule 5, every vessel must at all times:",
+    options: [
+      "Travel at maximum speed",
+      "Maintain a proper look-out by sight and hearing",
+      "Monitor VHF channel 16 only",
+      "Fly the correct ensign"
+    ],
+    answer: 1,
+    explain: "Rule 5 requires a proper look-out by sight and hearing, and by all available means, to make a full appraisal of the situation and risk of collision. It underpins every other steering rule."
+  },
+  {
+    id: 94, category: "Collision Regs (IRPCS)",
+    q: "Under Rule 7, which observation is a strong indication that risk of collision exists?",
+    options: [
+      "The other vessel is larger than yours",
+      "The compass bearing of the approaching vessel does not appreciably change while the range decreases",
+      "The other vessel is under sail",
+      "You are both in a marina"
+    ],
+    answer: 1,
+    explain: "A steady (constant) compass bearing with a decreasing range means you are on a collision course. Take and watch a series of bearings; if it isn't changing, risk of collision exists and you must act early."
+  },
+  {
+    id: 95, category: "Collision Regs (IRPCS)",
+    q: "The 'stand-on' vessel (Rule 17) should normally:",
+    options: [
+      "Alter course early to help",
+      "Keep her course and speed, while watching the give-way vessel",
+      "Stop immediately",
+      "Turn to port"
+    ],
+    answer: 1,
+    explain: "The stand-on vessel keeps her course and speed so her movements are predictable. If it becomes clear the give-way vessel is not acting, the stand-on vessel may — and eventually must — take avoiding action herself."
+  },
+  {
+    id: 96, category: "Collision Regs (IRPCS)",
+    q: "At night you see two all-round RED lights in a vertical line. This indicates a vessel that is:",
+    options: [
+      "At anchor",
+      "Not under command (unable to manoeuvre)",
+      "Trawling",
+      "A pilot vessel"
+    ],
+    answer: 1,
+    explain: "Two all-round reds in a vertical line = 'not under command' — the vessel cannot manoeuvre as required (e.g. breakdown). Restricted in ability to manoeuvre shows red-white-red; give both a wide berth."
+  },
+
+  // ---------------- Safety (more) ----------------
+  {
+    id: 97, category: "Safety",
+    q: "The correct spoken word for an URGENCY message (serious, but not immediate danger to life) is:",
+    options: ["MAYDAY", "PAN PAN", "SÉCURITÉ", "RELAY"],
+    answer: 1,
+    explain: "PAN PAN (×3) is the urgency signal — a serious situation not yet an immediate threat to life, e.g. mechanical failure with no immediate danger. MAYDAY is reserved for grave and imminent danger."
+  },
+  {
+    id: 98, category: "Safety",
+    q: "The signal SÉCURITÉ on VHF precedes:",
+    options: [
+      "A distress message",
+      "A safety message — navigational or meteorological warning",
+      "A radio check",
+      "A request to change channel"
+    ],
+    answer: 1,
+    explain: "SÉCURITÉ (×3) introduces a safety message, such as a navigational warning or gale warning, usually broadcast by the Coastguard. It tells listeners important safety information follows on a working channel."
+  },
+  {
+    id: 99, category: "Safety",
+    q: "When activated, a 406 MHz EPIRB alerts the rescue services via:",
+    options: [
+      "VHF line-of-sight only",
+      "The Cospas-Sarsat satellite system, sending its identity and (with GPS) position",
+      "A loud siren only",
+      "Mobile phone network"
+    ],
+    answer: 1,
+    explain: "A 406 MHz EPIRB (or personal PLB) transmits a coded distress alert via satellite, including your registered identity and, if GPS-equipped, your position — giving global coverage beyond VHF range."
+  },
+  {
+    id: 100, category: "Safety",
+    q: "On a boat driven by an outboard or petrol engine, the kill cord should be:",
+    options: [
+      "Left coiled by the throttle",
+      "Attached to the helmsman so the engine stops if they are thrown from the helm",
+      "Removed while under way",
+      "Only used at night"
+    ],
+    answer: 1,
+    explain: "The kill cord clips to the helmsman (leg or lifejacket) and cuts the engine if they fall or move away from the helm — preventing a runaway boat circling back over people in the water. Always clip on before starting."
+  },
+  {
+    id: 101, category: "Safety",
+    q: "An orange smoke signal is used to indicate:",
+    options: [
+      "That a harbour is closed",
+      "Distress by DAY, showing your position to searching aircraft or vessels",
+      "Anti-collision warning at night",
+      "A man overboard drill only"
+    ],
+    answer: 1,
+    explain: "Orange smoke is a daytime distress signal, very visible from the air. Red flares (hand and parachute) are the other distress pyrotechnics; white flares are for warning of your presence to avoid collision, not distress."
+  },
+  {
+    id: 102, category: "Safety",
+    q: "From a mobile phone ashore, how do you contact HM Coastguard in an emergency?",
+    options: [
+      "Dial 111",
+      "Dial 999 (or 112) and ask for the Coastguard",
+      "Send a text to 16",
+      "Call the local marina"
+    ],
+    answer: 1,
+    explain: "Dial 999 or 112 and ask for the Coastguard. Afloat, the primary means is a DSC distress alert and a MAYDAY on VHF Channel 16, which also alerts nearby vessels who may assist fastest."
+  },
+
+  // ---------------- Meteorology (more) ----------------
+  {
+    id: 103, category: "Meteorology",
+    q: "A wind that 'veers' has changed direction:",
+    options: [
+      "Anticlockwise (e.g. NW to SW)",
+      "Clockwise (e.g. SW to W to NW)",
+      "Increased in strength only",
+      "Reversed completely"
+    ],
+    answer: 1,
+    explain: "Veering = a clockwise change of wind direction (SW → W → NW). Backing = an anticlockwise change. The wind typically veers as a cold front passes."
+  },
+  {
+    id: 104, category: "Meteorology",
+    q: "Isobars drawn close together on a synoptic (weather) chart indicate:",
+    options: [
+      "Light winds",
+      "Strong winds (a steep pressure gradient)",
+      "Fog",
+      "No wind at all"
+    ],
+    answer: 1,
+    explain: "Closely spaced isobars mean a steep pressure gradient and therefore strong winds. Widely spaced isobars mean light winds. The spacing is your quickest visual guide to wind strength."
+  },
+  {
+    id: 105, category: "Meteorology",
+    q: "Sea fog (advection fog) typically forms when:",
+    options: [
+      "Cold dry air sinks over warm land",
+      "Warm, moist air flows over a colder sea surface and is cooled below its dew point",
+      "The sun heats the sea rapidly",
+      "A thunderstorm passes"
+    ],
+    answer: 1,
+    explain: "Advection (sea) fog forms when warm moist air moves over a cooler sea and is chilled to condensation. It can persist in a moderate breeze and is a real hazard for coastal passages in spring/early summer."
+  },
+  {
+    id: 106, category: "Meteorology",
+    q: "The passage of a cold front is usually followed by:",
+    options: [
+      "Steady rain and a backing wind",
+      "A veer in the wind, clearing skies and cooler, brighter, showery conditions",
+      "Thick fog and no wind",
+      "A long period of drizzle"
+    ],
+    answer: 1,
+    explain: "As a cold front passes, the wind veers, a band of heavy rain clears through, and it turns brighter, cooler and often showery with gusty winds behind it. A warm front instead brings gradually lowering cloud and steady rain ahead."
+  },
+  {
+    id: 107, category: "Meteorology",
+    q: "On the Beaufort scale, Force 4 is described as a:",
+    options: [
+      "Light air",
+      "Moderate breeze (about 11–16 knots)",
+      "Strong breeze",
+      "Gale"
+    ],
+    answer: 1,
+    explain: "Force 4 is a moderate breeze, roughly 11–16 knots — pleasant sailing with small waves and frequent white horses. Force 6 (22–27 kt) is a strong breeze, and Force 8 (34–40 kt) is a gale."
+  },
+  {
+    id: 108, category: "Meteorology",
+    q: "In the northern hemisphere, using Buys Ballot's Law, if you stand with your back to the wind, low pressure lies:",
+    options: [
+      "To your right",
+      "To your left",
+      "Directly ahead",
+      "Directly behind"
+    ],
+    answer: 1,
+    explain: "Buys Ballot's Law (northern hemisphere): back to the wind, low pressure is on your left (and slightly forward). This helps you visualise the depression's position and how the weather may develop."
+  },
+
+  // ---------------- Passage Planning (more) ----------------
+  {
+    id: 109, category: "Passage Planning",
+    q: "A 'tidal gate' is:",
+    options: [
+      "A lock at a marina entrance",
+      "A place (e.g. a headland or narrows) that can only be passed favourably at certain states of the tide",
+      "The gate on a tidal barrier",
+      "A type of waypoint"
+    ],
+    answer: 1,
+    explain: "A tidal gate is a point where strong tidal streams mean you must time your passage — arriving with a fair (or slack) tide. Planning a passage often means linking several tidal gates together."
+  },
+  {
+    id: 110, category: "Passage Planning",
+    q: "At a boat speed of 5 knots, how long will it take to cover 15 nautical miles (ignoring tide)?",
+    options: ["1 hour", "2 hours", "3 hours", "5 hours"],
+    answer: 2,
+    explain: "Time = distance ÷ speed = 15 ÷ 5 = 3 hours. The classic navigation triangle Distance = Speed × Time (D = S × T) lets you find any one value from the other two."
+  },
+  {
+    id: 111, category: "Passage Planning",
+    q: "'Cross-track error' (XTE) shown on a chartplotter is:",
+    options: [
+      "The distance still to run to the waypoint",
+      "The perpendicular distance you are off the intended track between two waypoints",
+      "The difference between COG and heading",
+      "The tidal set for the hour"
+    ],
+    answer: 1,
+    explain: "XTE is how far, and to which side, you are off the straight line between waypoints. Monitoring XTE lets you correct back toward track — but always check the track itself is clear of hazards."
+  },
+  {
+    id: 112, category: "Passage Planning",
+    q: "Which regulation requires that a passage plan be prepared for a voyage?",
+    options: [
+      "The Highway Code",
+      "SOLAS Chapter V (Safety of Life at Sea)",
+      "The Merchant Shipping (Registration) Regulations",
+      "IALA buoyage rules"
+    ],
+    answer: 1,
+    explain: "SOLAS Chapter V applies to all vessels, including small craft, and requires voyage/passage planning. Good practice covers appraisal, planning, execution and monitoring, with attention to tides, weather, and safe depths."
+  },
+
+  // ---------------- Seamanship (more) ----------------
+  {
+    id: 113, category: "Seamanship",
+    q: "The 'no-go zone' when sailing is:",
+    options: [
+      "The area directly downwind",
+      "The arc roughly 45° either side of the wind, into which a boat cannot sail directly",
+      "Any water shallower than 2 m",
+      "The zone around a harbour entrance"
+    ],
+    answer: 1,
+    explain: "A yacht cannot sail directly into the wind; the no-go zone is about 45° either side of the true wind. To make ground to windward the boat must tack — sailing close-hauled on alternate sides of the wind."
+  },
+  {
+    id: 114, category: "Seamanship",
+    q: "Turning the bow through the wind so the wind comes onto the other side of the boat is called:",
+    options: ["Gybing", "Tacking (going about)", "Heaving to", "Reefing"],
+    answer: 1,
+    explain: "Tacking (going about) turns the bow through the eye of the wind. Gybing turns the stern through the wind when sailing downwind — a gybe can be more violent, so the mainsail is controlled through the turn."
+  },
+  {
+    id: 115, category: "Seamanship",
+    q: "A boat sailing as close to the wind as she effectively can is said to be:",
+    options: ["Running", "On a beam reach", "Close-hauled", "Hove to"],
+    answer: 2,
+    explain: "Close-hauled means sailing as near to the wind as possible (~45°) with sails hauled in tight. Other points of sail, from the wind aft, are close reach, beam reach, broad reach and running (dead downwind)."
+  },
+  {
+    id: 116, category: "Seamanship",
+    q: "A mooring 'spring' line is rigged to:",
+    options: [
+      "Hold the bow off the pontoon",
+      "Stop the boat surging forwards or backwards along the berth",
+      "Act as the main anchor rode",
+      "Raise the mainsail"
+    ],
+    answer: 1,
+    explain: "Springs run diagonally fore and aft to prevent the boat moving forward or back along the berth. With bow and stern lines plus fore and aft springs, the boat is held securely against tide and wind — and springs help when manoeuvring off."
+  },
+  {
+    id: 117, category: "Seamanship",
+    q: "A good early sign that your anchor is dragging is:",
+    options: [
+      "The anchor chain goes slack",
+      "Transit marks ashore start to move / your position shifts relative to charted features",
+      "The depth increases slightly",
+      "The wind drops"
+    ],
+    answer: 1,
+    explain: "Pick a transit (two objects in line) or watch your position against charted marks and the plotter; if they change, you are dragging. Taking an anchor bearing/transit when you set the hook makes dragging obvious."
+  },
+  {
+    id: 118, category: "Seamanship",
+    q: "Reducing the area of sail set in strengthening wind is called:",
+    options: ["Reefing", "Tacking", "Trimming", "Luffing"],
+    answer: 0,
+    explain: "Reefing reduces sail area to keep the boat balanced, upright and under control as the wind builds. The old adage: reef early — the first time you think about it is usually the right time to do it."
+  },
+
+  // ---------------- Electronic Navigation (more) ----------------
+  {
+    id: 119, category: "Electronic Navigation",
+    q: "AIS (Automatic Identification System) allows you to:",
+    options: [
+      "Measure the depth of water",
+      "See the identity, position, course and speed of other AIS-equipped vessels",
+      "Predict the tide",
+      "Steer the boat automatically"
+    ],
+    answer: 1,
+    explain: "AIS exchanges vessel data (name, MMSI, position, course, speed, and often CPA/TCPA) over VHF. It's a powerful aid to collision avoidance — but not every vessel carries it, so keep a visual and radar lookout too."
+  },
+  {
+    id: 120, category: "Electronic Navigation",
+    q: "An echo sounder measures:",
+    options: [
+      "Speed through the water",
+      "The depth of water below the transducer",
+      "Wind speed",
+      "Distance to the next waypoint"
+    ],
+    answer: 1,
+    explain: "An echo sounder times an acoustic pulse to the seabed and back to give depth. Know whether yours reads from the waterline, the keel or the transducer, and set an alarm for a safe minimum depth."
+  },
+  {
+    id: 121, category: "Electronic Navigation",
+    q: "Radar is especially useful for:",
+    options: [
+      "Reading the tidal height",
+      "Detecting vessels and land, and measuring their range and bearing, in poor visibility or darkness",
+      "Charging the batteries",
+      "Forecasting the weather a week ahead"
+    ],
+    answer: 1,
+    explain: "Radar detects targets (vessels, buoys, coastline) and gives their range and bearing, invaluable in fog or at night. Interpreting the display and using it for collision avoidance is a skill worth practising in clear conditions first."
+  },
+
+  // ---------------- Nautical Terms (more) ----------------
+  {
+    id: 122, category: "Nautical Terms",
+    q: "The 'beam' of a vessel is:",
+    options: [
+      "Its overall length",
+      "Its maximum width",
+      "The height of the mast",
+      "The depth of the keel"
+    ],
+    answer: 1,
+    explain: "Beam is the boat's greatest width. 'On the beam' also means abeam — at 90° to the fore-and-aft line, i.e. directly to the side of the vessel."
+  },
+  {
+    id: 123, category: "Nautical Terms",
+    q: "'Aft' means:",
+    options: [
+      "Towards the bow (front)",
+      "Towards the stern (back)",
+      "To the left",
+      "Below deck"
+    ],
+    answer: 1,
+    explain: "Aft is towards the stern; forward (or 'for'ard') is towards the bow. 'Abaft' means further towards the stern than something, e.g. 'abaft the beam'."
+  },
+  {
+    id: 124, category: "Nautical Terms",
+    q: "'Amidships' refers to:",
+    options: [
+      "The very front of the boat",
+      "The middle of the vessel",
+      "The top of the mast",
+      "The area behind the transom"
+    ],
+    answer: 1,
+    explain: "Amidships is the middle of the boat, both along its length and across its beam. 'Midships' is also an order to centre the helm/rudder."
+  },
+  {
+    id: 125, category: "Nautical Terms",
+    q: "The 'keel' of a yacht is:",
+    options: [
+      "The sail at the front",
+      "The structural backbone along the bottom of the hull, usually ballasted for stability",
+      "The rear rail",
+      "The steering wheel"
+    ],
+    answer: 1,
+    explain: "The keel runs along the bottom of the hull; on a sailing yacht it is usually weighted (ballasted) low down to resist heeling and to stop the boat being blown sideways, providing stability and lateral resistance."
+  },
+  {
+    id: 126, category: "Nautical Terms",
+    q: "'Leeward' (pronounced 'loo-ard') means:",
+    options: [
+      "The side towards the wind",
+      "The side away from the wind (downwind, the sheltered side)",
+      "Straight ahead",
+      "The deepest part of a channel"
+    ],
+    answer: 1,
+    explain: "Leeward is the sheltered side, away from the wind; windward is the side the wind hits first. A 'lee shore' is a coast downwind of you — hazardous, because wind and waves set you towards it."
+  },
+  {
+    id: 127, category: "Nautical Terms",
+    q: "The 'transom' of a boat is:",
+    options: [
+      "The flat surface across the stern",
+      "The tip of the bow",
+      "The base of the mast",
+      "The anchor locker"
+    ],
+    answer: 0,
+    explain: "The transom is the (usually flat) athwartships surface that forms the back of the hull. Outboard engines, boarding ladders and self-draining cockpit outlets are often fitted on or through it."
+  },
+  {
+    id: 128, category: "Nautical Terms",
+    q: "A vessel's 'displacement' is:",
+    options: [
+      "How far it has travelled",
+      "Its weight, equal to the weight of water it displaces when floating",
+      "Its top speed",
+      "The distance it can anchor from shore"
+    ],
+    answer: 1,
+    explain: "Displacement is the weight of the vessel — by Archimedes' principle equal to the weight of the water it pushes aside. It's a truer measure of a boat's size and load-carrying than length alone."
   }
 ];
 
