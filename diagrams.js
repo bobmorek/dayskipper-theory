@@ -131,6 +131,52 @@ const DIAGRAMS = (function () {
     );
   }
 
+  // ---------------- Preferred channel (modified lateral) marks ----------------
+  function preferredChannel(main) {
+    // main "stbd": red body + green band  (preferred channel to starboard, keep to port)
+    // main "port": green body + red band  (preferred channel to port, keep to starboard)
+    let bands, topmark;
+    if (main === "stbd") {
+      bands =
+        `<rect x="58" y="95" width="44" height="40" fill="${RED}"/>` +
+        `<rect x="58" y="135" width="44" height="24" fill="${GREEN}"/>` +
+        `<rect x="58" y="159" width="44" height="46" fill="${RED}"/>`;
+      topmark = `<rect x="66" y="44" width="28" height="20" rx="2" fill="${RED}" stroke="${NAVY}" stroke-width="2"/>`;
+    } else {
+      bands =
+        `<rect x="58" y="95" width="44" height="40" fill="${GREEN}"/>` +
+        `<rect x="58" y="135" width="44" height="24" fill="${RED}"/>` +
+        `<rect x="58" y="159" width="44" height="46" fill="${GREEN}"/>`;
+      topmark = `<polygon points="80,42 66,64 94,64" fill="${GREEN}" stroke="${NAVY}" stroke-width="2"/>`;
+    }
+    return svg(160, 240,
+      topmark +
+      `<rect x="78" y="64" width="4" height="31" fill="${BLACK}"/>` +
+      clippedBody(bands) +
+      water()
+    );
+  }
+
+  // ---------------- Emergency wreck marking buoy ----------------
+  function emergencyWreck() {
+    const BLUE = "#1f6fd0", n = 6, x0 = 58, w = 44, sw = w / n;
+    let stripes = "";
+    for (let i = 0; i < n; i++) {
+      stripes += `<rect x="${(x0 + i * sw).toFixed(2)}" y="95" width="${sw.toFixed(2)}" height="110" fill="${i % 2 ? YELLOW : BLUE}"/>`;
+    }
+    return svg(160, 240,
+      `<g stroke-linecap="butt">` +
+      `<line x1="80" y1="36" x2="80" y2="66" stroke="${BLACK}" stroke-width="10"/>` +
+      `<line x1="66" y1="51" x2="94" y2="51" stroke="${BLACK}" stroke-width="10"/>` +
+      `<line x1="80" y1="36" x2="80" y2="66" stroke="${YELLOW}" stroke-width="6"/>` +
+      `<line x1="66" y1="51" x2="94" y2="51" stroke="${YELLOW}" stroke-width="6"/>` +
+      `</g>` +
+      `<rect x="78" y="66" width="4" height="29" fill="${BLACK}"/>` +
+      clippedBody(stripes) +
+      water()
+    );
+  }
+
   // ---------------- Vessel lights at night (vertical arrangement) ----------------
   function lights(colours) {
     const map = { R: "#ff3b30", G: "#25d366", W: "#fff7cc" };
@@ -210,7 +256,7 @@ const DIAGRAMS = (function () {
 
   return {
     cardinal, lateralPort, lateralStbd, isolatedDanger, safeWater, specialMark,
-    lights, dayShape, rhythm,
+    preferredChannel, emergencyWreck, lights, dayShape, rhythm,
   };
 })();
 

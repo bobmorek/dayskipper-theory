@@ -276,6 +276,10 @@
     if (pool.length) startTest(pool);
   });
 
+  // Footer question count (auto-updates as the bank grows)
+  const qCountFoot = el("qCountFoot");
+  if (qCountFoot) qCountFoot.textContent = QUESTIONS.length;
+
   buildTopicList();
   show(startScreen);
 })();

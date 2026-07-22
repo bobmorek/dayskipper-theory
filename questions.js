@@ -1785,6 +1785,774 @@ const QUESTIONS = [
     ],
     answer: 2,
     explain: "Short flashes separated by longer dark periods (dark longer than light) is a 'flashing' (Fl) light. If the flashes came in groups you would see e.g. Fl(2); very rapid flashes would be quick (Q)."
+  },
+
+  // ================= FURTHER QUESTIONS =================
+  // ---------------- Charts & Chartwork ----------------
+  {
+    id: 148, category: "Charts & Chartwork",
+    q: "On a chart, the seabed abbreviation 'S' next to a sounding means the bottom is:",
+    options: ["Sand", "Stone", "Silt", "Shell"],
+    answer: 0,
+    explain: "Nature-of-seabed abbreviations include S = sand, M = mud, R = rock, Sh = shingle, Co = coral, St = stones. Knowing the bottom helps you choose good holding ground for anchoring."
+  },
+  {
+    id: 149, category: "Charts & Chartwork",
+    q: "A chart described as 1:50,000 compared with one at 1:25,000:",
+    options: [
+      "Shows more detail over a smaller area",
+      "Covers a larger area but with less detail (it is a smaller-scale chart)",
+      "Is always more accurate",
+      "Uses a different chart datum"
+    ],
+    answer: 1,
+    explain: "1:50,000 is a smaller scale than 1:25,000 — it covers more ground but in less detail. Use the largest-scale (most detailed) chart available for pilotage and close-quarters work."
+  },
+  {
+    id: 150, category: "Charts & Chartwork",
+    q: "Official corrections that keep an Admiralty chart up to date are published as:",
+    options: [
+      "Admiralty Notices to Mariners",
+      "The Nautical Almanac only",
+      "Coastguard broadcasts only",
+      "Chart plotter updates only"
+    ],
+    answer: 0,
+    explain: "Admiralty Notices to Mariners publish chart corrections. A chart is only as safe as it is up to date, so corrections should be applied (and the correction noted) before you rely on it."
+  },
+  {
+    id: 151, category: "Charts & Chartwork",
+    q: "A small anchor symbol printed on the chart usually indicates:",
+    options: [
+      "A wreck",
+      "A recommended anchorage",
+      "Prohibited anchoring",
+      "An underwater cable"
+    ],
+    answer: 1,
+    explain: "An anchor symbol marks a recommended anchorage. An anchor with a line through it means anchoring is prohibited (often over cables or pipelines). Always check the depth, holding and swinging room."
+  },
+  {
+    id: 152, category: "Charts & Chartwork",
+    q: "Depth contour lines on a chart join points of:",
+    options: [
+      "Equal depth below chart datum",
+      "Equal height above sea level",
+      "Equal tidal range",
+      "Equal magnetic variation"
+    ],
+    answer: 0,
+    explain: "Depth contours (e.g. the 5 m and 10 m lines) join points of equal charted depth. Following or staying outside a chosen contour is a simple, robust pilotage technique for avoiding shallows."
+  },
+
+  // ---------------- Compass & Position ----------------
+  {
+    id: 153, category: "Compass & Position",
+    q: "To convert a True course into a Compass course you must apply:",
+    options: [
+      "Variation only",
+      "Deviation only",
+      "Both variation and deviation (True → Magnetic → Compass)",
+      "Neither — they are the same"
+    ],
+    answer: 2,
+    explain: "Going from True to Compass you apply variation (True→Magnetic) then deviation (Magnetic→Compass), adding westerly errors and subtracting easterly. Reverse the process, adding easterly, to correct a Compass reading to True."
+  },
+  {
+    id: 154, category: "Compass & Position",
+    q: "A 'running fix' is useful when:",
+    options: [
+      "You have three good charted objects to take bearings on",
+      "Only one charted object is visible — you take a bearing, run on, take a second bearing, and transfer the first",
+      "You have no compass at all",
+      "You are alongside in a marina"
+    ],
+    answer: 1,
+    explain: "With only one identifiable mark you take a bearing, note the log/time, then later take a second bearing and transfer the first position line forward by the course and distance run — where they cross is your running fix."
+  },
+  {
+    id: 155, category: "Compass & Position",
+    q: "A single compass bearing to one charted object gives you:",
+    options: [
+      "Your exact position",
+      "A position line — you are somewhere along that line",
+      "Your speed over the ground",
+      "The tidal set"
+    ],
+    answer: 1,
+    explain: "One bearing yields a single position line; you are somewhere on it but not where. Crossing it with a second position line (another bearing, a depth contour, or a transit) fixes your position."
+  },
+  {
+    id: 156, category: "Compass & Position",
+    q: "A good way to check your steering compass for error at sea is to:",
+    options: [
+      "Compare the compass bearing of a charted transit with its charted bearing",
+      "Read the GPS latitude",
+      "Look at the depth sounder",
+      "Estimate from the wind direction"
+    ],
+    answer: 0,
+    explain: "When two charted objects come into transit, compare the bearing your compass shows with the transit's charted bearing; the difference reveals the total compass error (deviation on that heading plus variation)."
+  },
+
+  // ---------------- Tides ----------------
+  {
+    id: 157, category: "Tides",
+    q: "Charted vertical (overhead) clearance under a bridge or power cable is measured above:",
+    options: [
+      "Chart datum (LAT)",
+      "Mean sea level",
+      "Highest Astronomical Tide (HAT)",
+      "The current height of tide"
+    ],
+    answer: 2,
+    explain: "Overhead clearances are given above HAT, the highest the tide is expected to reach. So the real clearance is normally a little MORE than charted — but never assume; work out the actual height of tide for masthead clearance."
+  },
+  {
+    id: 158, category: "Tides",
+    q: "'Flood' and 'ebb' refer to:",
+    options: [
+      "Spring and neap tides",
+      "The rising (incoming) tide and the falling (outgoing) tide respectively",
+      "High water and low water heights",
+      "Two types of tidal atlas"
+    ],
+    answer: 1,
+    explain: "The flood is the rising, incoming tide; the ebb is the falling, outgoing tide. The tidal stream often (but not always) floods and ebbs roughly in step with the rise and fall of height."
+  },
+  {
+    id: 159, category: "Tides",
+    q: "Over the first three hours after low water, the Rule of Twelfths says the tide rises by:",
+    options: [
+      "One quarter of the range",
+      "One half of the range (1 + 2 + 3 = 6 twelfths)",
+      "The whole range",
+      "One twelfth of the range"
+    ],
+    answer: 1,
+    explain: "The hourly rise is 1, 2, 3, 3, 2, 1 twelfths. After three hours you have 1 + 2 + 3 = 6 twelfths = half the range, which is why the water is near mid-height (and moving fastest) at mid-tide."
+  },
+  {
+    id: 160, category: "Tides",
+    q: "Heights of charted objects such as lighthouses are measured above:",
+    options: [
+      "Chart datum",
+      "Mean High Water Springs (MHWS)",
+      "Highest Astronomical Tide",
+      "The seabed"
+    ],
+    answer: 1,
+    explain: "Heights of lights and other land features are given above MHWS. (Overhead clearances, by contrast, are above HAT, and charted depths are below chart datum — three different reference levels to keep straight.)"
+  },
+
+  // ---------------- Buoyage ----------------
+  {
+    id: 161, category: "Buoyage",
+    q: "A green buoy with a single broad RED horizontal band marks:",
+    options: [
+      "An isolated danger",
+      "A channel division where the preferred (main) channel is to PORT",
+      "Safe water",
+      "A special/recreational area"
+    ],
+    answer: 1,
+    explain: "Green body with a red band = preferred channel to port. Its green body means treat it mainly as a starboard-hand mark (keep it to starboard) if you follow the main channel. The band colour shows the preferred route."
+  },
+  {
+    id: 162, category: "Buoyage",
+    q: "The colours of an emergency wreck marking buoy (marking a new, uncharted wreck) are:",
+    options: [
+      "Black and yellow",
+      "Blue and yellow vertical stripes with a yellow upright cross",
+      "Red and white stripes",
+      "All green"
+    ],
+    answer: 1,
+    explain: "The emergency wreck marking buoy has blue and yellow vertical stripes and a standing yellow cross topmark, showing an alternating blue/yellow light. It is placed on a newly discovered wreck until it is charted and normally marked."
+  },
+  {
+    id: 163, category: "Buoyage",
+    q: "In IALA Region B (e.g. North and South America), when entering from seaward you keep:",
+    options: [
+      "Red marks to port (as in Region A)",
+      "Red marks to STARBOARD — 'red right returning'",
+      "All marks to starboard",
+      "Cardinal marks only"
+    ],
+    answer: 1,
+    explain: "Region B reverses the lateral colours: 'red right returning' — red marks are kept to starboard when entering from seaward, the opposite of Region A (UK/Europe). Cardinal, safe water and isolated danger marks are the same worldwide."
+  },
+  {
+    id: 164, category: "Buoyage",
+    q: "In IALA Region A, the light colours shown by lateral marks are:",
+    options: [
+      "White for both",
+      "Red for port-hand marks and green for starboard-hand marks",
+      "Green for port and red for starboard",
+      "Yellow for both"
+    ],
+    answer: 1,
+    explain: "Lateral marks are lit in their body colour: red lights on red port-hand marks, green lights on green starboard-hand marks. Cardinal marks, by contrast, always show a white light."
+  },
+
+  // ---------------- Lights ----------------
+  {
+    id: 165, category: "Lights",
+    q: "A sectored light that shows white, red and green over different arcs is used to:",
+    options: [
+      "Indicate the vessel's speed",
+      "Show a safe sector (often white) and the dangerous sectors (red/green) on each side",
+      "Mark a traffic separation scheme",
+      "Give the time"
+    ],
+    answer: 1,
+    explain: "A sectored light changes colour with bearing: typically a white sector marks the safe approach, with red and green sectors warning of dangers to port and starboard. Keep in the white to stay in safe water."
+  },
+  {
+    id: 166, category: "Lights",
+    q: "'LFl 10s' on a chart describes a light that shows:",
+    options: [
+      "Ten flashes every second",
+      "A single long flash (2 seconds or more) every 10 seconds",
+      "A fixed light for 10 minutes",
+      "Ten quick flashes"
+    ],
+    answer: 1,
+    explain: "LFl is a long-flash light: one flash of two seconds or more, here repeating every 10 seconds. The extended flash makes it easy to distinguish from an ordinary short flash."
+  },
+  {
+    id: 167, category: "Lights",
+    q: "The 'nominal range' of a light is the distance it can be seen:",
+    options: [
+      "From any height of eye",
+      "In standard/clear visibility conditions (not allowing for your height of eye)",
+      "Only in fog",
+      "At night only in winter"
+    ],
+    answer: 1,
+    explain: "Nominal range is the light's luminous range in defined clear conditions. In poor visibility you will see it from less far; a very tall light may also be hidden below the horizon until you are within its geographical range."
+  },
+
+  // ---------------- Collision Regs (IRPCS) ----------------
+  {
+    id: 168, category: "Collision Regs (IRPCS)",
+    q: "Under Rule 6, which of the following affects the 'safe speed' you should adopt?",
+    options: [
+      "Only your engine size",
+      "Visibility, traffic density, your manoeuvrability, and the state of wind, sea and current",
+      "Only the time of day",
+      "Only whether you are under sail or power"
+    ],
+    answer: 1,
+    explain: "Rule 6 lists factors for safe speed: visibility, traffic density, stopping/turning ability, background lights, wind/sea/current, draught relative to depth, and (if fitted) radar limitations. Safe speed lets you stop or act in time."
+  },
+  {
+    id: 169, category: "Collision Regs (IRPCS)",
+    q: "When crossing a Traffic Separation Scheme (Rule 10), a small vessel should cross:",
+    options: [
+      "Diagonally with the flow to save time",
+      "On a heading as nearly as practicable at right angles to the traffic flow",
+      "By following the lane the wrong way",
+      "Anywhere, as the rules don't apply to small craft"
+    ],
+    answer: 1,
+    explain: "Cross a TSS lane on a heading as near to 90° to the traffic direction as practicable. This minimises your time in the lane and makes your intentions obvious to vessels following the lane."
+  },
+  {
+    id: 170, category: "Collision Regs (IRPCS)",
+    q: "Under Rule 8, action taken to avoid collision should be:",
+    options: [
+      "Small, gradual and late",
+      "Positive, made in ample time and large enough to be readily apparent to the other vessel",
+      "Left until the last moment",
+      "A series of tiny course changes"
+    ],
+    answer: 1,
+    explain: "Rule 8 requires bold, early, obvious action — a large alteration of course and/or speed made in good time, so the other vessel can clearly see what you are doing. A succession of small changes can confuse."
+  },
+  {
+    id: 171, category: "Collision Regs (IRPCS)",
+    q: "By day, a vessel constrained by her draught displays:",
+    options: [
+      "One black ball",
+      "A black cylinder",
+      "Three black balls",
+      "A black cone, point up"
+    ],
+    answer: 1,
+    explain: "A vessel constrained by her draught shows a black cylinder by day, and three all-round red lights in a vertical line by night. She can only safely navigate within a narrow channel of deep water, so keep well clear."
+  },
+  {
+    id: 172, category: "Collision Regs (IRPCS)",
+    q: "By day, a vessel aground displays:",
+    options: [
+      "One black ball",
+      "Two black balls",
+      "Three black balls in a vertical line",
+      "A black diamond"
+    ],
+    answer: 2,
+    explain: "A vessel aground shows three black balls in a vertical line by day. At night she shows anchor light(s) plus two all-round red lights in a vertical line. Both warn others she is stuck and cannot move."
+  },
+  {
+    id: 173, category: "Collision Regs (IRPCS)",
+    q: "In restricted visibility, a sailing vessel under way sounds, every 2 minutes:",
+    options: [
+      "One prolonged blast",
+      "Two prolonged blasts",
+      "One prolonged blast followed by two short blasts",
+      "Five short blasts"
+    ],
+    answer: 2,
+    explain: "One prolonged + two short blasts (every ≤2 min) is the fog signal for sailing vessels — and also for vessels not under command, restricted in ability to manoeuvre, constrained by draught, fishing, or towing. A power-driven vessel making way sounds one prolonged blast."
+  },
+  {
+    id: 174, category: "Collision Regs (IRPCS)",
+    q: "A power-driven vessel under 7 m long, not making more than 7 knots, may instead of the full light array show:",
+    options: [
+      "No lights at all",
+      "An all-round white light (and, if practicable, sidelights)",
+      "Two masthead lights",
+      "A flashing blue light"
+    ],
+    answer: 1,
+    explain: "Such a small, slow power-driven vessel may exhibit just an all-round white light, and sidelights if practicable. Even so, keeping a torch or lantern ready to shine on the sails or show your position is prudent."
+  },
+
+  // ---------------- Safety ----------------
+  {
+    id: 175, category: "Safety",
+    q: "Bottled cooking gas (LPG) is a particular hazard on board because it is:",
+    options: [
+      "Lighter than air and escapes upward harmlessly",
+      "Heavier than air, so leaks sink into the bilges where they can collect and explode",
+      "Non-flammable",
+      "Only dangerous in harbour"
+    ],
+    answer: 1,
+    explain: "LPG is heavier than air and pools in the bilges, creating an explosion risk. Turn the gas off at the bottle when not in use, keep the installation gas-tight, and never ignore a smell of gas."
+  },
+  {
+    id: 176, category: "Safety",
+    q: "A 'grab bag' is:",
+    options: [
+      "A bag of spare mooring lines",
+      "A ready, portable bag of survival essentials to take when abandoning to the liferaft",
+      "The bag the anchor is stowed in",
+      "A tool bag for engine repairs"
+    ],
+    answer: 1,
+    explain: "A grab bag holds abandon-ship essentials — flares, a handheld VHF, water, first aid, a torch, warm/waterproof items, etc. — kept ready to grab in seconds if you have to take to the liferaft."
+  },
+  {
+    id: 177, category: "Safety",
+    q: "Your vessel's unique nine-digit identity, sent automatically with a DSC call, is the:",
+    options: [
+      "MMSI (Maritime Mobile Service Identity)",
+      "IMO number",
+      "Call sign only",
+      "Sail number"
+    ],
+    answer: 0,
+    explain: "The MMSI is a nine-digit number programmed into your DSC radio (and EPIRB/AIS). A DSC distress alert sends it automatically, letting the Coastguard identify your vessel and look up its registered details."
+  },
+  {
+    id: 178, category: "Safety",
+    q: "The first actions on a genuine man-overboard should include:",
+    options: [
+      "Going below to make a cup of tea",
+      "Shouting 'man overboard', throwing buoyancy, pressing the MOB button, and keeping someone pointing at the casualty",
+      "Immediately jumping in after them",
+      "Turning off the engine and waiting"
+    ],
+    answer: 1,
+    explain: "Raise the alarm, throw a lifebuoy/danbuoy for buoyancy and to mark the spot, press the GPS MOB button, and post a dedicated spotter who does nothing but point at the casualty so you never lose sight of them."
+  },
+  {
+    id: 179, category: "Safety",
+    q: "Time-expired distress flares should be:",
+    options: [
+      "Fired off for practice whenever convenient",
+      "Handed in for disposal via an approved facility, never fired except in real distress",
+      "Thrown overboard",
+      "Kept indefinitely — they never expire"
+    ],
+    answer: 1,
+    explain: "Out-of-date flares still contain explosive charges. Dispose of them through an approved route (ask the Coastguard/marina for current arrangements). Firing one off, except in genuine distress, can trigger a needless rescue and is an offence."
+  },
+
+  // ---------------- Meteorology ----------------
+  {
+    id: 180, category: "Meteorology",
+    q: "An anticyclone (area of high pressure) is usually associated with:",
+    options: [
+      "Storms and heavy rain",
+      "Settled weather and light winds (with fog or frost possible in winter)",
+      "Rapidly veering gale-force winds",
+      "Continuous thunderstorms"
+    ],
+    answer: 1,
+    explain: "Highs bring settled, often fine weather with light winds. In summer that can mean sea breezes and haze; in winter, overnight fog or frost. Depressions (lows), by contrast, bring the wind and rain."
+  },
+  {
+    id: 181, category: "Meteorology",
+    q: "The passage of a WARM front typically brings:",
+    options: [
+      "A sudden veer, showers and clearing skies",
+      "Gradually lowering cloud and a spell of continuous rain, with rising temperature afterwards",
+      "Immediate fog then sunshine",
+      "No change in the weather"
+    ],
+    answer: 1,
+    explain: "Ahead of a warm front cloud lowers and thickens and steady rain sets in; as it passes the wind veers a little and it turns milder and often murky in the warm sector. A cold front later brings a sharper veer and brighter, showery air."
+  },
+  {
+    id: 182, category: "Meteorology",
+    q: "In the shipping forecast, visibility described as 'fog' means visibility is less than:",
+    options: ["100 metres", "1000 metres (1 km)", "2 nautical miles", "5 kilometres"],
+    answer: 1,
+    explain: "Forecast visibility terms: 'fog' = less than 1000 m, 'poor' = 1000 m to 2 nm, 'moderate' = 2–5 nm, and 'good' = more than 5 nm. Fog demands slower speed, sound signals and extra lookout (and radar if fitted)."
+  },
+  {
+    id: 183, category: "Meteorology",
+    q: "A 'land breeze' blows:",
+    options: [
+      "From the sea onto the land during a warm afternoon",
+      "From the land out to sea, typically overnight and early morning",
+      "Only during gales",
+      "Straight up from the surface"
+    ],
+    answer: 1,
+    explain: "At night the land cools faster than the sea, so air flows from the cooler land out to the warmer sea — an offshore land breeze, usually lighter than the daytime sea breeze that blows the other way."
+  },
+
+  // ---------------- Passage Planning ----------------
+  {
+    id: 184, category: "Passage Planning",
+    q: "A 'bolt hole' in a passage plan is:",
+    options: [
+      "A hole in the hull to be repaired",
+      "An alternative port of refuge you can divert to if conditions deteriorate",
+      "The fastest route home",
+      "A locker for storing bolts"
+    ],
+    answer: 1,
+    explain: "Identifying bolt holes (ports of refuge) along the route in advance means that if the weather worsens, someone is seasick, or gear fails, you already know where you can safely divert and how to enter."
+  },
+  {
+    id: 185, category: "Passage Planning",
+    q: "A good pilotage plan for entering an unfamiliar harbour relies mainly on:",
+    options: [
+      "GPS position alone",
+      "Transits, leading lines, clearing bearings and depth contours (with GPS as a cross-check)",
+      "Following any other boat that is moving",
+      "Guesswork and local knowledge you don't have"
+    ],
+    answer: 1,
+    explain: "Robust pilotage uses eyeball features — transits and leading lines to stay on track, clearing bearings to avoid dangers, and depth contours as a safety net — with the plotter as a back-up, not the sole means."
+  },
+  {
+    id: 186, category: "Passage Planning",
+    q: "'Speed made good' over the ground differs from your boat's speed through the water because of:",
+    options: [
+      "Engine wear",
+      "The tidal stream (and, when sailing, leeway)",
+      "The depth of water",
+      "The chart scale"
+    ],
+    answer: 1,
+    explain: "A fair tide adds to your speed over the ground, a foul tide subtracts. So speed made good — what matters for ETA — is your water speed adjusted for the tidal stream (and any leeway pushing you off track)."
+  },
+  {
+    id: 187, category: "Passage Planning",
+    q: "Before setting off on any passage you should routinely check:",
+    options: [
+      "Only the fuel gauge",
+      "Weather forecast, tidal windows, the boat and its gear, fuel, and the crew's readiness",
+      "Only the GPS",
+      "Nothing — just go"
+    ],
+    answer: 1,
+    explain: "Appraisal covers weather, tides (and the windows for departure/arrival), the vessel and safety gear, fuel and water, and the crew (experience, fitness, seasickness). Skipping the appraisal is how avoidable trouble starts."
+  },
+
+  // ---------------- Seamanship ----------------
+  {
+    id: 188, category: "Seamanship",
+    q: "'Heaving to' is a technique used to:",
+    options: [
+      "Sail as fast as possible downwind",
+      "Effectively stop and hold a stable, comfortable position (e.g. to reef, wait, or ride out weather)",
+      "Drop the anchor quickly",
+      "Turn the engine off to save fuel"
+    ],
+    answer: 1,
+    explain: "Heaving to backs the headsail against the mainsail with the helm lashed to leeward, so the boat lies quietly making little way. It's invaluable for reefing, a rest, sorting a problem, or easing motion in heavy weather."
+  },
+  {
+    id: 189, category: "Seamanship",
+    q: "When anchoring, as the boat drifts back you should:",
+    options: [
+      "Drop all the chain in one heap on top of the anchor",
+      "Pay the chain out steadily so it lies stretched along the seabed, then snub it to dig the anchor in",
+      "Motor forward hard over the anchor",
+      "Leave the boat in gear ahead"
+    ],
+    answer: 1,
+    explain: "Lower the anchor to the bottom, then let the boat fall back (wind or tide, or gentle astern power) while paying out chain so it lays out along the seabed. Snubbing it then sets the anchor; a heap of chain on the anchor won't hold."
+  },
+  {
+    id: 190, category: "Seamanship",
+    q: "A 'preventer' is rigged when sailing downwind to:",
+    options: [
+      "Stop the anchor running out",
+      "Hold the boom out and prevent a dangerous accidental gybe",
+      "Prevent the sails from being raised",
+      "Keep the crew below decks"
+    ],
+    answer: 1,
+    explain: "A preventer is a line from the boom forward to the deck that stops the boom slamming across if the boat is steered by the lee or rolls. An accidental gybe can injure crew and damage rig, so a preventer is a key downwind safety measure."
+  },
+  {
+    id: 191, category: "Seamanship",
+    q: "A rolling hitch is particularly useful for:",
+    options: [
+      "Joining two ropes of equal size",
+      "Gripping another rope or a spar under a lengthwise pull, e.g. to take the load off a riding turn",
+      "Making a quick-release loop",
+      "Finishing off a whipping"
+    ],
+    answer: 1,
+    explain: "A rolling hitch grips along a rope or spar and resists a pull in one direction, so it's ideal for taking the strain off a jammed sheet (a riding turn on a winch) or rigging a snubber to an anchor chain."
+  },
+  {
+    id: 192, category: "Seamanship",
+    q: "Recovering a man overboard under sail is usually completed by approaching the casualty:",
+    options: [
+      "At full speed from downwind",
+      "Slowly from downwind, luffing up to stop alongside with the sails depowered",
+      "From directly upwind at speed",
+      "Beam-on with sails fully powered"
+    ],
+    answer: 1,
+    explain: "The final approach is made coming up towards the wind so you can spill the sails and stop precisely alongside the casualty on the leeward side, with the boat depowered and under full control for the recovery."
+  },
+
+  // ---------------- Electronic Navigation ----------------
+  {
+    id: 193, category: "Electronic Navigation",
+    q: "Modern charts and GPS both use the horizontal datum:",
+    options: ["OSGB36", "WGS84", "ED50", "Chart datum"],
+    answer: 1,
+    explain: "GPS works on WGS84, and modern charts are referenced to it, so positions plot directly. On older charts a datum shift may be printed — apply it, or your GPS position could plot tens of metres out."
+  },
+  {
+    id: 194, category: "Electronic Navigation",
+    q: "A depth (shallow) alarm on the echo sounder is best set to:",
+    options: [
+      "The deepest water on the passage",
+      "A safe minimum depth for your draught, so it warns you before you run out of water",
+      "Zero, so it never sounds",
+      "The height of the tide"
+    ],
+    answer: 1,
+    explain: "Set the shallow alarm to a value that gives you warning while you still have room to act, based on your draught plus a safety margin. It's a valuable backstop, especially at night or in poor visibility."
+  },
+  {
+    id: 195, category: "Electronic Navigation",
+    q: "After sending a DSC distress alert, you should:",
+    options: [
+      "Switch the radio off to save the battery",
+      "Follow it up with a spoken MAYDAY on VHF Channel 16",
+      "Wait silently for a reply",
+      "Send the alert repeatedly every few seconds"
+    ],
+    answer: 1,
+    explain: "The DSC alert on Channel 70 tells the Coastguard who and where you are; you then make a voice MAYDAY on Channel 16 with the details (position, nature of distress, POB, assistance required) so rescuers and nearby vessels can respond."
+  },
+  {
+    id: 196, category: "Electronic Navigation",
+    q: "A ship's 'log' (the instrument) measures:",
+    options: [
+      "Depth of water",
+      "Speed and distance travelled through the water",
+      "Wind speed",
+      "Engine hours"
+    ],
+    answer: 1,
+    explain: "The log measures boat speed and distance through the water (not over the ground). Comparing log distance with GPS distance over ground reveals the effect of the tidal stream you have experienced."
+  },
+
+  // ---------------- Nautical Terms ----------------
+  {
+    id: 197, category: "Nautical Terms",
+    q: "The 'painter' on a dinghy is:",
+    options: [
+      "The person who maintains the hull",
+      "The rope at the bow used to make it fast or tow it",
+      "The rear seat",
+      "A type of oar"
+    ],
+    answer: 1,
+    explain: "The painter is the bow rope of a dinghy or tender, used for tying up or towing. Keeping it from trailing into the propeller is a routine bit of good seamanship when the tender is towed."
+  },
+  {
+    id: 198, category: "Nautical Terms",
+    q: "The 'kicker' (or vang) controls:",
+    options: [
+      "The anchor",
+      "The boom — pulling it down to tension the leech and flatten the mainsail",
+      "The steering",
+      "The bilge pump"
+    ],
+    answer: 1,
+    explain: "The kicking strap (boom vang) pulls the boom down, controlling leech tension and mainsail shape, especially when reaching or running when the mainsheet no longer holds the boom down."
+  },
+  {
+    id: 199, category: "Nautical Terms",
+    q: "A 'warp' is:",
+    options: [
+      "A tear in a sail",
+      "A rope used for mooring or anchoring",
+      "A navigational error",
+      "The centreline of the boat"
+    ],
+    answer: 1,
+    explain: "A warp is a general term for a rope used to moor or anchor — a mooring warp, or the warp on a kedge anchor. 'To warp' a boat also means to move it using such lines."
+  },
+  {
+    id: 200, category: "Nautical Terms",
+    q: "The 'heads' on a boat is:",
+    options: [
+      "The front of the vessel",
+      "The toilet compartment",
+      "The top of the mast",
+      "The crew's sleeping area"
+    ],
+    answer: 1,
+    explain: "The heads is the marine toilet/compartment — the name comes from the old practice of using the head (bow) of a sailing ship. Knowing seamanlike names for parts of the boat avoids confusion aboard."
+  },
+  {
+    id: 201, category: "Nautical Terms",
+    q: "The 'luff' of a sail is:",
+    options: [
+      "Its trailing (back) edge",
+      "Its leading (forward) edge",
+      "Its bottom edge",
+      "The bottom corner"
+    ],
+    answer: 1,
+    explain: "The luff is the forward (leading) edge of a sail; the leech is the trailing edge and the foot is the bottom. 'Luffing up' means turning towards the wind until the luff of the sail begins to flap."
+  },
+  {
+    id: 202, category: "Nautical Terms",
+    q: "'Guardrails' with a 'pulpit' and 'pushpit' provide:",
+    options: [
+      "Extra sail area",
+      "A safety barrier around the deck edge, with frames at the bow (pulpit) and stern (pushpit)",
+      "Places to store the anchor",
+      "The boat's steering"
+    ],
+    answer: 1,
+    explain: "Guardrails run around the deck between the pulpit (bow frame) and pushpit (stern frame), giving crew something to hold and helping prevent falls overboard — best used together with clipping on in rough conditions."
+  },
+
+  // ================= FURTHER IMAGE QUESTIONS =================
+  {
+    id: 203, category: "Buoyage", image: DIAGRAMS.preferredChannel("port"),
+    q: "This green buoy with a broad red band is a:",
+    options: [
+      "Isolated danger mark",
+      "Preferred channel to PORT mark — the main channel lies to port (keep it to starboard if you stay in the main channel)",
+      "Safe water mark",
+      "North cardinal mark"
+    ],
+    answer: 1,
+    explain: "A green body (starboard-hand colour) with a red band means the preferred channel is to port. Follow the main channel by keeping the mark to starboard; the band shows where the preferred route goes."
+  },
+  {
+    id: 204, category: "Buoyage", image: DIAGRAMS.preferredChannel("stbd"),
+    q: "This red buoy with a broad green band should be treated as:",
+    options: [
+      "A preferred channel to STARBOARD mark — keep it to port if following the main channel",
+      "A safe water mark — pass either side",
+      "A special mark",
+      "A west cardinal mark"
+    ],
+    answer: 0,
+    explain: "A red body (port-hand colour) with a green band marks a preferred channel to starboard. To follow the main channel, keep it to port — as you would an ordinary red port-hand mark."
+  },
+  {
+    id: 205, category: "Buoyage", image: DIAGRAMS.emergencyWreck(),
+    q: "You come across this blue-and-yellow striped buoy with a yellow cross. It marks:",
+    options: [
+      "A recreation area",
+      "A newly discovered wreck (emergency wreck marking buoy) — keep clear",
+      "Safe water",
+      "The harbour entrance"
+    ],
+    answer: 1,
+    explain: "Blue and yellow vertical stripes with a standing yellow cross topmark is an emergency wreck marking buoy, placed on a new, not-yet-charted wreck. It shows an alternating blue and yellow light — give it a wide berth."
+  },
+  {
+    id: 206, category: "Collision Regs (IRPCS)", image: DIAGRAMS.lights(["R", "W", "R"]),
+    q: "At night you see these three all-round lights (red, white, red) in a vertical line. The vessel is:",
+    options: [
+      "At anchor",
+      "Restricted in her ability to manoeuvre",
+      "Not under command",
+      "Aground"
+    ],
+    answer: 1,
+    explain: "Red-white-red all-round lights in a vertical line indicate a vessel restricted in her ability to manoeuvre — e.g. dredging, cable-laying or servicing a buoy. Keep clear and pass on her safe side."
+  },
+  {
+    id: 207, category: "Collision Regs (IRPCS)", image: DIAGRAMS.lights(["R", "R", "R"]),
+    q: "Three all-round RED lights in a vertical line at night indicate a vessel:",
+    options: [
+      "Not under command",
+      "Constrained by her draught",
+      "At anchor",
+      "Engaged in fishing"
+    ],
+    answer: 1,
+    explain: "Three all-round red lights in a vertical line mark a vessel constrained by her draught, able to navigate only within a narrow band of deep water. By day she shows a black cylinder. Do not impede her."
+  },
+  {
+    id: 208, category: "Collision Regs (IRPCS)", image: DIAGRAMS.lights(["W"]),
+    q: "A vessel under 50 m shows this single all-round white light and nothing else at night. She is:",
+    options: [
+      "Under way and making way",
+      "At anchor",
+      "Not under command",
+      "Trawling"
+    ],
+    answer: 1,
+    explain: "A single all-round white light (with no sidelights or masthead lights) shown by a vessel of less than 50 m indicates she is at anchor. Vessels of 50 m or more show two anchor lights, one forward and one lower aft."
+  },
+  {
+    id: 209, category: "Collision Regs (IRPCS)", image: DIAGRAMS.dayShape("three-balls"),
+    q: "By day you see three black balls in a vertical line. The vessel is:",
+    options: [
+      "At anchor",
+      "Aground",
+      "Motor-sailing",
+      "Restricted in ability to manoeuvre"
+    ],
+    answer: 1,
+    explain: "Three black balls in a vertical line is the day signal for a vessel aground. At night she shows her anchor light(s) plus two all-round red lights. Give her room — she cannot move out of your way."
+  },
+  {
+    id: 210, category: "Collision Regs (IRPCS)", image: DIAGRAMS.dayShape("cylinder"),
+    q: "This black cylinder shape displayed by day indicates a vessel:",
+    options: [
+      "At anchor",
+      "Constrained by her draught",
+      "Not under command",
+      "Fishing"
+    ],
+    answer: 1,
+    explain: "A black cylinder is the day shape for a vessel constrained by her draught (night: three all-round red lights). She needs the deep water of the channel, so small craft must keep out of her way."
   }
 ];
 
