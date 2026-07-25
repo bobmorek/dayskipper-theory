@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Day Skipper: Colregs &amp; Buoyage Plates</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FBF8EF;
+  --land:#EFE1BE;
+  --shoal:#DCEBF2;
+  --deep:#08145C;
+  --ink:#14171A;
+  --ink-soft:#4A5158;
+  --magenta:#C4006E;
+  --rule:#C9BE9E;
+  --red:#CE2B2B;
+  --green:#149A4E;
+  --yellow:#F5C400;
+  --blue:#0B57D0;
+  --white:#FFFFFF;
+  --black:#14171A;
+  --display:"Barlow Condensed","Arial Narrow",Haettenschweiler,sans-serif;
+  --body:"Barlow","Segoe UI",system-ui,-apple-system,sans-serif;
+  --note:Georgia,"Times New Roman",serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);
+  font-size:16px;line-height:1.45;
+  background-image:
+    repeating-linear-gradient(0deg,rgba(8,20,92,.035) 0 1px,transparent 1px 44px),
+    repeating-linear-gradient(90deg,rgba(8,20,92,.035) 0 1px,transparent 1px 44px);
+}
+
+/* ---------- masthead ---------- */
+header.sheet{
+  border-bottom:3px double var(--deep);background:var(--paper);
+  padding:26px 20px 14px;
+}
+.wrap{max-width:1080px;margin:0 auto}
+h1{
+  font-family:var(--display);font-weight:700;text-transform:uppercase;
+  letter-spacing:.06em;font-size:clamp(30px,6.5vw,58px);line-height:.95;margin:0;
+  color:var(--deep);
+}
+h1 em{font-family:var(--note);font-style:italic;font-weight:400;text-transform:none;letter-spacing:0;color:var(--magenta);font-size:.5em;display:block;margin-top:6px}
+.strapline{font-family:var(--note);font-style:italic;color:var(--ink-soft);margin:10px 0 0;max-width:60ch}
+
+nav.plates{
+  position:sticky;top:0;z-index:20;background:rgba(251,248,239,.94);
+  backdrop-filter:blur(6px);border-bottom:1px solid var(--rule);
+  padding:8px 20px;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;
+}
+nav.plates a{
+  font-family:var(--display);text-transform:uppercase;letter-spacing:.09em;
+  font-size:14px;color:var(--deep);text-decoration:none;margin-right:20px;
+  border-bottom:2px solid transparent;padding-bottom:2px;
+}
+nav.plates a:hover,nav.plates a:focus-visible{border-bottom-color:var(--magenta);color:var(--magenta)}
+
+/* ---------- plates ---------- */
+section.plate{padding:34px 20px 10px;max-width:1080px;margin:0 auto}
+.plate-head{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--rule);padding-bottom:6px;margin-bottom:22px}
+.plate-no{font-family:var(--display);font-size:13px;letter-spacing:.18em;color:var(--magenta);text-transform:uppercase}
+h2{font-family:var(--display);text-transform:uppercase;letter-spacing:.04em;font-size:clamp(22px,4vw,34px);margin:0;color:var(--deep);font-weight:600}
+h3{font-family:var(--display);text-transform:uppercase;letter-spacing:.07em;font-size:17px;margin:28px 0 10px;color:var(--ink)}
+p{margin:0 0 12px}
+.note{font-family:var(--note);font-style:italic;color:var(--ink-soft)}
+.trap{
+  border-left:3px solid var(--magenta);background:rgba(196,0,110,.05);
+  padding:10px 14px;margin:14px 0;font-size:15px;
+}
+.trap b{font-family:var(--display);text-transform:uppercase;letter-spacing:.08em;font-size:13px;color:var(--magenta);display:block}
+
+/* ---------- grids ---------- */
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.card{
+  background:var(--white);border:1px solid var(--rule);border-radius:2px;
+  padding:14px;
+}
+.card h4{
+  font-family:var(--display);text-transform:uppercase;letter-spacing:.06em;
+  font-size:15px;margin:0 0 8px;color:var(--deep);
+}
+.card .sub{font-size:13.5px;color:var(--ink-soft);margin:6px 0 0}
+
+/* ---------- rule 18 ladder ---------- */
+.ladder{border:1px solid var(--rule);background:var(--white)}
+.rung{
+  display:grid;grid-template-columns:44px 92px 1fr;align-items:center;gap:12px;
+  padding:9px 12px;border-bottom:1px solid var(--rule);
+}
+.rung:last-child{border-bottom:0}
+.rung:nth-child(odd){background:rgba(239,225,190,.28)}
+.rank{
+  font-family:var(--display);font-size:26px;color:var(--magenta);text-align:center;line-height:1;
+}
+.rung .name{font-family:var(--display);text-transform:uppercase;letter-spacing:.05em;font-size:17px}
+.rung .gloss{font-size:13.5px;color:var(--ink-soft);display:block;text-transform:none;letter-spacing:0;font-family:var(--body)}
+.ladder-key{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--ink-soft);margin-top:8px}
+.mnemonic{
+  font-family:var(--display);text-transform:uppercase;letter-spacing:.12em;
+  background:var(--deep);color:var(--paper);padding:9px 14px;font-size:16px;margin-top:14px;
+}
+.mnemonic b{color:var(--yellow)}
+
+/* ---------- lantern stacks ---------- */
+.lantern{display:flex;flex-direction:column;align-items:center;gap:5px;margin:4px 0 10px}
+.lamp{
+  width:19px;height:19px;border-radius:50%;border:1.5px solid var(--ink);
+  box-shadow:0 0 7px 1px currentColor;
+}
+.l-red{background:var(--red);color:rgba(206,43,43,.75)}
+.l-green{background:var(--green);color:rgba(20,154,78,.7)}
+.l-white{background:#FFFDF2;color:rgba(255,240,180,.9)}
+.l-yellow{background:var(--yellow);color:rgba(245,196,0,.8)}
+.mnem{font-family:var(--note);font-style:italic;color:var(--magenta);font-size:13.5px;margin-top:6px}
+
+/* ---------- shapes row ---------- */
+.shaperow{display:flex;gap:6px;align-items:center;justify-content:center;min-height:46px}
+
+/* ---------- blast bars ---------- */
+.blasts{display:flex;align-items:center;gap:5px;margin:3px 0 2px;flex-wrap:wrap}
+.b-short{width:15px}
+.b-long{width:64px}
+.b-short,.b-long{height:13px;background:var(--deep);border-radius:1px}
+.b-gap{width:9px}
+.sig{display:grid;grid-template-columns:1fr;gap:2px;padding:9px 0;border-bottom:1px dotted var(--rule)}
+.sig:last-child{border-bottom:0}
+.sig .meaning{font-size:14.5px}
+.sig .meaning b{font-family:var(--display);text-transform:uppercase;letter-spacing:.05em;font-size:15px}
+
+/* ---------- timing strips ---------- */
+.strip-row{display:grid;grid-template-columns:118px 1fr;gap:12px;align-items:center;padding:7px 0;border-bottom:1px dotted var(--rule)}
+.strip-row:last-child{border-bottom:0}
+.strip-name{font-family:var(--display);text-transform:uppercase;letter-spacing:.05em;font-size:15px}
+.strip-name span{display:block;font-family:var(--body);text-transform:none;letter-spacing:0;font-size:12.5px;color:var(--ink-soft)}
+.strip{height:20px;width:100%;background:var(--deep);border:1px solid var(--deep);position:relative;overflow:hidden}
+.strip i{position:absolute;top:0;bottom:0;background:#FFE9A8;display:block}
+
+/* ---------- buoy plates ---------- */
+.buoy{display:flex;flex-direction:column;align-items:center;text-align:center}
+.buoy svg{display:block}
+.buoy .label{font-family:var(--display);text-transform:uppercase;letter-spacing:.06em;font-size:16px;margin-top:6px;color:var(--deep)}
+.buoy .rhythm{font-size:13px;color:var(--ink-soft);font-variant-numeric:tabular-lignums}
+.buoy .pass{font-family:var(--note);font-style:italic;font-size:13.5px;color:var(--magenta)}
+
+/* live flashing lights */
+.flash{transform-origin:center}
+@keyframes q-cont{0%,26%{opacity:1}27%,100%{opacity:.08}}
+@keyframes q3{0%,1.6%{opacity:1}1.7%,4.9%{opacity:.08}5%,6.6%{opacity:1}6.7%,9.9%{opacity:.08}10%,11.6%{opacity:1}11.7%,100%{opacity:.08}}
+@keyframes q6lfl{
+  0%,1.3%{opacity:1}1.4%,3.9%{opacity:.08}
+  4%,5.3%{opacity:1}5.4%,7.9%{opacity:.08}
+  8%,9.3%{opacity:1}9.4%,11.9%{opacity:.08}
+  12%,13.3%{opacity:1}13.4%,15.9%{opacity:.08}
+  16%,17.3%{opacity:1}17.4%,19.9%{opacity:.08}
+  20%,21.3%{opacity:1}21.4%,25.9%{opacity:.08}
+  26%,39%{opacity:1}39.1%,100%{opacity:.08}
+}
+@keyframes q9{
+  0%,1.3%{opacity:1}1.4%,3.9%{opacity:.08}
+  4%,5.3%{opacity:1}5.4%,7.9%{opacity:.08}
+  8%,9.3%{opacity:1}9.4%,11.9%{opacity:.08}
+  12%,13.3%{opacity:1}13.4%,15.9%{opacity:.08}
+  16%,17.3%{opacity:1}17.4%,19.9%{opacity:.08}
+  20%,21.3%{opacity:1}21.4%,23.9%{opacity:.08}
+  24%,25.3%{opacity:1}25.4%,27.9%{opacity:.08}
+  28%,29.3%{opacity:1}29.4%,31.9%{opacity:.08}
+  32%,33.3%{opacity:1}33.4%,100%{opacity:.08}
+}
+@keyframes fl2{0%,3%{opacity:1}3.1%,9%{opacity:.08}10%,13%{opacity:1}13.1%,100%{opacity:.08}}
+@keyframes lfl{0%,20%{opacity:1}21%,100%{opacity:.08}}
+.f-n{animation:q-cont 1s steps(1,end) infinite}
+.f-e{animation:q3 10s steps(1,end) infinite}
+.f-s{animation:q6lfl 15s steps(1,end) infinite}
+.f-w{animation:q9 15s steps(1,end) infinite}
+.f-iso{animation:fl2 10s steps(1,end) infinite}
+.f-safe{animation:lfl 10s steps(1,end) infinite}
+
+@media (prefers-reduced-motion:reduce){
+  .flash{animation:none!important;opacity:1!important}
+  html{scroll-behavior:auto}
+}
+
+/* ---------- misc ---------- */
+.deffs{border:1px solid var(--rule);background:var(--white)}
+.deff{padding:11px 14px;border-bottom:1px solid var(--rule);font-size:15px}
+.deff:last-child{border-bottom:0}
+.deff b{font-family:var(--display);text-transform:uppercase;letter-spacing:.06em;color:var(--deep);font-size:16px;margin-right:8px}
+ol.recall{counter-reset:r;list-style:none;padding:0;margin:0}
+ol.recall li{
+  counter-increment:r;position:relative;padding:11px 0 11px 46px;
+  border-bottom:1px dotted var(--rule);font-size:15.5px;
+}
+ol.recall li::before{
+  content:counter(r,upper-roman);position:absolute;left:0;top:11px;
+  font-family:var(--display);color:var(--magenta);font-size:16px;letter-spacing:.06em;
+}
+footer{padding:30px 20px 60px;max-width:1080px;margin:0 auto;color:var(--ink-soft);font-family:var(--note);font-style:italic;font-size:14px;border-top:1px solid var(--rule);margin-top:30px}
+
+@media print{
+  nav.plates{display:none}
+  body{background:#fff}
+  section.plate{page-break-inside:avoid}
+  .flash{animation:none;opacity:1}
+}
+</style>
+</head>
+<body>
+
+<header class="sheet">
+  <div class="wrap">
+    <h1>Colregs &amp; Buoyage<em>Day Skipper theory, drawn rather than listed</em></h1>
+    <p class="strapline">The rote-recall half of the shorebased syllabus. Chartwork, tides and meteorology are elsewhere. Every mnemonic here is the one the examiners' own answers lean on.</p>
+  </div>
+</header>
+
+<nav class="plates" aria-label="Plates">
+  <a href="#p1">I Who gives way</a>
+  <a href="#p2">II Steering</a>
+  <a href="#p3">III Lights</a>
+  <a href="#p4">IV Sound</a>
+  <a href="#p5">V Buoyage</a>
+  <a href="#p6">VI Characters</a>
+  <a href="#p7">VII Recall</a>
+</nav>
+
+<!-- ================= PLATE I ================= -->
+<section class="plate" id="p1">
+  <div class="plate-head"><span class="plate-no">Plate I</span><h2>Rule 18: who gives way</h2></div>
+  <p>Top of the ladder is most privileged. Everything below gives way to everything above it.</p>
+
+  <div class="ladder">
+    <div class="rung">
+      <div class="rank">1</div>
+      <div class="shaperow">
+        <svg width="34" height="44" viewBox="0 0 34 44" aria-hidden="true">
+          <circle cx="17" cy="12" r="8" fill="#14171A"/><circle cx="17" cy="32" r="8" fill="#14171A"/>
+        </svg>
+        <div class="lantern" style="margin:0">
+          <span class="lamp l-red"></span><span class="lamp l-red"></span>
+        </div>
+      </div>
+      <div class="name">Not under command<span class="gloss">Broken down. Cannot manoeuvre as required.</span></div>
+    </div>
+    <div class="rung">
+      <div class="rank">2</div>
+      <div class="shaperow">
+        <svg width="34" height="60" viewBox="0 0 34 60" aria-hidden="true">
+          <circle cx="17" cy="9" r="7.5" fill="#14171A"/>
+          <path d="M17 20 L27 30 L17 40 L7 30 Z" fill="#14171A"/>
+          <circle cx="17" cy="51" r="7.5" fill="#14171A"/>
+        </svg>
+        <div class="lantern" style="margin:0">
+          <span class="lamp l-red"></span><span class="lamp l-white"></span><span class="lamp l-red"></span>
+        </div>
+      </div>
+      <div class="name">Restricted in ability to manoeuvre<span class="gloss">Dredging, cable-laying, towing a big tow, launching aircraft.</span></div>
+    </div>
+    <div class="rung">
+      <div class="rank">3</div>
+      <div class="shaperow">
+        <svg width="34" height="44" viewBox="0 0 34 44" aria-hidden="true">
+          <rect x="7" y="6" width="20" height="32" fill="#14171A"/>
+        </svg>
+        <div class="lantern" style="margin:0">
+          <span class="lamp l-red"></span><span class="lamp l-red"></span><span class="lamp l-red"></span>
+        </div>
+      </div>
+      <div class="name">Constrained by draught<span class="gloss">Deep, not disabled. Only exists in a channel or fairway.</span></div>
+    </div>
+    <div class="rung">
+      <div class="rank">4</div>
+      <div class="shaperow">
+        <svg width="34" height="52" viewBox="0 0 34 52" aria-hidden="true">
+          <path d="M17 4 L27 24 L7 24 Z" fill="#14171A"/>
+          <path d="M17 48 L7 28 L27 28 Z" fill="#14171A"/>
+        </svg>
+        <div class="lantern" style="margin:0">
+          <span class="lamp l-red"></span><span class="lamp l-white"></span>
+        </div>
+      </div>
+      <div class="name">Engaged in fishing<span class="gloss">Gear that restricts manoeuvring. Trolling a line does not count.</span></div>
+    </div>
+    <div class="rung">
+      <div class="rank">5</div>
+      <div class="shaperow">
+        <svg width="34" height="44" viewBox="0 0 34 44" aria-hidden="true">
+          <path d="M17 6 L17 32 L5 32 Z" fill="none" stroke="#14171A" stroke-width="1.6"/>
+          <path d="M19 12 L28 32 L19 32 Z" fill="none" stroke="#14171A" stroke-width="1.6"/>
+          <path d="M3 34 h28 l-4 6 h-20 Z" fill="#14171A"/>
+        </svg>
+        <div class="lantern" style="margin:0;flex-direction:row">
+          <span class="lamp l-red"></span><span class="lamp l-green"></span>
+        </div>
+      </div>
+      <div class="name">Sailing<span class="gloss">Sails only. Engine on, even with sails up, drops you to rank 6.</span></div>
+    </div>
+    <div class="rung">
+      <div class="rank">6</div>
+      <div class="shaperow">
+        <svg width="34" height="44" viewBox="0 0 34 44" aria-hidden="true">
+          <rect x="9" y="12" width="16" height="12" fill="none" stroke="#14171A" stroke-width="1.6"/>
+          <path d="M3 26 h28 l-4 8 h-20 Z" fill="#14171A"/>
+        </svg>
+        <div class="lantern" style="margin:0">
+          <span class="lamp l-white"></span>
+        </div>
+      </div>
+      <div class="name">Power-driven<span class="gloss">Including your yacht the moment the engine goes in gear.</span></div>
+    </div>
+    <div class="rung">
+      <div class="rank">7</div>
+      <div class="shaperow"><span class="note" style="font-size:13px">no special marks</span></div>
+      <div class="name">Seaplane &amp; WIG craft<span class="gloss">Keep well clear of everything.</span></div>
+    </div>
+  </div>
+
+  <div class="mnemonic"><b>N</b>ew &nbsp;<b>R</b>eels &nbsp;<b>C</b>atch &nbsp;<b>F</b>ish &nbsp;<b>S</b>o &nbsp;<b>P</b>urchase &nbsp;<b>S</b>ome</div>
+
+  <div class="trap"><b>Trap</b>Constrained by draught is a <em>power-driven</em> vessel. It is deep, not restricted. And a sailing yacht under engine is power-driven: black cone, point down, by day.</div>
+  <div class="trap"><b>Trap that beats the whole ladder</b>Rule 13, overtaking, overrides all of it. An overtaking vessel keeps clear whatever she is. A yacht overtaking a trawler gives way.</div>
+</section>
+
+<!-- ================= PLATE II ================= -->
+<section class="plate" id="p2">
+  <div class="plate-head"><span class="plate-no">Plate II</span><h2>The steering rules</h2></div>
+
+  <div class="grid g2">
+
+    <div class="card">
+      <h4>Rule 13 &middot; Overtaking</h4>
+      <svg viewBox="0 0 300 240" width="100%" height="auto" role="img" aria-label="Overtaking sector diagram: the sector more than 22.5 degrees abaft the beam">
+        <circle cx="150" cy="120" r="102" fill="#fff" stroke="#C9BE9E"/>
+        <path d="M150 120 L251.8 162.2 A110 110 0 0 1 48.2 162.2 Z" transform="translate(0,-2) scale(1)" fill="rgba(196,0,110,.14)" stroke="#C4006E" stroke-dasharray="4 3"/>
+        <line x1="48" y1="120" x2="252" y2="120" stroke="#4A5158" stroke-width=".8" stroke-dasharray="3 3"/>
+        <g transform="translate(150,120)">
+          <path d="M0 -34 L11 -6 L11 22 L-11 22 L-11 -6 Z" fill="#08145C"/>
+        </g>
+        <text x="150" y="205" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="13" fill="#C4006E">overtaking sector</text>
+        <text x="258" y="116" font-size="11" fill="#4A5158" font-family="Barlow,sans-serif">beam</text>
+        <text x="150" y="26" text-anchor="middle" font-size="11" fill="#4A5158" font-family="Barlow,sans-serif">22.5° abaft</text>
+      </svg>
+      <p class="sub">Coming from more than 22.5° abaft her beam. At night you see <b>only her sternlight</b>, no sidelight. Once overtaking, always overtaking, until finally past and clear.</p>
+    </div>
+
+    <div class="card">
+      <h4>Rule 14 &middot; Head-on</h4>
+      <svg viewBox="0 0 300 240" width="100%" height="auto" role="img" aria-label="Head on: both power vessels alter to starboard and pass port to port">
+        <rect x="0" y="0" width="300" height="240" fill="#fff"/>
+        <g transform="translate(105,196)">
+          <path d="M0 -30 L10 -6 L10 18 L-10 18 L-10 -6 Z" fill="#08145C"/>
+        </g>
+        <g transform="translate(195,44) rotate(180)">
+          <path d="M0 -30 L10 -6 L10 18 L-10 18 L-10 -6 Z" fill="#4A5158"/>
+        </g>
+        <path d="M105 166 C105 130 78 118 78 88" stroke="#C4006E" stroke-width="2" fill="none" stroke-dasharray="5 4"/>
+        <path d="M195 74 C195 110 222 122 222 152" stroke="#C4006E" stroke-width="2" fill="none" stroke-dasharray="5 4"/>
+        <path d="M78 88 l-5 10 l10 0 z" fill="#C4006E"/>
+        <path d="M222 152 l-5 -10 l10 0 z" fill="#C4006E"/>
+        <text x="150" y="126" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="13" fill="#C4006E">both to starboard</text>
+      </svg>
+      <p class="sub">Power vessels only. Both alter to <b>starboard</b>, pass port to port. Applies when in doubt as well as when certain.</p>
+    </div>
+
+    <div class="card">
+      <h4>Rule 15 &middot; Crossing</h4>
+      <svg viewBox="0 0 300 240" width="100%" height="auto" role="img" aria-label="Crossing: the vessel with the other on her starboard side gives way and passes astern">
+        <rect x="0" y="0" width="300" height="240" fill="#fff"/>
+        <g transform="translate(90,180)"><path d="M0 -28 L9 -5 L9 16 L-9 16 L-9 -5 Z" fill="#08145C"/></g>
+        <g transform="translate(232,96) rotate(-90)"><path d="M0 -28 L9 -5 L9 16 L-9 16 L-9 -5 Z" fill="#4A5158"/></g>
+        <line x1="232" y1="96" x2="60" y2="96" stroke="#4A5158" stroke-width="1.4" stroke-dasharray="5 4"/>
+        <path d="M60 96 l10 -5 l0 10 z" fill="#4A5158"/>
+        <path d="M90 152 C90 132 108 124 126 118" stroke="#C4006E" stroke-width="2" fill="none" stroke-dasharray="5 4"/>
+        <path d="M126 118 l-9 -3 l3 9 z" fill="#C4006E"/>
+        <circle cx="232" cy="96" r="8" fill="none" stroke="#149A4E" stroke-width="2"/>
+        <text x="248" y="72" font-size="11" fill="#149A4E" font-family="Barlow,sans-serif">on my starboard</text>
+        <text x="150" y="222" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="13" fill="#C4006E">I give way, and pass astern</text>
+      </svg>
+      <p class="sub">Power vessels only. The one with the other on her <b>starboard side</b> gives way, and shall avoid crossing ahead.</p>
+    </div>
+
+    <div class="card">
+      <h4>Rule 12 &middot; Sail against sail</h4>
+      <svg viewBox="0 0 300 240" width="100%" height="auto" role="img" aria-label="Sail rules: port tack gives way to starboard tack; windward gives way to leeward">
+        <rect x="0" y="0" width="300" height="240" fill="#fff"/>
+        <text x="150" y="18" text-anchor="middle" font-size="11" fill="#4A5158" font-family="Barlow,sans-serif">WIND</text>
+        <path d="M150 24 L150 46" stroke="#4A5158" stroke-width="1.4"/><path d="M150 50 l-5 -9 l10 0 z" fill="#4A5158"/>
+        <!-- port tack boat: boom to starboard -->
+        <g transform="translate(72,150)">
+          <path d="M0 -34 L0 10" stroke="#14171A" stroke-width="2"/>
+          <path d="M0 -32 L26 6 L0 6 Z" fill="rgba(206,43,43,.22)" stroke="#CE2B2B" stroke-width="1.6"/>
+          <path d="M-14 12 h28 l-5 9 h-18 Z" fill="#08145C"/>
+        </g>
+        <text x="72" y="192" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="15" fill="#CE2B2B" letter-spacing="1">PORT TACK</text>
+        <text x="72" y="208" text-anchor="middle" font-size="11.5" fill="#4A5158" font-family="Barlow,sans-serif">boom to starboard</text>
+        <text x="72" y="224" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="12.5" fill="#C4006E">gives way</text>
+        <!-- starboard tack boat: boom to port -->
+        <g transform="translate(228,150)">
+          <path d="M0 -34 L0 10" stroke="#14171A" stroke-width="2"/>
+          <path d="M0 -32 L-26 6 L0 6 Z" fill="rgba(20,154,78,.22)" stroke="#149A4E" stroke-width="1.6"/>
+          <path d="M-14 12 h28 l-5 9 h-18 Z" fill="#08145C"/>
+        </g>
+        <text x="228" y="192" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="15" fill="#149A4E" letter-spacing="1">STARBOARD TACK</text>
+        <text x="228" y="208" text-anchor="middle" font-size="11.5" fill="#4A5158" font-family="Barlow,sans-serif">boom to port</text>
+        <text x="228" y="224" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="12.5" fill="#149A4E">stands on</text>
+      </svg>
+      <p class="sub"><b>1.</b> Different tacks: port gives way to starboard. <b>2.</b> Same tack: windward gives way to leeward. <b>3.</b> On port tack, seeing a vessel to windward and unsure of her tack: give way.</p>
+      <p class="mnem">Your tack is the side opposite the boom.</p>
+    </div>
+
+  </div>
+
+  <h3>Rule 10 &middot; Crossing a traffic separation scheme</h3>
+  <div class="card">
+    <svg viewBox="0 0 660 260" width="100%" height="auto" role="img" aria-label="Crossing a TSS: steer a heading at right angles to the traffic flow, and accept a skewed ground track">
+      <rect x="0" y="40" width="660" height="80" fill="#DCEBF2"/>
+      <rect x="0" y="140" width="660" height="80" fill="#DCEBF2"/>
+      <rect x="0" y="120" width="660" height="20" fill="rgba(196,0,110,.10)"/>
+      <g stroke="#C4006E" stroke-width="1.2" stroke-dasharray="8 6">
+        <line x1="0" y1="120" x2="660" y2="120"/><line x1="0" y1="140" x2="660" y2="140"/>
+      </g>
+      <g fill="#4A5158" font-family="Barlow,sans-serif" font-size="11">
+        <text x="10" y="34">lane: traffic flowing right</text>
+        <text x="10" y="238">lane: traffic flowing left</text>
+        <text x="10" y="134" fill="#C4006E">separation zone</text>
+      </g>
+      <g stroke="#4A5158" stroke-width="1.6">
+        <line x1="180" y1="80" x2="250" y2="80"/><line x1="400" y1="80" x2="470" y2="80"/>
+        <line x1="250" y1="180" x2="180" y2="180"/><line x1="470" y1="180" x2="400" y2="180"/>
+      </g>
+      <g fill="#4A5158">
+        <path d="M250 80 l-9 -5 l0 10 z"/><path d="M470 80 l-9 -5 l0 10 z"/>
+        <path d="M180 180 l9 -5 l0 10 z"/><path d="M400 180 l9 -5 l0 10 z"/>
+      </g>
+      <!-- heading arrow, vertical -->
+      <line x1="300" y1="248" x2="300" y2="30" stroke="#08145C" stroke-width="2.6"/>
+      <path d="M300 22 l-7 13 l14 0 z" fill="#08145C"/>
+      <text x="308" y="46" font-family="Barlow Condensed,sans-serif" font-size="16" fill="#08145C" letter-spacing="1">HEADING 90°</text>
+      <text x="308" y="62" font-size="11.5" fill="#4A5158" font-family="Barlow,sans-serif">what you steer</text>
+      <!-- tide arrow -->
+      <line x1="300" y1="200" x2="372" y2="200" stroke="#149A4E" stroke-width="2"/>
+      <path d="M380 200 l-13 -6 l0 12 z" fill="#149A4E"/>
+      <text x="336" y="218" font-size="12" fill="#149A4E" font-family="Barlow,sans-serif">tide</text>
+      <!-- resulting track -->
+      <line x1="300" y1="248" x2="470" y2="30" stroke="#C4006E" stroke-width="2.4" stroke-dasharray="7 5"/>
+      <path d="M474 24 l-3 15 l12 -6 z" fill="#C4006E"/>
+      <text x="474" y="54" font-family="Georgia,serif" font-style="italic" font-size="13.5" fill="#C4006E">ground track, skewed</text>
+      <text x="474" y="72" font-size="11.5" fill="#4A5158" font-family="Barlow,sans-serif">and that is correct</text>
+      <g transform="translate(300,150)"><path d="M0 -18 L7 -3 L7 12 L-7 12 L-7 -3 Z" fill="#08145C"/></g>
+    </svg>
+    <p class="sub"><b>Cross on a heading as nearly as practicable at right angles to the traffic flow.</b> You do not offset for tide. The skewed track is intended: your aspect stays obvious to traffic in the lane, which is the whole point. Correcting for tide is the wrong answer on the paper and the wrong thing at sea.</p>
+    <p class="sub">Under 20m, sailing, or fishing: do not impede a power-driven vessel following a lane. Use the inshore traffic zone instead.</p>
+  </div>
+
+  <h3>Rule 9 &middot; Narrow channels</h3>
+  <div class="card">
+    <p class="sub">Keep to the <b>starboard</b> side. Vessels under 20m, sailing vessels and vessels fishing <b>shall not impede</b> a vessel that can only safely navigate inside the channel. Do not anchor in it. Do not cross it if crossing impedes.</p>
+  </div>
+
+  <div class="grid g2" style="margin-top:14px">
+    <div class="trap"><b>Rule 17, standing on</b>Maintain course and speed. You <em>may</em> act when the give-way vessel clearly is not. You <em>shall</em> act when collision can no longer be avoided by her alone. If power-driven: do not alter to port for a vessel on your own port side.</div>
+    <div class="trap"><b>Rule 19, restricted visibility</b>There is <em>no stand-on vessel</em>. Nobody has right of way. On radar alone, avoid altering to <b>port</b> for a vessel forward of the beam, and avoid altering <b>towards</b> one abeam or abaft the beam.</div>
+  </div>
+</section>
+
+<!-- ================= PLATE III ================= -->
+<section class="plate" id="p3">
+  <div class="plate-head"><span class="plate-no">Plate III</span><h2>Lights &amp; shapes</h2></div>
+
+  <div class="grid g2">
+    <div class="card">
+      <h4>The arcs explain everything else</h4>
+      <svg viewBox="0 0 300 300" width="100%" height="auto" role="img" aria-label="Plan view of navigation light arcs: sidelights 112.5 degrees each, sternlight 135 degrees, masthead 225 degrees">
+        <!-- masthead annulus 225 -->
+        <path d="M 28.05 205.51 A 132 132 0 1 1 271.95 205.51 L 260.87 200.92 A 120 120 0 1 0 39.13 200.92 Z" fill="#FFF3C4" stroke="#C9BE9E"/>
+        <!-- stern white 135 -->
+        <path d="M150 155 L251.63 197.09 A110 110 0 0 1 48.37 197.09 Z" fill="rgba(255,255,255,.9)" stroke="#C9BE9E"/>
+        <!-- green 112.5 -->
+        <path d="M150 155 L150 45 A110 110 0 0 1 251.63 197.09 Z" fill="rgba(20,154,78,.30)" stroke="#149A4E"/>
+        <!-- red 112.5 -->
+        <path d="M150 155 L48.37 197.09 A110 110 0 0 1 150 45 Z" fill="rgba(206,43,43,.28)" stroke="#CE2B2B"/>
+        <g transform="translate(150,155)"><path d="M0 -26 L9 -5 L9 16 L-9 16 L-9 -5 Z" fill="#08145C"/></g>
+        <text x="216" y="118" font-family="Barlow Condensed,sans-serif" font-size="17" fill="#149A4E">112.5°</text>
+        <text x="52" y="118" font-family="Barlow Condensed,sans-serif" font-size="17" fill="#CE2B2B">112.5°</text>
+        <text x="150" y="238" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="17" fill="#4A5158">135° stern</text>
+        <text x="150" y="26" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="17" fill="#8A7A48">225° masthead</text>
+      </svg>
+      <p class="sub">225 + 135 = 360. The two sidelights exactly fill the masthead arc. Every identification question is just: which arcs can I see from here?</p>
+    </div>
+
+    <div class="card">
+      <h4>Underway, ordinary vessels</h4>
+      <div class="grid g3" style="margin-top:6px">
+        <div style="text-align:center">
+          <div class="lantern"><span class="lamp l-white"></span></div>
+          <div class="lantern" style="flex-direction:row"><span class="lamp l-red"></span><span class="lamp l-green"></span></div>
+          <b style="font-family:var(--display);letter-spacing:.05em">Power &lt;50m</b>
+          <p class="sub">1 masthead, sidelights, stern.</p>
+        </div>
+        <div style="text-align:center">
+          <div class="lantern"><span class="lamp l-white"></span><span class="lamp l-white"></span></div>
+          <div class="lantern" style="flex-direction:row"><span class="lamp l-red"></span><span class="lamp l-green"></span></div>
+          <b style="font-family:var(--display);letter-spacing:.05em">Power ≥50m</b>
+          <p class="sub">2 mastheads, the after one higher.</p>
+        </div>
+        <div style="text-align:center">
+          <div class="lantern" style="flex-direction:row"><span class="lamp l-red"></span><span class="lamp l-green"></span></div>
+          <b style="font-family:var(--display);letter-spacing:.05em">Sailing</b>
+          <p class="sub">Sidelights + stern. No masthead light. Optional red over green aloft; under 20m may use a tricolour instead.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Identify these on sight</h3>
+  <div class="grid g4">
+
+    <div class="card" style="text-align:center">
+      <div class="lantern"><span class="lamp l-red"></span><span class="lamp l-red"></span></div>
+      <h4>Not under command</h4>
+      <p class="mnem">red over red, the captain is dead</p>
+    </div>
+
+    <div class="card" style="text-align:center">
+      <div class="lantern"><span class="lamp l-red"></span><span class="lamp l-white"></span><span class="lamp l-red"></span></div>
+      <h4>Restricted in ability<br>to manoeuvre</h4>
+      <p class="mnem">red white red, restricted ahead</p>
+    </div>
+
+    <div class="card" style="text-align:center">
+      <div class="lantern"><span class="lamp l-red"></span><span class="lamp l-red"></span><span class="lamp l-red"></span></div>
+      <h4>Constrained by draught</h4>
+      <p class="sub">By day: a black cylinder.</p>
+    </div>
+
+    <div class="card" style="text-align:center">
+      <div class="lantern"><span class="lamp l-green"></span><span class="lamp l-white"></span></div>
+      <h4>Trawling</h4>
+      <p class="mnem">green over white, trawling at night</p>
+    </div>
+
+    <div class="card" style="text-align:center">
+      <div class="lantern"><span class="lamp l-red"></span><span class="lamp l-white"></span></div>
+      <h4>Fishing, not trawling</h4>
+      <p class="mnem">red over white, fishing at night</p>
+    </div>
+
+    <div class="card" style="text-align:center">
+      <div class="lantern"><span class="lamp l-white"></span><span class="lamp l-red"></span></div>
+      <h4>Pilot on duty</h4>
+      <p class="mnem">white over red, pilot ahead</p>
+    </div>
+
+    <div class="card" style="text-align:center">
+      <div class="lantern"><span class="lamp l-white"></span></div>
+      <h4>At anchor</h4>
+      <p class="sub">All-round white forward. Over 50m, a second lower one aft. By day: <b>one black ball</b>.</p>
+    </div>
+
+    <div class="card" style="text-align:center">
+      <div class="lantern"><span class="lamp l-white"></span><span class="lamp l-red"></span><span class="lamp l-red"></span></div>
+      <h4>Aground</h4>
+      <p class="sub">Anchor light plus two all-round red. By day: <b>three black balls</b>.</p>
+    </div>
+
+    <div class="card" style="text-align:center">
+      <div class="lantern"><span class="lamp l-white"></span><span class="lamp l-white"></span><span class="lamp l-yellow"></span></div>
+      <h4>Towing</h4>
+      <p class="sub">2 mastheads vertical, yellow towing light above the stern. Tow over 200m: <b>3</b> mastheads and a diamond on both.</p>
+    </div>
+
+    <div class="card" style="text-align:center">
+      <div class="lantern" style="flex-direction:row"><span class="lamp l-red"></span><span class="lamp l-green"></span></div>
+      <div class="lantern" style="flex-direction:row;margin-top:-4px"><span class="lamp l-red"></span><span class="lamp l-green"></span></div>
+      <h4>Dredger</h4>
+      <p class="sub">RAM lights, plus two red on the <b>obstructed</b> side and two green on the <b>safe</b> side. Pass the green side.</p>
+    </div>
+
+    <div class="card" style="text-align:center">
+      <div class="lantern"><span class="lamp l-green"></span></div>
+      <div class="lantern" style="flex-direction:row;margin-top:-4px"><span class="lamp l-green"></span><span class="lamp l-green"></span></div>
+      <h4>Minesweeper</h4>
+      <p class="sub">Three all-round green, masthead and both yardarms. Keep <b>1000m</b> clear.</p>
+    </div>
+
+    <div class="card" style="text-align:center">
+      <div class="lantern"><span class="lamp l-yellow"></span></div>
+      <h4>Hovercraft</h4>
+      <p class="sub">Normal lights plus an all-round <b>flashing yellow</b> in non-displacement mode.</p>
+    </div>
+
+  </div>
+
+  <div class="trap"><b>The distinction people drop</b>NUC, RAM and CBD show their sidelights and sternlight <em>only when making way</em>. The special lights are shown whether making way or not. Underway means not anchored, not aground, not made fast. Making way means moving through the water.</div>
+</section>
+
+<!-- ================= PLATE IV ================= -->
+<section class="plate" id="p4">
+  <div class="plate-head"><span class="plate-no">Plate IV</span><h2>Sound</h2></div>
+  <p class="note">Short blast about 1 second. Prolonged blast 4 to 6 seconds. Read the bars below as time.</p>
+
+  <div class="grid g2">
+    <div class="card">
+      <h4>Rule 34 &middot; In sight of one another</h4>
+      <div class="sig"><div class="blasts"><span class="b-short"></span></div><div class="meaning"><b>Altering to starboard</b></div></div>
+      <div class="sig"><div class="blasts"><span class="b-short"></span><span class="b-gap"></span><span class="b-short"></span></div><div class="meaning"><b>Altering to port</b></div></div>
+      <div class="sig"><div class="blasts"><span class="b-short"></span><span class="b-gap"></span><span class="b-short"></span><span class="b-gap"></span><span class="b-short"></span></div><div class="meaning"><b>Operating astern propulsion</b> <span class="note">not the same as going astern</span></div></div>
+      <div class="sig"><div class="blasts"><span class="b-short"></span><span class="b-short"></span><span class="b-short"></span><span class="b-short"></span><span class="b-short"></span></div><div class="meaning"><b>I doubt you are doing enough</b> <span class="note">five or more, short and rapid</span></div></div>
+      <div class="sig"><div class="blasts"><span class="b-long"></span></div><div class="meaning"><b>Blind bend or obstruction</b></div></div>
+      <div class="sig"><div class="blasts"><span class="b-long"></span><span class="b-gap"></span><span class="b-long"></span><span class="b-gap"></span><span class="b-short"></span></div><div class="meaning"><b>Overtaking on your starboard</b></div></div>
+      <div class="sig"><div class="blasts"><span class="b-long"></span><span class="b-gap"></span><span class="b-long"></span><span class="b-gap"></span><span class="b-short"></span><span class="b-gap"></span><span class="b-short"></span></div><div class="meaning"><b>Overtaking on your port</b></div></div>
+      <div class="sig"><div class="blasts"><span class="b-long"></span><span class="b-gap"></span><span class="b-short"></span><span class="b-gap"></span><span class="b-long"></span><span class="b-gap"></span><span class="b-short"></span></div><div class="meaning"><b>Agreed, come past</b> <span class="note">Morse C</span></div></div>
+    </div>
+
+    <div class="card">
+      <h4>Rule 35 &middot; Restricted visibility</h4>
+      <p class="sub" style="margin-bottom:8px">Every <b>two minutes</b> unless noted.</p>
+      <div class="sig"><div class="blasts"><span class="b-long"></span></div><div class="meaning"><b>Power-driven, making way</b></div></div>
+      <div class="sig"><div class="blasts"><span class="b-long"></span><span class="b-gap"></span><span class="b-long"></span></div><div class="meaning"><b>Power-driven, underway but stopped</b></div></div>
+      <div class="sig"><div class="blasts"><span class="b-long"></span><span class="b-gap"></span><span class="b-short"></span><span class="b-gap"></span><span class="b-short"></span></div><div class="meaning"><b>Sail, fishing, NUC, RAM, CBD, towing</b> <span class="note">the whole awkward-vessel set shares one signal</span></div></div>
+      <div class="sig"><div class="blasts"><span class="b-long"></span><span class="b-gap"></span><span class="b-short"></span><span class="b-gap"></span><span class="b-short"></span><span class="b-gap"></span><span class="b-short"></span></div><div class="meaning"><b>Vessel being towed, if manned</b> <span class="note">straight after the tug</span></div></div>
+      <div class="sig"><div class="meaning"><b>At anchor</b> <span class="note">rapid bell, 5 seconds, every <b>minute</b>. Over 100m: bell forward, gong aft. May add short, prolonged, short as a warning.</span></div></div>
+      <div class="sig"><div class="meaning"><b>Aground</b> <span class="note">three distinct bell strokes, the rapid ringing, three more strokes</span></div></div>
+      <div class="sig"><div class="blasts"><span class="b-short"></span><span class="b-gap"></span><span class="b-short"></span><span class="b-gap"></span><span class="b-short"></span><span class="b-gap"></span><span class="b-short"></span></div><div class="meaning"><b>Pilot vessel on duty</b> <span class="note">optional identity signal</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PLATE V ================= -->
+<section class="plate" id="p5">
+  <div class="plate-head"><span class="plate-no">Plate V</span><h2>IALA buoyage, Region A</h2></div>
+  <p>Direction of buoyage runs <b>from seaward</b>, or <b>clockwise</b> around a landmass. Region B (Americas, Japan, Korea, Philippines) swaps the lateral colours: red right returning.</p>
+
+  <h3>Lateral</h3>
+  <div class="grid g4">
+    <div class="card buoy">
+      <svg width="90" height="130" viewBox="0 0 90 130" role="img" aria-label="Port hand mark: red can">
+        <rect x="30" y="18" width="30" height="14" fill="#CE2B2B" stroke="#14171A" stroke-width="1.2"/>
+        <rect x="34" y="32" width="22" height="16" fill="#CE2B2B" stroke="#14171A" stroke-width="1.2"/>
+        <rect x="22" y="48" width="46" height="52" fill="#CE2B2B" stroke="#14171A" stroke-width="1.4"/>
+        <path d="M8 106 q37 12 74 0" stroke="#0B57D0" stroke-width="1.6" fill="none" opacity=".5"/>
+      </svg>
+      <div class="label">Port hand</div>
+      <div class="rhythm">Red · can · red light, any rhythm</div>
+    </div>
+    <div class="card buoy">
+      <svg width="90" height="130" viewBox="0 0 90 130" role="img" aria-label="Starboard hand mark: green cone">
+        <path d="M45 14 L57 34 L33 34 Z" fill="#149A4E" stroke="#14171A" stroke-width="1.2"/>
+        <rect x="40" y="34" width="10" height="14" fill="#149A4E" stroke="#14171A" stroke-width="1.2"/>
+        <path d="M45 46 L70 100 L20 100 Z" fill="#149A4E" stroke="#14171A" stroke-width="1.4"/>
+        <path d="M8 106 q37 12 74 0" stroke="#0B57D0" stroke-width="1.6" fill="none" opacity=".5"/>
+      </svg>
+      <div class="label">Starboard hand</div>
+      <div class="rhythm">Green · cone · green light, any rhythm</div>
+    </div>
+    <div class="card buoy">
+      <svg width="90" height="130" viewBox="0 0 90 130" role="img" aria-label="Preferred channel to starboard: red can with a green band">
+        <rect x="30" y="18" width="30" height="14" fill="#CE2B2B" stroke="#14171A" stroke-width="1.2"/>
+        <rect x="34" y="32" width="22" height="16" fill="#CE2B2B" stroke="#14171A" stroke-width="1.2"/>
+        <rect x="22" y="48" width="46" height="52" fill="#CE2B2B" stroke="#14171A" stroke-width="1.4"/>
+        <rect x="22" y="66" width="46" height="16" fill="#149A4E" stroke="#14171A" stroke-width="1"/>
+        <path d="M8 106 q37 12 74 0" stroke="#0B57D0" stroke-width="1.6" fill="none" opacity=".5"/>
+      </svg>
+      <div class="label">Preferred channel<br>to starboard</div>
+      <div class="rhythm">Fl(2+1) R</div>
+      <div class="pass">treat it as a port-hand mark</div>
+    </div>
+    <div class="card buoy">
+      <svg width="90" height="130" viewBox="0 0 90 130" role="img" aria-label="Preferred channel to port: green cone with a red band">
+        <path d="M45 14 L57 34 L33 34 Z" fill="#149A4E" stroke="#14171A" stroke-width="1.2"/>
+        <rect x="40" y="34" width="10" height="14" fill="#149A4E" stroke="#14171A" stroke-width="1.2"/>
+        <path d="M45 46 L70 100 L20 100 Z" fill="#149A4E" stroke="#14171A" stroke-width="1.4"/>
+        <rect x="30" y="66" width="30" height="16" fill="#CE2B2B" stroke="#14171A" stroke-width="1"/>
+        <path d="M8 106 q37 12 74 0" stroke="#0B57D0" stroke-width="1.6" fill="none" opacity=".5"/>
+      </svg>
+      <div class="label">Preferred channel<br>to port</div>
+      <div class="rhythm">Fl(2+1) G</div>
+      <div class="pass">treat it as a starboard-hand mark</div>
+    </div>
+  </div>
+
+  <h3>Cardinal marks <span class="note" style="font-size:14px;text-transform:none;letter-spacing:0">— lights are running at the real rhythm</span></h3>
+  <div class="grid g4">
+
+    <div class="card buoy">
+      <svg width="100" height="180" viewBox="0 0 100 180" role="img" aria-label="North cardinal: black over yellow, two cones pointing up, quick flashing">
+        <circle class="flash f-n" cx="50" cy="12" r="7" fill="#FFE9A8"/>
+        <path d="M50 26 L60 44 L40 44 Z" fill="#14171A"/>
+        <path d="M50 46 L60 64 L40 64 Z" fill="#14171A"/>
+        <rect x="46" y="64" width="8" height="12" fill="#14171A"/>
+        <rect x="32" y="76" width="36" height="34" fill="#14171A" stroke="#14171A"/>
+        <rect x="32" y="110" width="36" height="34" fill="#F5C400" stroke="#14171A"/>
+        <path d="M12 150 q38 12 76 0" stroke="#0B57D0" stroke-width="1.6" fill="none" opacity=".5"/>
+      </svg>
+      <div class="label">North</div>
+      <div class="rhythm">VQ or Q, continuous</div>
+      <div class="pass">pass to the north of it</div>
+    </div>
+
+    <div class="card buoy">
+      <svg width="100" height="180" viewBox="0 0 100 180" role="img" aria-label="East cardinal: black yellow black, cones base to base, three quick flashes">
+        <circle class="flash f-e" cx="50" cy="12" r="7" fill="#FFE9A8"/>
+        <path d="M50 26 L60 44 L40 44 Z" fill="#14171A"/>
+        <path d="M50 62 L60 44 L40 44 Z" fill="#14171A"/>
+        <rect x="46" y="62" width="8" height="14" fill="#14171A"/>
+        <rect x="32" y="76" width="36" height="24" fill="#14171A" stroke="#14171A"/>
+        <rect x="32" y="100" width="36" height="20" fill="#F5C400" stroke="#14171A"/>
+        <rect x="32" y="120" width="36" height="24" fill="#14171A" stroke="#14171A"/>
+        <path d="M12 150 q38 12 76 0" stroke="#0B57D0" stroke-width="1.6" fill="none" opacity=".5"/>
+      </svg>
+      <div class="label">East</div>
+      <div class="rhythm">VQ(3) 5s or Q(3) 10s</div>
+      <div class="pass">pass to the east of it</div>
+    </div>
+
+    <div class="card buoy">
+      <svg width="100" height="180" viewBox="0 0 100 180" role="img" aria-label="South cardinal: yellow over black, two cones pointing down, six quick flashes and a long flash">
+        <circle class="flash f-s" cx="50" cy="12" r="7" fill="#FFE9A8"/>
+        <path d="M50 44 L60 26 L40 26 Z" fill="#14171A"/>
+        <path d="M50 64 L60 46 L40 46 Z" fill="#14171A"/>
+        <rect x="46" y="64" width="8" height="12" fill="#14171A"/>
+        <rect x="32" y="76" width="36" height="34" fill="#F5C400" stroke="#14171A"/>
+        <rect x="32" y="110" width="36" height="34" fill="#14171A" stroke="#14171A"/>
+        <path d="M12 150 q38 12 76 0" stroke="#0B57D0" stroke-width="1.6" fill="none" opacity=".5"/>
+      </svg>
+      <div class="label">South</div>
+      <div class="rhythm">VQ(6)+LFl 10s · Q(6)+LFl 15s</div>
+      <div class="pass">pass to the south of it</div>
+    </div>
+
+    <div class="card buoy">
+      <svg width="100" height="180" viewBox="0 0 100 180" role="img" aria-label="West cardinal: yellow black yellow, cones point to point, nine quick flashes">
+        <circle class="flash f-w" cx="50" cy="12" r="7" fill="#FFE9A8"/>
+        <path d="M50 44 L60 26 L40 26 Z" fill="#14171A"/>
+        <path d="M50 44 L60 62 L40 62 Z" fill="#14171A"/>
+        <rect x="46" y="62" width="8" height="14" fill="#14171A"/>
+        <rect x="32" y="76" width="36" height="24" fill="#F5C400" stroke="#14171A"/>
+        <rect x="32" y="100" width="36" height="20" fill="#14171A" stroke="#14171A"/>
+        <rect x="32" y="120" width="36" height="24" fill="#F5C400" stroke="#14171A"/>
+        <path d="M12 150 q38 12 76 0" stroke="#0B57D0" stroke-width="1.6" fill="none" opacity=".5"/>
+      </svg>
+      <div class="label">West</div>
+      <div class="rhythm">VQ(9) 10s or Q(9) 15s</div>
+      <div class="pass">pass to the west of it</div>
+    </div>
+  </div>
+
+  <div class="grid g2" style="margin-top:14px">
+    <div class="trap"><b>Read the topmark, not the paint</b>The cones point the way the <em>black</em> band points. North: black on top, cones up. South: black at the bottom, cones down. West looks like a wine glass, east like an egg.</div>
+    <div class="trap"><b>Clock face</b>3 o'clock is east, three flashes. 6 is south, six flashes. 9 is west, nine flashes. North runs continuously. South carries the long flash so you cannot miscount six as three or nine.</div>
+  </div>
+
+  <h3>The other four</h3>
+  <div class="grid g4">
+    <div class="card buoy">
+      <svg width="100" height="170" viewBox="0 0 100 170" role="img" aria-label="Isolated danger mark: black with red bands, two black balls, group flashing two">
+        <circle class="flash f-iso" cx="50" cy="10" r="6.5" fill="#FFE9A8"/>
+        <circle cx="50" cy="30" r="8" fill="#14171A"/>
+        <circle cx="50" cy="50" r="8" fill="#14171A"/>
+        <rect x="46" y="56" width="8" height="14" fill="#14171A"/>
+        <rect x="32" y="70" width="36" height="20" fill="#14171A" stroke="#14171A"/>
+        <rect x="32" y="90" width="36" height="16" fill="#CE2B2B" stroke="#14171A"/>
+        <rect x="32" y="106" width="36" height="24" fill="#14171A" stroke="#14171A"/>
+        <path d="M12 136 q38 12 76 0" stroke="#0B57D0" stroke-width="1.6" fill="none" opacity=".5"/>
+      </svg>
+      <div class="label">Isolated danger</div>
+      <div class="rhythm">Fl(2) W</div>
+      <div class="pass">moored on the danger, water all round</div>
+    </div>
+    <div class="card buoy">
+      <svg width="100" height="170" viewBox="0 0 100 170" role="img" aria-label="Safe water mark: red and white vertical stripes, red sphere topmark">
+        <circle class="flash f-safe" cx="50" cy="10" r="6.5" fill="#FFE9A8"/>
+        <circle cx="50" cy="32" r="9" fill="#CE2B2B" stroke="#14171A" stroke-width="1"/>
+        <rect x="46" y="40" width="8" height="16" fill="#CE2B2B"/>
+        <g stroke="#14171A" stroke-width="1">
+          <rect x="32" y="56" width="9" height="74" fill="#CE2B2B"/>
+          <rect x="41" y="56" width="9" height="74" fill="#FFFFFF"/>
+          <rect x="50" y="56" width="9" height="74" fill="#CE2B2B"/>
+          <rect x="59" y="56" width="9" height="74" fill="#FFFFFF"/>
+        </g>
+        <path d="M12 136 q38 12 76 0" stroke="#0B57D0" stroke-width="1.6" fill="none" opacity=".5"/>
+      </svg>
+      <div class="label">Safe water</div>
+      <div class="rhythm">Iso · Oc · LFl 10s · Mo(A)</div>
+      <div class="pass">landfall and mid-channel</div>
+    </div>
+    <div class="card buoy">
+      <svg width="100" height="170" viewBox="0 0 100 170" role="img" aria-label="Special mark: yellow with a yellow cross topmark">
+        <g stroke="#F5C400" stroke-width="4" stroke-linecap="round">
+          <line x1="41" y1="22" x2="59" y2="40"/><line x1="59" y1="22" x2="41" y2="40"/>
+        </g>
+        <rect x="46" y="42" width="8" height="14" fill="#F5C400" stroke="#14171A" stroke-width=".8"/>
+        <rect x="32" y="56" width="36" height="74" fill="#F5C400" stroke="#14171A"/>
+        <path d="M12 136 q38 12 76 0" stroke="#0B57D0" stroke-width="1.6" fill="none" opacity=".5"/>
+      </svg>
+      <div class="label">Special</div>
+      <div class="rhythm">Yellow, any rhythm not used above</div>
+      <div class="pass">spoil grounds, cables, buoyed areas</div>
+    </div>
+    <div class="card buoy">
+      <svg width="100" height="170" viewBox="0 0 100 170" role="img" aria-label="Emergency wreck marking buoy: blue and yellow vertical stripes with a yellow cross">
+        <g stroke="#F5C400" stroke-width="4" stroke-linecap="round">
+          <line x1="41" y1="22" x2="59" y2="40"/><line x1="59" y1="22" x2="41" y2="40"/>
+        </g>
+        <rect x="46" y="42" width="8" height="14" fill="#F5C400" stroke="#14171A" stroke-width=".8"/>
+        <g stroke="#14171A" stroke-width="1">
+          <rect x="32" y="56" width="9" height="74" fill="#0B57D0"/>
+          <rect x="41" y="56" width="9" height="74" fill="#F5C400"/>
+          <rect x="50" y="56" width="9" height="74" fill="#0B57D0"/>
+          <rect x="59" y="56" width="9" height="74" fill="#F5C400"/>
+        </g>
+        <path d="M12 136 q38 12 76 0" stroke="#0B57D0" stroke-width="1.6" fill="none" opacity=".5"/>
+      </svg>
+      <div class="label">Emergency wreck</div>
+      <div class="rhythm">Al.Oc.Bu Y 3s</div>
+      <div class="pass">new wreck, not yet charted</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PLATE VI ================= -->
+<section class="plate" id="p6">
+  <div class="plate-head"><span class="plate-no">Plate VI</span><h2>Light characters, read as time</h2></div>
+  <p class="note">Pale is lit, dark is dark. One full width is one period.</p>
+
+  <div class="card">
+    <div class="strip-row"><div class="strip-name">F<span>Fixed</span></div>
+      <div class="strip"><i style="left:0;width:100%"></i></div></div>
+
+    <div class="strip-row"><div class="strip-name">Fl<span>Flashing: light shorter than dark</span></div>
+      <div class="strip"><i style="left:0;width:14%"></i></div></div>
+
+    <div class="strip-row"><div class="strip-name">LFl<span>Long flash, 2 seconds or more</span></div>
+      <div class="strip"><i style="left:0;width:32%"></i></div></div>
+
+    <div class="strip-row"><div class="strip-name">Oc<span>Occulting: light longer than dark</span></div>
+      <div class="strip"><i style="left:0;width:82%"></i></div></div>
+
+    <div class="strip-row"><div class="strip-name">Iso<span>Isophase: equal light and dark</span></div>
+      <div class="strip"><i style="left:0;width:50%"></i></div></div>
+
+    <div class="strip-row"><div class="strip-name">Q<span>Quick, 50 to 60 a minute</span></div>
+      <div class="strip">
+        <i style="left:0;width:4%"></i><i style="left:10%;width:4%"></i><i style="left:20%;width:4%"></i><i style="left:30%;width:4%"></i><i style="left:40%;width:4%"></i><i style="left:50%;width:4%"></i><i style="left:60%;width:4%"></i><i style="left:70%;width:4%"></i><i style="left:80%;width:4%"></i><i style="left:90%;width:4%"></i>
+      </div></div>
+
+    <div class="strip-row"><div class="strip-name">Fl(2) 10s<span>Group of two, cycle every 10s</span></div>
+      <div class="strip"><i style="left:0;width:5%"></i><i style="left:11%;width:5%"></i></div></div>
+
+    <div class="strip-row"><div class="strip-name">Q(3) 10s<span>East cardinal</span></div>
+      <div class="strip"><i style="left:0;width:3%"></i><i style="left:6%;width:3%"></i><i style="left:12%;width:3%"></i></div></div>
+
+    <div class="strip-row"><div class="strip-name">Q(6)+LFl 15s<span>South cardinal, note the long flash</span></div>
+      <div class="strip"><i style="left:0;width:2.6%"></i><i style="left:5%;width:2.6%"></i><i style="left:10%;width:2.6%"></i><i style="left:15%;width:2.6%"></i><i style="left:20%;width:2.6%"></i><i style="left:25%;width:2.6%"></i><i style="left:32%;width:13%"></i></div></div>
+
+    <div class="strip-row"><div class="strip-name">Q(9) 15s<span>West cardinal</span></div>
+      <div class="strip"><i style="left:0;width:2.6%"></i><i style="left:5%;width:2.6%"></i><i style="left:10%;width:2.6%"></i><i style="left:15%;width:2.6%"></i><i style="left:20%;width:2.6%"></i><i style="left:25%;width:2.6%"></i><i style="left:30%;width:2.6%"></i><i style="left:35%;width:2.6%"></i><i style="left:40%;width:2.6%"></i></div></div>
+
+    <div class="strip-row"><div class="strip-name">Mo(A)<span>Morse A: short, long. Safe water.</span></div>
+      <div class="strip"><i style="left:0;width:5%"></i><i style="left:9%;width:18%"></i></div></div>
+  </div>
+
+  <div class="grid g2" style="margin-top:14px">
+    <div class="trap"><b>Timing it</b>The period is the whole cycle including the dark. Start the watch at the first flash of a group and stop it at the first flash of the next group.</div>
+    <div class="trap"><b>Two different ranges</b>Nominal range in the almanac assumes 10M visibility. Rising and dipping range is geometry: height of light plus height of eye. From a yacht's low eye height, the geometric limit is often the smaller of the two.</div>
+  </div>
+</section>
+
+<!-- ================= PLATE VII ================= -->
+<section class="plate" id="p7">
+  <div class="plate-head"><span class="plate-no">Plate VII</span><h2>Definitions &amp; last-hour recall</h2></div>
+
+  <div class="deffs">
+    <div class="deff"><b>Underway</b>Not at anchor, not made fast to the shore, not aground. It does not mean moving.</div>
+    <div class="deff"><b>Making way</b>Moving through the water. Different thing entirely.</div>
+    <div class="deff"><b>In sight of one another</b>Only when one can be seen <em>visually</em> from the other. A radar contact is not in sight, which is exactly why Rule 19 exists.</div>
+    <div class="deff"><b>Risk of collision</b>Exists if the <em>compass bearing</em> of an approaching vessel does not appreciably change. Assume it exists in any doubt, and beware a close tow or a very large vessel even when the bearing does change.</div>
+    <div class="deff"><b>Engaged in fishing</b>Gear that restricts manoeuvrability. Trolling lines do not count.</div>
+    <div class="deff"><b>Restricted visibility</b>Fog, mist, falling snow, heavy rainstorms, sandstorms or anything similar.</div>
+  </div>
+
+  <h3>If you only revise eight things</h3>
+  <ol class="recall">
+    <li>Rule 18 order, and Rule 12 port gives way to starboard, windward gives way to leeward.</li>
+    <li>Rule 13 overtaking beats the whole hierarchy.</li>
+    <li>Rule 10: cross a TSS on a <b>heading</b> at right angles. Do not offset for tide.</li>
+    <li>Cardinal topmarks and the clock-face flash counts.</li>
+    <li>Isolated danger versus safe water versus emergency wreck.</li>
+    <li>The five light mnemonics: red/red, red/white/red, red/white, white/red, green/white.</li>
+    <li>Fog signals for anchored and for the awkward-vessel set.</li>
+    <li>Oc versus Fl versus Iso, and what a period actually measures.</li>
+  </ol>
+</section>
+
+<footer>
+  <div class="wrap">Revision aid only. The Colregs themselves and the current almanac are the authority, and the RYA moved to its Digital First navigation syllabus for 2026, so check your course materials match.</div>
+</footer>
+
+</body>
+</html>
