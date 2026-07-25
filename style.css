@@ -157,6 +157,8 @@ select {
   transition: transform 0.05s ease, background 0.15s ease, opacity 0.15s ease;
 }
 .btn:active { transform: translateY(1px); }
+a.btn { display: inline-block; text-align: center; text-decoration: none; box-sizing: border-box; }
+.start-card a.btn-lg { margin-top: 12px; }
 .btn-primary { background: var(--sea); color: #fff; }
 .btn-primary:hover { background: var(--sea-bright); }
 .btn-primary:disabled { opacity: 0.45; cursor: not-allowed; }
