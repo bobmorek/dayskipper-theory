@@ -206,9 +206,10 @@
     resultFraction.textContent = `${score} of ${total} correct`;
 
     let msg;
-    if (pct >= 90) msg = "Excellent — you're well prepared. 🧭";
-    else if (pct >= 75) msg = "Good work — a solid pass standard.";
-    else if (pct >= 50) msg = "Getting there — review the topics below.";
+    if (pct >= 90) msg = "Goin boco with that scoreline 🤙";
+    else if (pct >= 80) msg = "Callabunga dudes — mental nose bag 🏄";
+    else if (pct >= 75) msg = "Pretty alright.";
+    else if (pct >= 60) msg = "Close but no cigars.";
     else msg = "Keep practising — focus on the explanations below.";
     resultMessage.textContent = msg;
 
