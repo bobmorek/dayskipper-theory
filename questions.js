@@ -2553,6 +2553,223 @@ const QUESTIONS = [
     ],
     answer: 1,
     explain: "A black cylinder is the day shape for a vessel constrained by her draught (night: three all-round red lights). She needs the deep water of the channel, so small craft must keep out of her way."
+  },
+
+  // ---------------- Charts & Chartwork (course, tides, symbols) ----------------
+  {
+    id: 211, category: "Charts & Chartwork",
+    q: "When plotting a course to steer to allow for a cross-tide, which line do you lay off FIRST from your start position?",
+    options: [
+      "The desired ground track to your destination",
+      "The tidal stream vector — in the direction the tide flows, its length equal to rate × time",
+      "The boat's heading already corrected for leeway",
+      "A line of longitude through the start"
+    ],
+    answer: 1,
+    explain: "Course-to-steer construction: from the start, lay off the tidal stream vector (direction of flow, length = drift for the passage time). From the end of that vector open the dividers to the boat's speed through the water and swing an arc to cut the required ground-track line. Joining them gives the water track — your course to steer, before leeway. (1 arrow = water track, 2 = ground track, 3 = tide.)"
+  },
+  {
+    id: 212, category: "Charts & Chartwork",
+    q: "In standard RYA chartwork symbols, how many arrowheads are drawn on the tidal-stream vector?",
+    options: ["One", "Two", "Three", "None"],
+    answer: 2,
+    explain: "Count the feathers: one arrowhead = water track (course steered through the water), two arrowheads = ground track (course made good over the ground), three arrowheads = tidal stream. It tells you at a glance which line on a busy plot is which."
+  },
+  {
+    id: 213, category: "Charts & Chartwork",
+    q: "On a chart plot, a position fixed from two or more bearings is marked with:",
+    options: [
+      "A dot inside a triangle",
+      "A dot inside a circle, with the time noted alongside",
+      "A dot with three arrowheads",
+      "A plain pencil cross"
+    ],
+    answer: 1,
+    explain: "A fix is a dot ringed by a circle with the time beside it. An estimated position (EP) is a dot inside a triangle. Keeping the two symbols distinct stops you trusting an EP as though it were a hard fix."
+  },
+  {
+    id: 214, category: "Charts & Chartwork",
+    q: "An Estimated Position (EP) is obtained by applying to your Dead Reckoning position the effect of:",
+    options: [
+      "Tidal stream (set and drift) and leeway",
+      "Variation and deviation",
+      "Only the wind strength",
+      "The charted depth of water"
+    ],
+    answer: 0,
+    explain: "A DR position uses only the course steered and distance run through the water. Add the tidal stream for the period and any leeway and you get the EP — your best estimate of where you actually are. Mark it with a triangle around the dot."
+  },
+  {
+    id: 215, category: "Charts & Chartwork",
+    q: "To allow for leeway when working out a course to steer, you offset the boat's heading:",
+    options: [
+      "To leeward (downwind) of the water track",
+      "To windward (upwind) of the water track",
+      "Exactly along the ground track",
+      "It makes no difference which side"
+    ],
+    answer: 1,
+    explain: "The wind pushes the boat sideways to leeward, so to make good the intended water track you point the bow up into the wind by the leeway angle and let her crab down onto it. Leeway is greater close-hauled, in strong winds and at low boat speed."
+  },
+  {
+    id: 216, category: "Charts & Chartwork",
+    q: "The difference between a yacht's water track and her ground track is caused by:",
+    options: [
+      "Leeway",
+      "The tidal stream",
+      "Compass deviation",
+      "The depth of water"
+    ],
+    answer: 1,
+    explain: "The water track is the boat's path through the water (heading corrected for leeway). The tidal stream then carries that water over the ground to give the ground track. Leeway, by contrast, is the difference between the heading you steer and the water track."
+  },
+  {
+    id: 217, category: "Charts & Chartwork",
+    q: "A charted (true) bearing is 130°. Variation is 4°W and there is no deviation. What is the magnetic bearing?",
+    options: ["126°M", "134°M", "130°M", "138°M"],
+    answer: 1,
+    explain: "Converting true → magnetic you ADD westerly variation: 130° + 4° = 134°M. Remember 'variation west, magnetic best' — the magnetic figure is the larger. Easterly variation would be subtracted instead."
+  },
+  {
+    id: 218, category: "Charts & Chartwork",
+    q: "A yacht logs 9 nautical miles through the water in 1 hour 12 minutes. What is her speed?",
+    options: ["6.5 knots", "7.5 knots", "8 knots", "10.8 knots"],
+    answer: 1,
+    explain: "Speed = distance ÷ time. 1 h 12 min = 1.2 hours, so 9 ÷ 1.2 = 7.5 knots. Using the DST triangle, convert the minutes to a decimal of an hour first (12 min = 0.2 h) before dividing."
+  },
+  {
+    id: 219, category: "Charts & Chartwork",
+    q: "One cable is equal to:",
+    options: [
+      "One nautical mile",
+      "One tenth of a nautical mile, about 185 m",
+      "One kilometre",
+      "Exactly one hundred metres"
+    ],
+    answer: 1,
+    explain: "A cable is 0.1 nautical mile — roughly 185 m (near enough 200 yards). Short distances such as 'anchor 2 cables NW of the pier' are quoted in cables; ten cables make a nautical mile."
+  },
+  {
+    id: 220, category: "Charts & Chartwork",
+    q: "You bring two charted objects into line (a transit). On its own this gives you:",
+    options: [
+      "A complete fix",
+      "A single, very accurate position line",
+      "Your speed over the ground",
+      "The direction of the tidal set"
+    ],
+    answer: 1,
+    explain: "A transit places you somewhere on the line joining the two objects — one highly accurate position line, needing no compass. Cross it with another position line for a fix. Transits are also the best check for compass error and for whether the tide is setting you off a leading line."
+  },
+  {
+    id: 221, category: "Charts & Chartwork",
+    q: "Which instruments measure DIRECTION and DISTANCE on a chart?",
+    options: [
+      "Parallel rules (or a plotter) for direction; dividers stepped along the latitude scale for distance",
+      "Dividers for direction; a ruler for distance",
+      "The compass rose for distance; a protractor for direction",
+      "A soft pencil for both"
+    ],
+    answer: 0,
+    explain: "Parallel rules or a Portland/Breton plotter transfer a course to and from the compass rose to read direction. Dividers measure distance, always stepped off against the latitude scale beside the area of interest — never the longitude scale."
+  },
+
+  // ---------------- Ropework & Knots (with how to tie them) ----------------
+  {
+    id: 222, category: "Ropework & Knots",
+    q: "Which knot best secures a mooring line to a ring, rail or post and can still be untied while under load?",
+    options: [
+      "Reef knot",
+      "Round turn and two half hitches",
+      "Figure-of-eight",
+      "Sheet bend"
+    ],
+    answer: 1,
+    explain: "To tie: pass the end right around the ring TWICE (the 'round turn' takes the strain and lets you hold the load), then make two identical half hitches around the standing part. The round turn means you can ease or cast it off even with the line loaded — ideal for tying up to a ring or rail."
+  },
+  {
+    id: 223, category: "Ropework & Knots",
+    q: "Which quick knot is commonly used to hang fenders from a guardrail or make a temporary attachment to a post?",
+    options: [
+      "Clove hitch",
+      "Bowline",
+      "Rolling hitch",
+      "Reef knot"
+    ],
+    answer: 0,
+    explain: "To tie: make a loop over the rail, then a second loop the SAME way, and tuck the end under itself so the two turns cross in an X. Quick to tie and adjust, but it can work loose under an uneven load, so add a half hitch when it matters. Good for fenders and light lashings, not for critical loads."
+  },
+  {
+    id: 224, category: "Ropework & Knots",
+    q: "The reef knot is correctly used to:",
+    options: [
+      "Join two ropes of very different thickness",
+      "Bind the two ends of a single line of equal size — e.g. tying in a reef or a sail tie",
+      "Form a fixed loop in a rope's end",
+      "Take the strain along another rope"
+    ],
+    answer: 1,
+    explain: "To tie: 'left over right, then right over left' so both parts come out the same side and the knot lies flat. It is a binding knot for reefing or bundling, NOT a bend for joining two loaded ropes — use a sheet bend for that. On unequal or slippery ropes a reef knot can capsize and slip."
+  },
+  {
+    id: 225, category: "Ropework & Knots",
+    q: "To join two ropes of DIFFERENT thickness, the correct knot is the:",
+    options: [
+      "Reef knot",
+      "Sheet bend",
+      "Clove hitch",
+      "Round turn and two half hitches"
+    ],
+    answer: 1,
+    explain: "To tie: make a bight in the thicker rope; pass the thinner end up through the bight, around behind both parts of it, and back under itself so the tail finishes on the same side as the short end of the bight. Double it (an extra turn) for very unequal or slippery lines. It holds where a reef knot would not."
+  },
+  {
+    id: 226, category: "Ropework & Knots",
+    q: "A figure-of-eight knot is put in the end of a sheet or halyard to:",
+    options: [
+      "Join it to another rope",
+      "Act as a stopper so the line cannot run out through a block or fairlead",
+      "Form a loop",
+      "Make it fast to a cleat"
+    ],
+    answer: 1,
+    explain: "To tie: pass the end over the standing part to make a loop, bring it BEHIND the standing part, then down through that loop — a neat figure '8'. Unlike a plain overhand knot it will not jam solid, so it undoes easily, yet it stops a sheet whipping out through the fairlead when you let go."
+  },
+  {
+    id: 227, category: "Ropework & Knots",
+    q: "You need to take the strain along another loaded rope — e.g. to relieve a riding turn (override) on a winch. Which knot grips a rope or spar without sliding lengthways?",
+    options: [
+      "Clove hitch",
+      "Rolling hitch",
+      "Reef knot",
+      "Bowline"
+    ],
+    answer: 1,
+    explain: "To tie: like a clove hitch but with an extra bite on the loaded side — take two turns around the loaded rope working TOWARDS the direction of pull (these grip when loaded), then finish with a half hitch on the other side. Lead a spare line from the rolling hitch to another winch to take the load off the override, then clear it."
+  },
+  {
+    id: 228, category: "Ropework & Knots",
+    q: "When making a mooring line fast to a horn cleat you should:",
+    options: [
+      "Take a full turn round the base, then a couple of figure-of-eight turns, finishing with one locking hitch",
+      "Start with as many locking hitches as possible",
+      "Drop a bowline over one horn",
+      "Tie a reef knot around the middle"
+    ],
+    answer: 0,
+    explain: "To tie: one complete turn around the base of the cleat first (this takes the load), then two or three figure-of-eight turns across the horns, and a single locking (turned-under) hitch to finish. Don't lead off with locking hitches or pile on a dozen turns — a proper cleat hitch holds fast yet frees instantly when needed."
+  },
+  {
+    id: 229, category: "Ropework & Knots",
+    q: "What is the classic way to remember tying a bowline?",
+    options: [
+      "'Left over right, then right over left'",
+      "The rabbit comes up out of the hole, round the tree, and back down the hole",
+      "Two round turns and two half hitches",
+      "A figure-of-eight, then double it"
+    ],
+    answer: 1,
+    explain: "Make a small loop (the 'hole') in the standing part; the end is the 'rabbit'. It comes UP through the hole, passes round BEHIND the standing part (the 'tree'), then back DOWN the hole. Pull tight for a fixed, non-slip loop that never jams and unties easily even after heavy loading — the most useful knot afloat."
   }
 ];
 
