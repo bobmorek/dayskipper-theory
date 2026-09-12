@@ -231,7 +231,7 @@ footer a{color:var(--magenta)}
     </div>
     <div class="card">
       <h4>Clearances — above HAT</h4>
-      <p class="sub">Vertical clearance under a bridge or power cable is given above <b>Highest Astronomical Tide</b>, so the real gap is usually a little more than charted.</p>
+      <p class="sub">Vertical clearance under a bridge or power cable is given above <b>Highest Astronomical Tide</b> on current editions, so the real gap is usually a little more than charted. Older editions used MHWS &mdash; the title block says which, under <em>Heights</em>.</p>
     </div>
   </div>
   <div class="trap"><b>Three datums, one sheet</b>Depths down from LAT, heights up from MHWS, overhead clearances up from HAT. Examiners test the mismatch: if a question gives you a mast height and a charted cable clearance, you need the height of tide and the HAT, not just the charted figure.</div>
@@ -254,6 +254,7 @@ footer a{color:var(--magenta)}
     <div class="card"><h4>Position notation</h4><p class="sub">Latitude first, then longitude, to a decimal of a minute: <b>50&deg;45'.3N 001&deg;17'.6W</b>. Latitude N/S of the equator, longitude E/W of Greenwich.</p></div>
     <div class="card"><h4>Scale</h4><p class="sub">1:25,000 is a <b>larger</b> scale than 1:50,000 — more detail, less area. Large scale, large detail. Use the largest-scale chart available for pilotage.</p></div>
     <div class="card"><h4>Corrections</h4><p class="sub">Admiralty charts are kept current by weekly <b>Notices to Mariners</b>, applied in magenta ink and logged in the bottom-left corner. Check the source data diagram for survey quality.</p></div>
+    <div class="card"><h4>Horizontal datum</h4><p class="sub">A GPS position is on <b>WGS84</b>. Older charts are not, and carry a <em>satellite-derived positions</em> note giving the shift to apply before you plot a GPS latitude and longitude on them. On a large-scale chart the difference is enough to matter.</p></div>
   </div>
 
   <h3>Instruments</h3>
@@ -305,13 +306,12 @@ footer a{color:var(--magenta)}
     <div class="sym">
       <svg width="72" height="44" viewBox="0 0 72 44" aria-hidden="true">
         <g stroke="#08145C" stroke-width="1.8" fill="none">
-          <path d="M36 10 V34 M24 22 H48"/>
+          <path d="M36 13 V31 M27 22 H45"/>
         </g>
-        <circle cx="30" cy="16" r="1.6" fill="#08145C"/><circle cx="42" cy="16" r="1.6" fill="#08145C"/>
-        <circle cx="30" cy="28" r="1.6" fill="#08145C"/><circle cx="42" cy="28" r="1.6" fill="#08145C"/>
+        <circle cx="36" cy="22" r="15" fill="none" stroke="#08145C" stroke-width="1.4" stroke-dasharray="1.5 3.5" stroke-linecap="round"/>
       </svg>
       <span class="label">Underwater rock</span>
-      <span class="gloss">Cross with dots: dangerous rock at or near datum. Stay off it at any state of tide.</span>
+      <span class="gloss">A cross inside a ring of dots: a dangerous rock, depth uncertain. The dotted ring is the chart's general sign for a hazard &mdash; stay outside it at any state of tide.</span>
     </div>
     <div class="sym">
       <svg width="72" height="44" viewBox="0 0 72 44" aria-hidden="true">
@@ -594,7 +594,8 @@ footer a{color:var(--magenta)}
     </div>
   </div>
 
-  <div class="mnemonic">True &rarr; Virgins &rarr; Make &rarr; Dull &rarr; Company · Add Whisky<span>True, Variation, Magnetic, Deviation, Compass. Going <b>down</b> the list (True to Compass) you <b>add West</b> errors and subtract East. Going back up, the reverse.</span></div>
+  <div class="mnemonic">CADET &mdash; Compass ADd East, True<span>Working from the <b>compass</b> reading to a <b>True</b> bearing you fit to plot, <b>add easterly</b> errors and subtract westerly ones. Reverse it going the other way: True to Compass, <b>add West</b>.</span></div>
+  <div class="mnemonic" style="margin-top:10px">Can Dead Men Vote Twice<span><b>C</b>ompass, <b>D</b>eviation, <b>M</b>agnetic, <b>V</b>ariation, <b>T</b>rue &mdash; the chain in the order you work it when turning a bearing you have taken into one you can plot. Read it backwards to go from the chart to the helm.</span></div>
   <div class="mnemonic" style="margin-top:10px">Error West, compass Best · Error East, compass Least<span>With a westerly error the compass reads a bigger (best) number than True; with an easterly error it reads a smaller one. So True 100&deg; with 5&deg;W variation is Magnetic 105&deg;; Compass 090&deg; with 6&deg;E variation is True 096&deg;.</span></div>
 
   <div class="grid g3" style="margin-top:14px">
@@ -813,7 +814,7 @@ footer a{color:var(--magenta)}
         <li>Apply the <b>height differences</b>, interpolating between the springs and neaps columns for today's range.</li>
         <li>Work the resulting times and heights on the <b>standard port's</b> curve.</li>
       </ol>
-      <div class="out"><b>Watch for</b>Differences are sometimes given as ratios or factors, and time differences can be negative. Copy the sign.</div>
+      <div class="out"><b>Beyond Day Skipper</b>The syllabus asks for the Admiralty method at a <b>standard</b> port and only an <em>awareness</em> of secondary port corrections. Working a secondary port in full belongs to Coastal Skipper and Yachtmaster; know what the differences are and where they live. Note too that differences are sometimes given as ratios or factors, and time differences can be negative &mdash; copy the sign.</div>
     </div>
   </div>
 
@@ -821,6 +822,7 @@ footer a{color:var(--magenta)}
   <div class="grid g3">
     <div class="card"><h4>Tidal diamond</h4><p class="sub">A lettered magenta diamond on the chart; the table gives <b>set (direction) and rate</b> for each hour before and after HW at a named standard port, in springs and neaps columns.</p></div>
     <div class="card"><h4>Tidal stream atlas</h4><p class="sub">Twelve pages, one per hour relative to HW. Arrows give direction; figures give neap and spring rates in tenths of a knot (e.g. 19,34 = 1.9 kn neaps, 3.4 kn springs).</p></div>
+    <div class="card"><h4>Between springs and neaps</h4><p class="sub">The atlas gives only the two rates. The <b>rule of seven</b> steps between them: the spring rate minus the neap rate, divided by seven, is roughly one day's change as the tide works from springs to neaps. For a proper answer use the <b>computation of rates</b> diagram inside the atlas cover. This is Yachtmaster refinement; at Day Skipper, take the nearer of the two rates and be honest about the margin.</p></div>
     <div class="card"><h4>Flood and ebb</h4><p class="sub"><b>Flood</b> is the incoming stream, <b>ebb</b> the outgoing. Slack water is around the turn, not necessarily at HW. Streams run hardest at springs and around mid-tide.</p></div>
   </div>
 </section>
@@ -903,7 +905,7 @@ footer a{color:var(--magenta)}
 </section>
 
 <footer>
-  <div class="wrap">Revision aid only. Symbols follow Admiralty Chart 5011 and standard RYA plotting conventions; individual schools and almanacs vary in small details, so plot the way your instructor marks. The current chart, its corrections and the almanac are the authority. The recognition half of the syllabus — Colregs, lights, sound signals and buoyage — is on the <a href="cheatsheet.html">Colregs &amp; buoyage plates</a>, and you can test both in the <a href="index.html">Theory Trainer quiz</a>.</div>
+  <div class="wrap">Revision aid only. Symbols follow Admiralty Chart 5011 (NP5011) and standard RYA plotting conventions; the drawings are simplified and individual schools and almanacs vary in small details, so plot the way your instructor marks. The current chart, its corrections and the almanac are the authority. These plates cover the chartwork, position fixing, tidal height and tidal stream, and pilotage parts of the Day Skipper shorebased syllabus; anchorwork, meteorology, safety, ropework and the marine environment are in the quiz rather than here. The recognition half of the syllabus — Colregs, lights, sound signals and buoyage — is on the <a href="cheatsheet.html">Colregs &amp; buoyage plates</a>, and you can test both in the <a href="index.html">Theory Trainer quiz</a>.</div>
 </footer>
 
 </body>
