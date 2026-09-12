@@ -19,6 +19,17 @@ explanation. No accounts, no tracking, no backend — just open it in a browser.
 - Electronic navigation
 - Nautical terms
 
+**Cheat sheets**
+
+Two printable revision sheets ship alongside the quiz and are linked from the start
+screen and from each other:
+
+- [`cheatsheet.html`](cheatsheet.html) — Colregs, lights, sound signals and buoyage
+  (the recognition half of the syllabus).
+- [`chartwork.html`](chartwork.html) — chart datums, symbols and abbreviations,
+  plotting conventions, compass correction, tidal heights, and step-by-step methods
+  for the fix, EP, course to steer, running fix and pilotage.
+
 > ⚠️ **Study practice only.** Always navigate using official, up-to-date charts and
 > publications. This project is not affiliated with or endorsed by the RYA.
 
