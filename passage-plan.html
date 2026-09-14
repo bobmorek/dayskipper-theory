@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Day Skipper: Passage Plan</title>
+<meta name="description" content="A fillable, printable passage plan form in the CSA/APEM layout — speed, time and distance, weather, tides and streams, stores, notices to mariners, hazards, comms, waypoints and contingencies — with notes on what belongs in every box.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FBF8EF;
+  --land:#EFE1BE;
+  --deep:#08145C;
+  --ink:#14171A;
+  --ink-soft:#4A5158;
+  --magenta:#C4006E;
+  --rule:#C9BE9E;
+  --grid:#9AA3AE;
+  --white:#FFFFFF;
+  --display:"Barlow Condensed","Arial Narrow",Haettenschweiler,sans-serif;
+  --body:"Barlow","Segoe UI",system-ui,-apple-system,sans-serif;
+  --note:Georgia,"Times New Roman",serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);
+  font-size:16px;line-height:1.45;
+  background-image:
+    repeating-linear-gradient(0deg,rgba(8,20,92,.035) 0 1px,transparent 1px 44px),
+    repeating-linear-gradient(90deg,rgba(8,20,92,.035) 0 1px,transparent 1px 44px);
+}
+
+/* ---------- masthead ---------- */
+header.sheet{border-bottom:3px double var(--deep);background:var(--paper);padding:26px 20px 14px}
+.wrap{max-width:1080px;margin:0 auto}
+h1{
+  font-family:var(--display);font-weight:700;text-transform:uppercase;
+  letter-spacing:.06em;font-size:clamp(30px,6.5vw,58px);line-height:.95;margin:0;color:var(--deep);
+}
+h1 em{font-family:var(--note);font-style:italic;font-weight:400;text-transform:none;letter-spacing:0;color:var(--magenta);font-size:.5em;display:block;margin-top:6px}
+.strapline{font-family:var(--note);font-style:italic;color:var(--ink-soft);margin:10px 0 0;max-width:62ch}
+.strapline a{color:var(--magenta);text-decoration:underline}
+.backlink{font-family:var(--display);text-transform:uppercase;letter-spacing:.09em;font-size:14px;margin:0 0 10px;display:flex;gap:22px;flex-wrap:wrap}
+.backlink a{color:var(--deep);text-decoration:none;border-bottom:2px solid transparent;padding-bottom:2px}
+.backlink a:hover,.backlink a:focus-visible{border-bottom-color:var(--magenta);color:var(--magenta)}
+
+nav.plates{
+  position:sticky;top:0;z-index:20;background:rgba(251,248,239,.94);
+  backdrop-filter:blur(6px);border-bottom:1px solid var(--rule);
+  padding:8px 20px;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;
+}
+nav.plates a{
+  font-family:var(--display);text-transform:uppercase;letter-spacing:.09em;
+  font-size:14px;color:var(--deep);text-decoration:none;margin-right:20px;
+  border-bottom:2px solid transparent;padding-bottom:2px;
+}
+nav.plates a:hover,nav.plates a:focus-visible{border-bottom-color:var(--magenta);color:var(--magenta)}
+
+section.plate{padding:34px 20px 10px;max-width:1080px;margin:0 auto}
+.plate-head{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--rule);padding-bottom:6px;margin-bottom:22px}
+.plate-no{font-family:var(--display);font-size:13px;letter-spacing:.18em;color:var(--magenta);text-transform:uppercase}
+h2{font-family:var(--display);text-transform:uppercase;letter-spacing:.04em;font-size:clamp(22px,4vw,34px);margin:0;color:var(--deep);font-weight:600}
+h3{font-family:var(--display);text-transform:uppercase;letter-spacing:.07em;font-size:17px;margin:28px 0 10px;color:var(--ink)}
+p{margin:0 0 12px}
+.note{font-family:var(--note);font-style:italic;color:var(--ink-soft)}
+.trap{border-left:3px solid var(--magenta);background:rgba(196,0,110,.05);padding:10px 14px;margin:14px 0;font-size:15px}
+.trap > b:first-child{font-family:var(--display);text-transform:uppercase;letter-spacing:.08em;font-size:13px;color:var(--magenta);display:block}
+
+/* ---------- toolbar ---------- */
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 16px}
+.toolbar button{
+  font-family:var(--display);text-transform:uppercase;letter-spacing:.08em;font-size:14px;
+  background:var(--deep);color:var(--paper);border:1px solid var(--deep);
+  padding:8px 14px;border-radius:2px;cursor:pointer;
+}
+.toolbar button.ghost{background:transparent;color:var(--deep)}
+.toolbar button:hover{background:var(--magenta);border-color:var(--magenta);color:var(--white)}
+.saved{font-family:var(--note);font-style:italic;font-size:13.5px;color:var(--ink-soft);margin-left:auto}
+
+/* ---------- the form ---------- */
+.form{border:1.5px solid var(--grid);background:var(--white)}
+.formtop{
+  display:grid;grid-template-columns:auto auto 1fr auto 1fr auto 1fr;gap:0 10px;align-items:center;
+  border-bottom:1.5px solid var(--grid);padding:10px 12px;
+}
+.formtop .t{font-family:var(--display);text-transform:uppercase;letter-spacing:.08em;font-size:14px;color:var(--magenta);white-space:nowrap}
+.formtop .t.title{color:var(--magenta);font-weight:700}
+.fld{
+  min-height:26px;border-bottom:1px solid var(--grid);padding:2px 4px;font-size:15.5px;
+  outline:none;word-break:break-word;
+}
+.fld:focus{background:rgba(196,0,110,.07)}
+.fld:empty::before{content:attr(data-ph);color:#B9BFC6;font-family:var(--note);font-style:italic}
+
+.row{display:grid;grid-template-columns:190px repeat(4,1fr);border-bottom:1px solid var(--grid)}
+.row.r6{grid-template-columns:170px repeat(5,1fr)}
+.row:last-child{border-bottom:0}
+.rowlab{
+  font-family:var(--display);text-transform:uppercase;letter-spacing:.06em;font-size:15px;
+  color:var(--deep);font-weight:600;padding:10px 12px;border-right:1px solid var(--grid);
+  background:rgba(8,20,92,.05);
+}
+.rowlab small{display:block;font-family:var(--body);text-transform:none;letter-spacing:0;font-size:12.5px;color:var(--ink-soft);font-weight:400;margin-top:3px}
+.cell{padding:8px 10px;border-right:1px solid var(--grid);min-width:0}
+.cell:last-child{border-right:0}
+.cell .k{
+  font-family:var(--display);text-transform:uppercase;letter-spacing:.06em;font-size:12.5px;
+  color:var(--ink-soft);display:block;margin-bottom:2px;
+}
+.cell .line{margin-bottom:8px}
+.cell .line:last-child{margin-bottom:0}
+.cell .box{min-height:64px;border:0;padding:2px 2px;font-size:15.5px;outline:none;word-break:break-word}
+.cell .box:focus{background:rgba(196,0,110,.07)}
+.cell .box:empty::before{content:attr(data-ph);color:#B9BFC6;font-family:var(--note);font-style:italic;font-size:14px}
+.cell .box.tall{min-height:104px}
+.stack{display:grid;gap:10px;padding:8px 10px;border-right:1px solid var(--grid);min-width:0}
+.stack:last-child{border-right:0}
+.stack .line{margin:0}
+.check{display:flex;align-items:center;gap:8px;font-size:14.5px;margin:3px 0}
+.check input{width:16px;height:16px;accent-color:var(--magenta);flex:0 0 auto}
+.check span{font-family:var(--display);text-transform:uppercase;letter-spacing:.05em;font-size:14px;color:var(--ink)}
+.apem{
+  font-family:var(--display);text-transform:uppercase;letter-spacing:.14em;font-size:15px;
+  color:var(--magenta);text-align:center;padding:10px;border-top:1.5px solid var(--grid);
+}
+
+/* ---------- guidance ---------- */
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.card{background:var(--white);border:1px solid var(--rule);border-radius:2px;padding:14px}
+.card h4{font-family:var(--display);text-transform:uppercase;letter-spacing:.06em;font-size:15px;margin:0 0 8px;color:var(--deep)}
+.card p{margin:0 0 8px;font-size:15px}
+.card p:last-child{margin:0}
+.card .sub{font-size:13.5px;color:var(--ink-soft)}
+.mnemonic{
+  font-family:var(--display);text-transform:uppercase;letter-spacing:.12em;
+  background:var(--deep);color:var(--paper);padding:9px 14px;font-size:16px;margin-top:14px;
+}
+.mnemonic b{color:#F5C400}
+.mnemonic span{display:block;font-family:var(--body);text-transform:none;letter-spacing:0;font-size:13.5px;color:#CFD6EA;margin-top:5px}
+.formula{background:var(--white);border:1px solid var(--rule);padding:12px 14px;text-align:center}
+.formula .eq{font-family:var(--display);font-size:22px;color:var(--deep);letter-spacing:.03em}
+.formula .eq b{color:var(--magenta)}
+.formula .sub{font-size:13px;color:var(--ink-soft);margin-top:5px}
+ol.steps{counter-reset:s;list-style:none;padding:6px 0 4px;margin:0}
+ol.steps li{counter-increment:s;position:relative;padding:9px 0 9px 38px;border-bottom:1px dotted var(--rule);font-size:15px}
+ol.steps li:last-child{border-bottom:0}
+ol.steps li::before{
+  content:counter(s);position:absolute;left:0;top:9px;width:24px;height:24px;
+  background:var(--magenta);color:var(--white);border-radius:50%;
+  font-family:var(--display);font-size:15px;line-height:24px;text-align:center;
+}
+footer{border-top:3px double var(--deep);margin-top:34px;padding:18px 20px 40px;font-size:13.5px;color:var(--ink-soft);font-family:var(--note)}
+footer a{color:var(--magenta)}
+
+@media (max-width:820px){
+  .row,.row.r6{grid-template-columns:1fr}
+  .rowlab{border-right:0;border-bottom:1px solid var(--grid)}
+  .cell,.stack{border-right:0;border-bottom:1px dotted var(--grid)}
+  .cell:last-child,.stack:last-child{border-bottom:0}
+  .formtop{grid-template-columns:auto 1fr}
+  .formtop .t.title{grid-column:1 / -1;margin-bottom:4px}
+}
+
+@media print{
+  nav.plates,.toolbar,.backlink,.noprint{display:none}
+  body{background:#fff;font-size:10.5px;line-height:1.3}
+  header.sheet{display:none}
+  #form .plate-head{display:none}
+  section.plate{padding:0;page-break-inside:avoid}
+  .plate-head{margin-bottom:8px}
+  /* keep the four-column sheet on paper, whatever the page width */
+  .row{grid-template-columns:118px repeat(4,1fr)}
+  .row.r6{grid-template-columns:104px repeat(5,1fr)}
+  .cell,.stack{border-right:1px solid var(--grid);border-bottom:0}
+  .cell:last-child,.stack:last-child{border-right:0}
+  .rowlab{padding:5px 6px;font-size:11.5px;border-right:1px solid var(--grid);border-bottom:0}
+  .rowlab small{font-size:9px;margin-top:1px}
+  .cell{padding:4px 5px}
+  .stack{padding:4px 5px;gap:4px}
+  .cell .k{font-size:9px;margin-bottom:0}
+  .fld{min-height:17px;font-size:11px}
+  .cell .box{min-height:34px;font-size:11px}
+  .cell .box.tall{min-height:48px}
+  .fld:empty::before,.cell .box:empty::before{content:""}
+  .check{margin:1px 0}
+  .check span{font-size:10.5px}
+  .apem{font-size:11px;padding:5px}
+  .form{page-break-inside:avoid}
+  #guide,#example,#recall{page-break-before:always}
+}
+</style>
+</head>
+<body>
+
+<header class="sheet">
+  <div class="wrap">
+    <p class="backlink">
+      <a href="index.html">&larr; Back to the Theory Trainer quiz</a>
+      <a href="chartwork.html">Chartwork plates</a>
+      <a href="cheatsheet.html">Colregs &amp; buoyage plates &rarr;</a>
+    </p>
+    <h1>Passage Plan<em>One side of paper, filled before you slip</em></h1>
+    <p class="strapline">The standard four-column plan sheet, in the order a skipper actually works it: how far and how long, then the weather and the tide that decide whether you go at all, then the stores, the notices, the hazards, the comms and the way out if it goes wrong. Type into it, print it, or print it blank and write on it in pencil. The chartwork behind the boxes is on the <a href="chartwork.html">chartwork plates</a>.</p>
+  </div>
+</header>
+
+<nav class="plates" aria-label="Plates">
+  <a href="#form">I The sheet</a>
+  <a href="#guide">II What goes in each box</a>
+  <a href="#example">III Worked example</a>
+  <a href="#recall">IV If you only revise eight things</a>
+</nav>
+
+<!-- ============================ PLATE I ============================ -->
+<section class="plate" id="form">
+  <div class="plate-head"><span class="plate-no">Plate I</span><h2>The sheet</h2></div>
+
+  <p class="note noprint">Everything below is editable. It saves in this browser only, so it survives a refresh but never leaves your machine; nothing is uploaded anywhere.</p>
+
+  <div class="toolbar noprint">
+    <button type="button" id="printBtn">Print / save as PDF</button>
+    <button type="button" class="ghost" id="exampleBtn">Load worked example</button>
+    <button type="button" class="ghost" id="clearBtn">Clear the sheet</button>
+    <span class="saved" id="savedNote">Not saved yet</span>
+  </div>
+
+  <div class="form" id="planForm">
+
+    <div class="formtop">
+      <span class="t title">Passage plan</span>
+      <span class="t">From:</span><div class="fld" contenteditable="true" data-k="from" data-ph="departure port"></div>
+      <span class="t">To:</span><div class="fld" contenteditable="true" data-k="to" data-ph="destination"></div>
+      <span class="t">Via:</span><div class="fld" contenteditable="true" data-k="via" data-ph="waypoint / bolt-hole"></div>
+    </div>
+
+    <!-- SPEED / TIME / DISTANCE -->
+    <div class="row r6">
+      <div class="rowlab">
+        Speed · Time · Distance
+        <small>Planning speed, passage time and distance, and who is aboard.</small>
+      </div>
+      <div class="stack">
+        <div class="line"><span class="k">Speed</span><div class="fld" contenteditable="true" data-k="speed" data-ph="kn"></div></div>
+        <div class="line"><span class="k">Time</span><div class="fld" contenteditable="true" data-k="time" data-ph="h m"></div></div>
+        <div class="line"><span class="k">Distance</span><div class="fld" contenteditable="true" data-k="distance" data-ph="NM"></div></div>
+      </div>
+      <div class="stack">
+        <div class="line"><span class="k">Date</span><div class="fld" contenteditable="true" data-k="date"></div></div>
+        <div class="line"><span class="k">ETD</span><div class="fld" contenteditable="true" data-k="etd"></div></div>
+        <div class="line"><span class="k">ETA</span><div class="fld" contenteditable="true" data-k="eta"></div></div>
+      </div>
+      <div class="stack">
+        <div class="line"><span class="k">CTS</span><div class="fld" contenteditable="true" data-k="cts" data-ph="°C"></div></div>
+        <div class="line"><span class="k">Boat</span><div class="fld" contenteditable="true" data-k="boat"></div></div>
+        <div class="line"><span class="k">MMSI</span><div class="fld" contenteditable="true" data-k="mmsi"></div></div>
+      </div>
+      <div class="stack">
+        <div class="line"><span class="k">Skipper</span><div class="fld" contenteditable="true" data-k="skipper"></div></div>
+        <div class="line"><span class="k">Crew</span><div class="fld" contenteditable="true" data-k="crew1"></div></div>
+        <div class="line"><span class="k">Callsign</span><div class="fld" contenteditable="true" data-k="callsign"></div></div>
+      </div>
+      <div class="stack">
+        <div class="line"><span class="k">Crew</span><div class="fld" contenteditable="true" data-k="crew2"></div></div>
+        <div class="line"><span class="k">Crew</span><div class="fld" contenteditable="true" data-k="crew3"></div></div>
+        <div class="line"><span class="k">Crew</span><div class="fld" contenteditable="true" data-k="crew4"></div></div>
+      </div>
+    </div>
+
+    <!-- WEATHER -->
+    <div class="row">
+      <div class="rowlab">
+        Weather
+        <small>Forecast, its source and time of issue, at each stage.</small>
+      </div>
+      <div class="cell"><span class="k">Departure</span><div class="box" contenteditable="true" data-k="wx1" data-ph="wind, sea, vis, source + time"></div></div>
+      <div class="cell"><span class="k">Enroute</span><div class="box" contenteditable="true" data-k="wx2"></div></div>
+      <div class="cell"><span class="k">Enroute</span><div class="box" contenteditable="true" data-k="wx3"></div></div>
+      <div class="cell"><span class="k">Arrival</span><div class="box" contenteditable="true" data-k="wx4"></div></div>
+    </div>
+
+    <!-- TIDE -->
+    <div class="row">
+      <div class="rowlab">
+        Tide &amp; tidal streams
+        <small>Port, HW/LW times and heights, then the stream you expect in each leg.</small>
+      </div>
+      <div class="cell">
+        <div class="line"><span class="k">Port</span><div class="fld" contenteditable="true" data-k="tport1" data-ph="standard / secondary"></div></div>
+        <div class="line"><span class="k">LW</span><div class="fld" contenteditable="true" data-k="tlw1a"></div></div>
+        <div class="line"><span class="k">HW</span><div class="fld" contenteditable="true" data-k="thw1"></div></div>
+        <div class="line"><span class="k">LW</span><div class="fld" contenteditable="true" data-k="tlw1b"></div></div>
+        <div class="line"><span class="k">TS</span><div class="fld" contenteditable="true" data-k="tts1" data-ph="set / rate"></div></div>
+      </div>
+      <div class="cell">
+        <div class="line"><span class="k">Port</span><div class="fld" contenteditable="true" data-k="tport2"></div></div>
+        <div class="line"><span class="k">LW</span><div class="fld" contenteditable="true" data-k="tlw2a"></div></div>
+        <div class="line"><span class="k">HW</span><div class="fld" contenteditable="true" data-k="thw2"></div></div>
+        <div class="line"><span class="k">LW</span><div class="fld" contenteditable="true" data-k="tlw2b"></div></div>
+        <div class="line"><span class="k">TS</span><div class="fld" contenteditable="true" data-k="tts2"></div></div>
+      </div>
+      <div class="cell">
+        <div class="line"><span class="k">Port</span><div class="fld" contenteditable="true" data-k="tport3"></div></div>
+        <div class="line"><span class="k">LW</span><div class="fld" contenteditable="true" data-k="tlw3a"></div></div>
+        <div class="line"><span class="k">HW</span><div class="fld" contenteditable="true" data-k="thw3"></div></div>
+        <div class="line"><span class="k">LW</span><div class="fld" contenteditable="true" data-k="tlw3b"></div></div>
+        <div class="line"><span class="k">TS</span><div class="fld" contenteditable="true" data-k="tts3"></div></div>
+      </div>
+      <div class="cell">
+        <div class="line"><span class="k">Port</span><div class="fld" contenteditable="true" data-k="tport4"></div></div>
+        <div class="line"><span class="k">LW</span><div class="fld" contenteditable="true" data-k="tlw4a"></div></div>
+        <div class="line"><span class="k">HW</span><div class="fld" contenteditable="true" data-k="thw4"></div></div>
+        <div class="line"><span class="k">LW</span><div class="fld" contenteditable="true" data-k="tlw4b"></div></div>
+        <div class="line"><span class="k">TS</span><div class="fld" contenteditable="true" data-k="tts4"></div></div>
+      </div>
+    </div>
+
+    <!-- ONBOARD -->
+    <div class="row">
+      <div class="rowlab">
+        Onboard
+        <small>Tick only what you have physically checked.</small>
+      </div>
+      <div class="cell" id="onboard1"></div>
+      <div class="cell" id="onboard2"></div>
+      <div class="cell" id="onboard3"></div>
+      <div class="cell" id="onboard4"></div>
+    </div>
+
+    <!-- NOTICES -->
+    <div class="row">
+      <div class="rowlab">
+        Notices to mariners
+        <small>Local notices, firing and exercise areas, works, races.</small>
+      </div>
+      <div class="cell"><span class="k">Local — departure</span><div class="box" contenteditable="true" data-k="ntm1" data-ph="harbour NtMs checked?"></div></div>
+      <div class="cell"><span class="k">Local</span><div class="box" contenteditable="true" data-k="ntm2"></div></div>
+      <div class="cell"><span class="k">Enroute (exercise areas)</span><div class="box" contenteditable="true" data-k="ntm3"></div></div>
+      <div class="cell"><span class="k">Arrival</span><div class="box" contenteditable="true" data-k="ntm4"></div></div>
+    </div>
+
+    <!-- HAZARDS -->
+    <div class="row">
+      <div class="rowlab">
+        Hazards &amp; threats
+        <small>What can hurt the boat or the crew, in the order you will meet it.</small>
+      </div>
+      <div class="cell"><span class="k">Now</span><div class="box" contenteditable="true" data-k="hz1" data-ph="in harbour / leaving"></div></div>
+      <div class="cell"><span class="k">Enroute</span><div class="box" contenteditable="true" data-k="hz2"></div></div>
+      <div class="cell"><span class="k">Enroute</span><div class="box" contenteditable="true" data-k="hz3"></div></div>
+      <div class="cell"><span class="k">Arrival</span><div class="box" contenteditable="true" data-k="hz4"></div></div>
+    </div>
+
+    <!-- COMMS -->
+    <div class="row">
+      <div class="rowlab">
+        Comms plan
+        <small>Who you call, on what channel, and when.</small>
+      </div>
+      <div class="cell"><span class="k">Station 1</span><div class="fld" contenteditable="true" data-k="commsN1" data-ph="port / station"></div><div class="box" contenteditable="true" data-k="comms1" data-ph="Ch / phone / when"></div></div>
+      <div class="cell"><span class="k">Station 2</span><div class="fld" contenteditable="true" data-k="commsN2"></div><div class="box" contenteditable="true" data-k="comms2"></div></div>
+      <div class="cell"><span class="k">Station 3</span><div class="fld" contenteditable="true" data-k="commsN3"></div><div class="box" contenteditable="true" data-k="comms3"></div></div>
+      <div class="cell"><span class="k">Station 4</span><div class="fld" contenteditable="true" data-k="commsN4"></div><div class="box" contenteditable="true" data-k="comms4"></div></div>
+    </div>
+
+    <!-- WAYPOINTS -->
+    <div class="row">
+      <div class="rowlab">
+        Key waypoints &amp; route
+        <small>Leg by leg: from, to, track, distance, and what you will see.</small>
+      </div>
+      <div class="cell"><span class="k">Leg 1</span><div class="box tall" contenteditable="true" data-k="wp1" data-ph="WP name / lat-long / brg / dist / clearing bearing"></div></div>
+      <div class="cell"><span class="k">Leg 2</span><div class="box tall" contenteditable="true" data-k="wp2"></div></div>
+      <div class="cell"><span class="k">Leg 3</span><div class="box tall" contenteditable="true" data-k="wp3"></div></div>
+      <div class="cell"><span class="k">Leg 4</span><div class="box tall" contenteditable="true" data-k="wp4"></div></div>
+    </div>
+
+    <!-- CONTINGENCY -->
+    <div class="row">
+      <div class="rowlab">
+        Contingency planning
+        <small>Weather refuge, injury, gear failure, abort points.</small>
+      </div>
+      <div class="cell"><span class="k">Weather refuge</span><div class="box tall" contenteditable="true" data-k="cp1" data-ph="bolt-holes and the time you must decide"></div></div>
+      <div class="cell"><span class="k">Injury / MOB</span><div class="box tall" contenteditable="true" data-k="cp2"></div></div>
+      <div class="cell"><span class="k">Gear failure</span><div class="box tall" contenteditable="true" data-k="cp3"></div></div>
+      <div class="cell"><span class="k">Abort / delay</span><div class="box tall" contenteditable="true" data-k="cp4"></div></div>
+    </div>
+
+    <div class="apem">APEM — Appraisal · Planning · Execution · Monitoring</div>
+  </div>
+</section>
+
+<!-- ============================ PLATE II ============================ -->
+<section class="plate" id="guide">
+  <div class="plate-head"><span class="plate-no">Plate II</span><h2>What goes in each box</h2></div>
+
+  <p>The sheet is the <b>planning</b> half of APEM written down. Appraisal is the thinking you do before you touch it (is this passage sensible for this boat, this crew, this forecast?); execution and monitoring happen afterwards, at the chart table, by checking the real position against what this sheet predicted.</p>
+
+  <div class="formula">
+    <div class="eq">Time = <b>Distance</b> ÷ <b>Speed</b></div>
+    <div class="sub">Plan on a conservative speed — the one you can hold in the forecast wind, not the one on the sales brochure. Then add a margin and check the arrival still works with the tidal gate.</div>
+  </div>
+
+  <div class="grid g2" style="margin-top:16px">
+    <div class="card">
+      <h4>Speed, time, distance</h4>
+      <p>Measure the distance along the legs you will actually sail, off the <b>latitude</b> scale. Divide by planning speed for passage time, add it to ETD for ETA. If the ETA lands outside the lock, bar or bridge window, the ETD is wrong, not the tide.</p>
+      <p class="sub">Boat, MMSI and callsign go here because a Mayday or a Traffic report needs them read straight off the sheet, not remembered.</p>
+    </div>
+    <div class="card">
+      <h4>Crew</h4>
+      <p>Names, and next to them what each person can do: who can helm, who can navigate, who gets seasick, who holds what qualification, and any medical need. A watch roster only works once you know that.</p>
+    </div>
+    <div class="card">
+      <h4>Weather</h4>
+      <p>Record the forecast you used, its <b>source and issue time</b>, for departure, enroute and arrival. Wind direction and force, sea state, visibility, and what the fronts are doing. Note the wind against tide stretches: a F5 over a 2 kn spring ebb is a different sea from the same F5 an hour later.</p>
+      <p class="sub">Shipping forecast, inshore waters, MSI broadcast on VHF, and the harbour's own actuals all belong here — dated, so you know when it goes stale.</p>
+    </div>
+    <div class="card">
+      <h4>Tide &amp; tidal streams</h4>
+      <p>For each end of the passage, and any port in between: HW and LW <b>times and heights</b>, so you can work depth of water and whether the passage is a springs or neaps one. Then the streams, hour by hour relative to HW, as set and rate.</p>
+      <p class="sub">Tidal gates get planned backwards — pick the time you must be at the gate, then work back to the ETD.</p>
+    </div>
+    <div class="card">
+      <h4>Onboard</h4>
+      <p>A checklist, not a wish list: fuel and range, water, oils, spares, tools, charts and almanac corrected, log, food, safety equipment served and in date, personal kit and protection (lifejackets, harnesses, sun, warmth), the watch roster, the VHF and DSC test, the <b>SOLAS V</b> passage-planning requirement, and the ship's papers.</p>
+      <p class="sub">SOLAS V Regulation 34 is why the sheet exists at all: a leisure skipper must plan a passage taking account of weather, tides, limitations of the vessel, crew, navigational dangers and a contingency plan.</p>
+    </div>
+    <div class="card">
+      <h4>Notices to mariners</h4>
+      <p>Local notices at both ends, plus anything enroute: firing and exercise areas, dredging, works, cable laying, buoys moved or lit differently, races and regattas. Note the check, and where you checked it.</p>
+    </div>
+    <div class="card">
+      <h4>Hazards &amp; threats</h4>
+      <p>Overfalls, races and tide rips, off-lying rocks and banks, shipping lanes and separation schemes, ferry tracks, fishing gear, lee shores, bar entrances, and the ones people forget: night arrival, crew fatigue, a flat battery, fog.</p>
+    </div>
+    <div class="card">
+      <h4>Comms plan</h4>
+      <p>Every station you might call, in order: harbour or marina, VTS, coastguard, and the working channels for each. Add opening hours, phone numbers, and when you will report in to anyone ashore.</p>
+    </div>
+    <div class="card">
+      <h4>Key waypoints &amp; route</h4>
+      <p>Each leg as: from, to, true track, distance, and the visual cue that confirms it — a transit, a clearing bearing, a light's sector, a depth contour. Waypoints go <b>off</b> the danger and never on the buoy itself.</p>
+    </div>
+    <div class="card">
+      <h4>Contingency planning</h4>
+      <p>Bolt-holes and the point of no return for each: the weather refuge that is still accessible in the forecast wind and the state of tide you would arrive at. Then injury and MOB, engine or rig failure, loss of electronics, and the abort decision — where you turn back, and by what time.</p>
+    </div>
+  </div>
+
+  <div class="mnemonic">
+    APEM — <b>A</b>ppraisal · <b>P</b>lanning · <b>E</b>xecution · <b>M</b>onitoring
+    <span>Appraise the whole passage before you plan any of it; plan it on paper; execute; then monitor by comparing the real position against this sheet, and change the plan when they disagree.</span>
+  </div>
+
+  <div class="trap">
+    <b>The examiner's favourite</b>
+    A plan that arrives at the destination at LW springs, at night, with the last bolt-hole 15 miles astern. The times, the tide and the contingency are marked together; get them agreeing with each other, not just filled in.
+  </div>
+</section>
+
+<!-- ============================ PLATE III ============================ -->
+<section class="plate" id="example">
+  <div class="plate-head"><span class="plate-no">Plate III</span><h2>Worked example</h2></div>
+
+  <p>A short coastal hop of the kind the syllabus uses: <b>Falmouth to Fowey</b>, about 22 miles round Dodman Point, at a planning speed of 5 knots — call it 4 h 30 with a margin, ETD 1000, ETA about 1430.</p>
+
+  <ol class="steps">
+    <li>Measure the legs off the chart and total them. Divide by planning speed: 22 ÷ 5 = 4 h 24. Round up, not down.</li>
+    <li>Look up HW and LW at the standard port and both ends, and decide springs or neaps. Fowey has no bar to gate you, but the stream round Dodman does.</li>
+    <li>Read the streams for the hours you will be off Dodman Point. Plan to round it with the stream fair and the wind with it, not across it.</li>
+    <li>Back-calculate: if the fair stream starts at 1100, an ETD of 1000 puts you off the headland at the right hour. If it does not, move the ETD.</li>
+    <li>Work courses to steer leg by leg, allowing tide and leeway, and write the true track and distance for each in the waypoint boxes.</li>
+    <li>Mark the hazards in order: Black Rock and the harbour traffic on the way out, Dodman Point overfalls at the halfway mark, Cannis Rock and the Gribbin daymark on the run in.</li>
+    <li>Pick the bolt-holes: Mevagissey short of Dodman, Charlestown or Par beyond it, and the time by which you must decide to use one.</li>
+    <li>Write the comms plan: Falmouth Harbour Radio out, Fowey Harbour Radio in, Ch 16 and the working channels, and a call ashore on arrival.</li>
+  </ol>
+
+  <div class="trap">
+    <b>Use your own numbers</b>
+    The "Load worked example" button fills the sheet with plausible figures for the shape of the plan only. The tide times, heights and stream rates in it are <b>invented</b>. Anything you actually sail comes off the current almanac, the corrected chart and today's forecast.
+  </div>
+</section>
+
+<!-- ============================ PLATE IV ============================ -->
+<section class="plate" id="recall">
+  <div class="plate-head"><span class="plate-no">Plate IV</span><h2>If you only revise eight things</h2></div>
+  <ol class="steps">
+    <li>SOLAS V makes a passage plan a legal requirement for a leisure yacht going to sea: weather, tides, limitations of the vessel, crew, navigational dangers, contingency plan.</li>
+    <li>APEM: appraisal, planning, execution, monitoring. The sheet is the planning; the monitoring is what keeps you alive.</li>
+    <li>Time = distance ÷ speed, at a speed you can really hold, then add a margin.</li>
+    <li>Plan backwards from the tidal gate, not forwards from breakfast.</li>
+    <li>Every forecast entry carries its source and issue time, or it is worthless by lunchtime.</li>
+    <li>Streams are set <b>and</b> rate, tabulated by the hour relative to HW at the reference port.</li>
+    <li>Waypoints sit clear of the danger, and each leg carries a visual check — transit, clearing bearing or light sector.</li>
+    <li>A bolt-hole you cannot enter in the forecast wind, at the tide you would arrive on, is not a bolt-hole.</li>
+  </ol>
+</section>
+
+<footer>
+  <div class="wrap">Study aid only. This sheet follows the common four-column club/school passage plan layout and the SOLAS V Regulation 34 headings; schools vary the boxes, so fill it the way your instructor marks it. Always plan from the current chart, an almanac corrected to date, and the latest forecast and notices to mariners. Not affiliated with or endorsed by the RYA. The plotting behind these boxes is on the <a href="chartwork.html">chartwork plates</a>; recognition is on the <a href="cheatsheet.html">Colregs &amp; buoyage plates</a>; test yourself in the <a href="index.html">Theory Trainer quiz</a>.</div>
+</footer>
+
+<script>
+(function () {
+  var KEY = 'dstt-passage-plan-v1';
+
+  /* ---- the ONBOARD checklist columns ---- */
+  var ONBOARD = {
+    onboard1: ['Fuel', 'Water', 'Oils', 'Spares'],
+    onboard2: ['Tools', 'Charts', 'Log', 'Almanac'],
+    onboard3: ['Food', 'Safety eqmt', 'Personal', 'Protection'],
+    onboard4: ['Watch roster', 'Comms VHF', 'SOLAS V', 'Ships papers']
+  };
+  Object.keys(ONBOARD).forEach(function (col) {
+    var host = document.getElementById(col);
+    ONBOARD[col].forEach(function (item, i) {
+      var id = col + '-' + i;
+      var lab = document.createElement('label');
+      lab.className = 'check';
+      lab.innerHTML = '<input type="checkbox" data-c="' + id + '"><span></span>';
+      lab.querySelector('span').textContent = item;
+      host.appendChild(lab);
+    });
+  });
+
+  var fields = function () { return document.querySelectorAll('#planForm [data-k]'); };
+  var boxes  = function () { return document.querySelectorAll('#planForm [data-c]'); };
+  var note   = document.getElementById('savedNote');
+
+  function collect() {
+    var out = { text: {}, checks: {} };
+    fields().forEach(function (el) { out.text[el.dataset.k] = el.innerText.trim(); });
+    boxes().forEach(function (el) { out.checks[el.dataset.c] = el.checked; });
+    return out;
+  }
+
+  function apply(data) {
+    if (!data) return;
+    fields().forEach(function (el) {
+      var v = data.text && data.text[el.dataset.k];
+      el.innerText = v == null ? '' : v;
+    });
+    boxes().forEach(function (el) {
+      el.checked = !!(data.checks && data.checks[el.dataset.c]);
+    });
+  }
+
+  var saveTimer = null;
+  function save() {
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(function () {
+      try {
+        localStorage.setItem(KEY, JSON.stringify(collect()));
+        var t = new Date();
+        note.textContent = 'Saved in this browser at ' +
+          String(t.getHours()).padStart(2, '0') + ':' + String(t.getMinutes()).padStart(2, '0');
+      } catch (e) {
+        note.textContent = 'Could not save in this browser — print before you close the tab.';
+      }
+    }, 400);
+  }
+
+  try {
+    var stored = localStorage.getItem(KEY);
+    if (stored) { apply(JSON.parse(stored)); note.textContent = 'Loaded your saved sheet'; }
+  } catch (e) { /* private mode, blocked storage: carry on unsaved */ }
+
+  document.getElementById('planForm').addEventListener('input', save);
+  document.getElementById('planForm').addEventListener('change', save);
+
+  /* paste as plain text so the sheet keeps its own type */
+  document.getElementById('planForm').addEventListener('paste', function (ev) {
+    if (!ev.target.isContentEditable) return;
+    ev.preventDefault();
+    var txt = (ev.clipboardData || window.clipboardData).getData('text');
+    document.execCommand('insertText', false, txt);
+  });
+
+  document.getElementById('printBtn').addEventListener('click', function () { window.print(); });
+
+  document.getElementById('clearBtn').addEventListener('click', function () {
+    if (!confirm('Clear every box on the sheet? This cannot be undone.')) return;
+    apply({ text: {}, checks: {} });
+    try { localStorage.removeItem(KEY); } catch (e) {}
+    note.textContent = 'Cleared';
+  });
+
+  /* ---- worked example: Falmouth to Fowey. Figures are illustrative. ---- */
+  var EXAMPLE = {
+    text: {
+      from: 'Falmouth', to: 'Fowey', via: 'Dodman Point',
+      speed: '5 kn planning', time: '4 h 30 (4 h 24 + margin)', distance: '22 NM',
+      date: '(your date)', etd: '1000', eta: '1430',
+      cts: 'per leg — see waypoints', boat: 'Sea Otter, Bavaria 36', mmsi: '(your MMSI)',
+      skipper: '(skipper)', callsign: '(your callsign)',
+      crew1: 'Crew 1 — helm, first aid', crew2: 'Crew 2 — navigator',
+      crew3: 'Crew 3 — seasick, no watch 0200-0600', crew4: 'Crew 4 — under instruction',
+      wx1: 'Inshore waters, issued 0530: SW 3-4, sea slight, vis good, occasional showers.',
+      wx2: 'SW 4 building 5 by 1300. Wind with the fair stream round Dodman — no wind-over-tide.',
+      wx3: 'Showers, vis moderate in them. Watch for a backing wind ahead of the front.',
+      wx4: 'SW 4-5, sea moderate. Fowey entrance open in this wind; no bar.',
+      tport1: 'Falmouth (secondary on Plymouth)', tlw1a: 'LW 0640', thw1: 'HW 1215', tlw1b: 'LW 1900',
+      tts1: 'Slack in the Carrick Roads, then W-going 0.5 kn',
+      tport2: 'Dodman Point (diamond)', tlw2a: 'LW —', thw2: 'HW ref Plymouth', tlw2b: 'LW —',
+      tts2: 'HW-3 to HW: E-going 1.5 kn springs, fair. Overfalls off the point.',
+      tport3: 'Gribbin Head', tlw3a: 'LW —', thw3: 'HW —', tlw3b: 'LW —',
+      tts3: 'HW+1: E-going easing to 0.8 kn.',
+      tport4: 'Fowey', tlw4a: 'LW 0700', thw4: 'HW 1235', tlw4b: 'LW 1920',
+      tts4: 'Little stream in the entrance; ebb runs out of the river.',
+      ntm1: 'Falmouth Harbour local NtMs checked — no works affecting the fairway.',
+      ntm2: 'Chart and almanac corrected to date.',
+      ntm3: 'Check firing / exercise area activity enroute before departure.',
+      ntm4: 'Fowey NtMs: check visitors pontoon and any regatta moorings.',
+      hz1: 'Black Rock and the harbour fairway. Commercial and ferry traffic. Moorings off St Mawes.',
+      hz2: 'Dodman Point overfalls in wind against tide — stand 1 NM off. Fishing gear inshore.',
+      hz3: 'Gwineas Rock and its E cardinal. Mevagissey traffic. Crew fatigue and lunch.',
+      hz4: 'Cannis Rock S cardinal off the Gribbin. Entrance traffic; china clay ships have right of way in the harbour.',
+      commsN1: 'Falmouth Harbour Radio', comms1: 'Ch 12. Call before leaving the pontoon.',
+      commsN2: 'Falmouth Coastguard (MSI)', comms2: 'Ch 16 / 62. MSI broadcasts for updated forecast.',
+      commsN3: 'Mevagissey Harbour', comms3: 'Ch 16, working Ch 14 — only if we bolt in.',
+      commsN4: 'Fowey Harbour Radio', comms4: 'Ch 12. Call 30 min out for a berth. Phone ashore on arrival.',
+      wp1: 'WP1 Falmouth ent. to Black Rock, then clear of St Anthony Head. ~2 NM. Clearing bearing keeps us off Black Rock.',
+      wp2: 'WP2 St Anthony Head to 1 NM S of Dodman Point. ~11 NM, track ~070°T. Round the point at HW-1.',
+      wp3: 'WP3 Dodman to Gwineas E cardinal, staying outside it. ~5 NM, track ~055°T.',
+      wp4: 'WP4 Gwineas to Cannis Rock S cardinal, then Fowey entrance. ~4 NM. Gribbin daymark is the visual check.',
+      cp1: 'Short of Dodman: Mevagissey. Beyond it: Charlestown or Par. Decide before 1200 — after that Dodman is astern.',
+      cp2: 'MOB drill briefed before slipping. Casualty: Ch 16 to Falmouth CG, nearest port is Mevagissey. First aid kit at the chart table.',
+      cp3: 'Engine failure: sail it, we have sea room. Rig failure: motor to Mevagissey. Handheld VHF and paper chart as electronics backup.',
+      cp4: 'Abort and return to Falmouth if the wind reaches F6, or if we are not past St Anthony Head by 1100.'
+    },
+    checks: {}
+  };
+  Object.keys(ONBOARD).forEach(function (col) {
+    ONBOARD[col].forEach(function (_, i) { EXAMPLE.checks[col + '-' + i] = true; });
+  });
+
+  document.getElementById('exampleBtn').addEventListener('click', function () {
+    if (!confirm('Replace what is on the sheet with the Falmouth to Fowey worked example?')) return;
+    apply(EXAMPLE);
+    save();
+    document.getElementById('planForm').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+})();
+</script>
+
+</body>
+</html>
