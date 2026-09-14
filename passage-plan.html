@@ -84,7 +84,7 @@ p{margin:0 0 12px}
 /* ---------- the form ---------- */
 .form{border:1.5px solid var(--grid);background:var(--white)}
 .formtop{
-  display:grid;grid-template-columns:auto auto 1fr auto 1fr auto 1fr;gap:0 10px;align-items:center;
+  display:grid;grid-template-columns:auto auto 1fr auto 1fr auto 1fr auto minmax(120px,.8fr);gap:0 10px;align-items:center;
   border-bottom:1.5px solid var(--grid);padding:10px 12px;
 }
 .formtop .t{font-family:var(--display);text-transform:uppercase;letter-spacing:.08em;font-size:14px;color:var(--magenta);white-space:nowrap}
@@ -211,6 +211,7 @@ footer a{color:var(--magenta)}
   .formtop .t.title{grid-column:1 / -1;margin-bottom:4px}
 }
 
+@page{size:A4 portrait;margin:10mm 8mm}
 @media print{
   nav.plates,.toolbar,.backlink,.noprint{display:none}
   body{background:#fff;font-size:10.5px;line-height:1.3}
@@ -226,10 +227,13 @@ footer a{color:var(--magenta)}
   .rowlab{padding:5px 6px;font-size:11.5px;border-right:1px solid var(--grid);border-bottom:0}
   .rowlab small{font-size:9px;margin-top:1px}
   .cell{padding:4px 5px}
-  .stack{padding:4px 5px;gap:4px}
+  .stack{padding:3px 5px;gap:3px}
   .cell .k{font-size:9px;margin-bottom:0}
-  .fld{min-height:17px;font-size:11px}
-  .cell .box{min-height:34px;font-size:11px}
+  .fld{min-height:15px;font-size:11px}
+  .formtop{padding:5px 10px;gap:0 8px}
+  .formtop .t{font-size:12px}
+  .formtop .fld{min-height:13px}
+  .cell .box{min-height:32px;font-size:11px}
   .cell .box.tall{min-height:48px}
   .fld:empty::before,.cell .box:empty::before{content:""}
   .check{margin:1px 0}
@@ -264,7 +268,7 @@ footer a{color:var(--magenta)}
   <a href="#form">I The sheet</a>
   <a href="#guide">II What goes in each box</a>
   <a href="#example">III Worked example</a>
-  <a href="#recall">IV If you only revise eight things</a>
+  <a href="#recall">IV If you only revise nine things</a>
 </nav>
 
 <!-- ============================ PLATE I ============================ -->
@@ -287,6 +291,7 @@ footer a{color:var(--magenta)}
       <span class="t">From:</span><div class="fld" contenteditable="true" data-k="from" data-ph="departure port"></div>
       <span class="t">To:</span><div class="fld" contenteditable="true" data-k="to" data-ph="destination"></div>
       <span class="t">Via:</span><div class="fld" contenteditable="true" data-k="via" data-ph="waypoint / bolt-hole"></div>
+      <span class="t">Times:</span><div class="fld" contenteditable="true" data-k="tz" data-ph="UT or BST &mdash; state it once"></div>
     </div>
 
     <!-- SPEED / TIME / DISTANCE -->
@@ -304,6 +309,7 @@ footer a{color:var(--magenta)}
         <div class="line"><span class="k">Date</span><div class="fld" contenteditable="true" data-k="date"></div></div>
         <div class="line"><span class="k">ETD</span><div class="fld" contenteditable="true" data-k="etd"></div></div>
         <div class="line"><span class="k">ETA</span><div class="fld" contenteditable="true" data-k="eta"></div></div>
+        <div class="line"><span class="k">Sunset / dark</span><div class="fld" contenteditable="true" data-k="night" data-ph="sunset, twilight, moon"></div></div>
       </div>
       <div class="stack">
         <div class="line"><span class="k">CTS</span><div class="fld" contenteditable="true" data-k="cts" data-ph="°C"></div></div>
@@ -608,6 +614,12 @@ footer a{color:var(--magenta)}
       <p>Each leg as: from, to, true track, distance, and the visual cue that confirms it — a transit, a clearing bearing, a light's sector, a depth contour. Waypoints go <b>off</b> the danger and never on the buoy itself.</p>
     </div>
     <div class="card">
+      <h4>Nightfall</h4>
+      <p>Write <b>sunset, the end of civil twilight and the end of nautical twilight</b> next to the ETA, with the moon's age and rise or set time. Civil twilight is when you lose the horizon and the unlit marks; nautical twilight is when it is properly dark.</p>
+      <p>Then plan for it: the light characteristic of every mark you will use, red light at the chart table, torches and lifejacket lights found before it goes dark, and the harbour's own hours. A leg that is easy in daylight is a different leg at 2200.</p>
+      <p class="sub">Almanac and web tables give these in UT too. In British summer time, add the hour here as well &mdash; a sunset an hour out is the difference between a dusk arrival and a night one.</p>
+    </div>
+    <div class="card">
       <h4>Contingency planning</h4>
       <p>Bolt-holes and the point of no return for each: the weather refuge that is still accessible in the forecast wind and the state of tide you would arrive at. Then injury and MOB, engine or rig failure, loss of electronics, and the abort decision — where you turn back, and by what time.</p>
     </div>
@@ -635,6 +647,7 @@ footer a{color:var(--magenta)}
     <div class="prow"><span class="pk">On board</span><span>Skipper Bob / Soph, crew 2 &times; vagrants, boat <i>Brunhilda</i>. MMSI, callsign, distance, time and CTS left blank.</span></div>
     <div class="prow"><span class="pk">Weather</span><span>WNW, easing. Wind shift expected off Dodman. No source or issue time recorded.</span></div>
     <div class="prow"><span class="pk">Tide</span><span>Fowey LW 1520, HW 2100, flood, 3 kn with leaving harbour. Dodman LW 1500, 1 kn with. Enroute 1 kn with. Falmouth LW 1500, HW 2046, flood going slack, small and against. Footnote: HW Fal 2045, Plym 1945, slack about 3 h after.</span></div>
+    <div class="prow"><span class="pk">Nightfall</span><span class="flagrow">Not on the sheet. Sunset about 1857, dark by about 2008, moon 17% and setting with the sun. <span class="flag">added here</span></span></div>
     <div class="prow"><span class="pk">Notices</span><span>Fowey lighthouse unreliable. PLYEX firing checked, none. Swanpool seagrass &mdash; no anchoring.</span></div>
     <div class="prow"><span class="pk">Hazards</span><span>Cannis Rock, stay in the channel. Then the wind shift, Dodman Point, the Bizzies, Gwineas Rock, overfalls. On arrival Black Rock and commercial traffic.</span></div>
     <div class="prow"><span class="pk">Comms</span><span>Fowey Harbour Radio Ch 12 out; Falmouth Harbour Radio Ch 12 in.</span></div>
@@ -649,9 +662,9 @@ footer a{color:var(--magenta)}
   <ol class="checks">
     <li><b>The two outbound longitudes.</b> The sheet reads 005&deg;40&prime;W and 005&deg;47&prime;W. Those plot off the far west of Cornwall, tens of miles from a Fowey&ndash;Dodman track; 004&deg;40&prime;W and 004&deg;47&prime;W fit the 210&deg; and 220&deg; legs and their 8 and 9 mile runs. The arrival waypoint, 005&deg;01&prime;W, is right for off St Anthony. Plot all three before you load them into anything.</li>
     <li><b>Six hours for a four-and-a-half hour passage.</b> 1600 to 2200 at 5 knots is 30 miles; round Dodman it is about 22. Either the ETA is carrying an hour and a half of slack, or the speed is optimistic, and the empty <span class="pk">Distance</span> and <span class="pk">Time</span> boxes are exactly the arithmetic that would say which.</li>
-    <li><b>HW an hour apart at ports ten minutes apart.</b> The sheet has HW Falmouth 2046 and HW Fowey 2100, and the footnote has HW Plymouth 1945. All three are within about ten minutes of each other in reality, so 1945 against 2045 looks like <b>UT against BST</b>. Almanac predictions are UT; in September you add an hour. Get it wrong and every stream hour in the plan moves.</li>
+    <li><b>HW an hour apart at ports ten minutes apart.</b> The sheet has HW Falmouth 2046 and HW Fowey 2100, and the footnote has HW Plymouth 1945. All three are within about ten minutes of each other in reality, so 1945 against 2045 looks like <b>UT against BST</b>: HW Plymouth 1945 UT <b>+ 1 h = 2045 BST</b>, which is the Falmouth figure you already wrote. Almanac predictions are UT all year; between late March and late October you add the hour yourself, to every HW, LW and stream hour on the sheet. Mix the two and the plan's whole tidal argument moves by an hour &mdash; which is why the sheet now carries a <span class="pk">Times</span> box: fill it in once, in capitals, and convert everything into it.</li>
     <li><b>A fair stream, west-bound, on the flood.</b> Three knots leaving Fowey and a knot fair all the way to Falmouth is the plan's whole margin. Check it on the tidal diamonds for the hours 1600&ndash;2200, at the corrected HW: if any of the middle legs is foul, the ETA goes.</li>
-    <li><b>Arrival in the dark.</b> 2200 in mid-September is well after sunset, and Falmouth is entered past Black Rock with commercial traffic moving. The plan names the marks but not their lights. Write the characteristics of St Anthony Head, Black Rock and the Governor into the arrival brief, and decide what happens if the crew cannot pick them out.</li>
+    <li><b>Nightfall eats the second half of this passage.</b> For 15 September 2026 off the Cornish coast, sunset is about <b>1857</b>, civil twilight ends about <b>1929</b>, and it is properly dark by about <b>2008</b> (computed, BST &mdash; check the almanac, whose tables are UT). The moon is four days old and 17% lit, and it follows the sun down, so there is no useful moonlight. So the plan is: daylight to Dodman, dusk across Veryan Bay, and the <b>whole Falmouth entrance in the dark</b> &mdash; past Black Rock, with commercial traffic moving. Two consequences: every mark in the arrival brief needs its light characteristic written next to it (St Anthony Head, Black Rock, the Governor; the special mark may be unlit), and the hour and a half of slack in the ETA is not spare time &mdash; spend it by leaving earlier, not by arriving later. Leave at 1600 and lose an hour anywhere and you are entering at 2300 on a falling tide.</li>
     <li><b>Contingency is empty.</b> Weather refuge, injury, gear failure, abort point &mdash; the box the whole sheet exists for is blank, on a passage that ends in the dark with an unreliable light behind it. Mevagissey and Charlestown are the obvious bolt-holes short of Dodman; what matters is the time by which you must choose one.</li>
     <li><b>The rest of the blanks.</b> MMSI and callsign are what a Mayday needs read straight off the sheet, and nothing in the onboard column is ticked. Tick it, or admit it has not been checked.</li>
   </ol>
@@ -664,7 +677,7 @@ footer a{color:var(--magenta)}
 
 <!-- ============================ PLATE IV ============================ -->
 <section class="plate" id="recall">
-  <div class="plate-head"><span class="plate-no">Plate IV</span><h2>If you only revise eight things</h2></div>
+  <div class="plate-head"><span class="plate-no">Plate IV</span><h2>If you only revise nine things</h2></div>
   <ol class="steps">
     <li>SOLAS V makes a passage plan a legal requirement for a leisure yacht going to sea: weather, tides, limitations of the vessel, crew, navigational dangers, contingency plan.</li>
     <li>APEM: appraisal, planning, execution, monitoring. The sheet is the planning; the monitoring is what keeps you alive.</li>
@@ -674,6 +687,7 @@ footer a{color:var(--magenta)}
     <li>Streams are set <b>and</b> rate, tabulated by the hour relative to HW at the reference port.</li>
     <li>Waypoints sit clear of the danger, and each leg carries a visual check — transit, clearing bearing or light sector.</li>
     <li>A bolt-hole you cannot enter in the forecast wind, at the tide you would arrive on, is not a bolt-hole.</li>
+    <li>Sunset and the end of twilight go on the sheet next to the ETA. Half a passage plan is a lighting plan.</li>
   </ol>
 </section>
 
@@ -784,17 +798,19 @@ footer a{color:var(--magenta)}
   var EXAMPLE = {
     text: {
       from: 'Fowey', to: 'Falmouth', via: 'S of Dodman Point (handover)',
+      tz: 'BST (UT+1)',
       speed: '5 kn',
       time: '6 h on the sheet (1600\u20132200) \u2014 22 NM at 5 kn is 4 h 24',
       distance: 'blank on the sheet \u2014 about 22 NM round Dodman',
       date: '15/09/26', etd: '1600', eta: '2200',
+      night: 'Sunset 1857 BST, dark by 2008 BST. Moon 4 days old, 17% \u2014 no useful light.',
       cts: 'per leg \u2014 see waypoints', boat: 'Brunhilda', mmsi: 'blank on the sheet',
       skipper: 'Bob / Soph', callsign: 'blank on the sheet',
       crew1: '2 \u00d7 vagrants', crew2: '', crew3: '', crew4: '',
       wx1: 'Departure, Fowey: WNW, wind easing. (No source or issue time on the sheet.)',
       wx2: 'Enroute, Dodman: wind shift expected \u2014 watch for it.',
       wx3: '',
-      wx4: 'Arrival, Falmouth: ETA 2200 is after dark. List the entry lights before you go.',
+      wx4: 'Arrival, Falmouth: ETA 2200 is two hours into full darkness. List the entry lights before you go.',
       tport1: 'Fowey', tlw1a: 'LW 1520', thw1: 'HW 2100', tlw1b: '',
       tts1: 'Flood. 3 kn with us leaving the harbour.',
       tport2: 'Dodman Point', tlw2a: 'LW 1500', thw2: '', tlw2b: '',
@@ -810,7 +826,7 @@ footer a{color:var(--magenta)}
       hz1: 'Cannis Rock. Stay in the channel.',
       hz2: 'Wind shift. Dodman Point. The Bizzies. Gwineas Rock.',
       hz3: 'Overfalls.',
-      hz4: 'Black Rock. Commercial traffic. Night arrival.',
+      hz4: 'Black Rock. Commercial traffic. Night entry \u2014 the whole pilotage is on lights.',
       commsN1: 'Fowey Harbour Radio', comms1: 'Ch 12 \u2014 call before slipping.',
       commsN2: '', comms2: '',
       commsN3: '', comms3: '',
@@ -824,7 +840,7 @@ footer a{color:var(--magenta)}
       cp3: 'Blank on the original.',
       cp4: 'Blank on the original. Suggested: turn back for Fowey if not past the Gribbin by 1700 \u2014 but the Fowey light is the unreliable one.',
       pbdep: 'Head to No.1 swing buoy.\nTurn to 230\u00b0 when the east castle bears abeam.\nHeading 210\u00b0 to WP 50\u00b017\u2032N 005\u00b040\u2032W.\nTurn to starboard 220\u00b0 to 50\u00b011\u2032N 005\u00b047\u2032W.\nHandover.',
-      pbarr: 'Handover south of Dodman.\n245\u00b0 for 9 NM to 50\u00b007.5\u2032N 005\u00b001\u2032W.\nHeading 315\u00b0 to pass the Governor, then the special mark.\nHeading 270\u00b0 parallel to the docks. Home.\n(The original leaves this box blank \u2014 it is read off the picture.)'
+      pbarr: 'Handover south of Dodman.\n245\u00b0 for 9 NM to 50\u00b007.5\u2032N 005\u00b001\u2032W.\nHeading 315\u00b0 to pass the Governor, then the special mark.\nHeading 270\u00b0 parallel to the docks. Home.\nAll of it in the dark: St Anthony Hd, Black Rock and the Governor by their lights, and the special mark unlit unless charted otherwise.\n(The original leaves this box blank \u2014 it is read off the picture.)'
     },
     /* the onboard checklist is untouched on the original sheet, so it stays untouched here */
     checks: {}

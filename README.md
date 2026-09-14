@@ -37,7 +37,7 @@ screen and from each other:
   in your browser only (`localStorage`, nothing is uploaded); print it filled, or print it
   blank and write on it. The plan itself fits one side of A4, the briefs the next.
   The worked example is a real hand-written Fowey-to-Falmouth plan, transcribed as
-  written, with the seven places it contradicts itself listed underneath.
+  written, with the seven places it contradicts itself listed underneath, including what nightfall does to the second half of it.
 
 > ⚠️ **Study practice only.** Always navigate using official, up-to-date charts and
 > publications. This project is not affiliated with or endorsed by the RYA.
