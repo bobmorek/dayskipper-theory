@@ -84,7 +84,7 @@ p{margin:0 0 12px}
 /* ---------- the form ---------- */
 .form{border:1.5px solid var(--grid);background:var(--white)}
 .formtop{
-  display:grid;grid-template-columns:auto auto 1fr auto 1fr auto 1fr;gap:0 10px;align-items:center;
+  display:grid;grid-template-columns:auto auto 1fr auto 1fr auto 1fr auto minmax(120px,.8fr);gap:0 10px;align-items:center;
   border-bottom:1.5px solid var(--grid);padding:10px 12px;
 }
 .formtop .t{font-family:var(--display);text-transform:uppercase;letter-spacing:.08em;font-size:14px;color:var(--magenta);white-space:nowrap}
@@ -230,6 +230,9 @@ footer a{color:var(--magenta)}
   .stack{padding:3px 5px;gap:3px}
   .cell .k{font-size:9px;margin-bottom:0}
   .fld{min-height:15px;font-size:11px}
+  .formtop{padding:5px 10px;gap:0 8px}
+  .formtop .t{font-size:12px}
+  .formtop .fld{min-height:13px}
   .cell .box{min-height:32px;font-size:11px}
   .cell .box.tall{min-height:48px}
   .fld:empty::before,.cell .box:empty::before{content:""}
@@ -288,6 +291,7 @@ footer a{color:var(--magenta)}
       <span class="t">From:</span><div class="fld" contenteditable="true" data-k="from" data-ph="departure port"></div>
       <span class="t">To:</span><div class="fld" contenteditable="true" data-k="to" data-ph="destination"></div>
       <span class="t">Via:</span><div class="fld" contenteditable="true" data-k="via" data-ph="waypoint / bolt-hole"></div>
+      <span class="t">Times:</span><div class="fld" contenteditable="true" data-k="tz" data-ph="UT or BST &mdash; state it once"></div>
     </div>
 
     <!-- SPEED / TIME / DISTANCE -->
@@ -613,7 +617,7 @@ footer a{color:var(--magenta)}
       <h4>Nightfall</h4>
       <p>Write <b>sunset, the end of civil twilight and the end of nautical twilight</b> next to the ETA, with the moon's age and rise or set time. Civil twilight is when you lose the horizon and the unlit marks; nautical twilight is when it is properly dark.</p>
       <p>Then plan for it: the light characteristic of every mark you will use, red light at the chart table, torches and lifejacket lights found before it goes dark, and the harbour's own hours. A leg that is easy in daylight is a different leg at 2200.</p>
-      <p class="sub">Almanac and web tables give these in UT. In British summer time, add an hour.</p>
+      <p class="sub">Almanac and web tables give these in UT too. In British summer time, add the hour here as well &mdash; a sunset an hour out is the difference between a dusk arrival and a night one.</p>
     </div>
     <div class="card">
       <h4>Contingency planning</h4>
@@ -658,7 +662,7 @@ footer a{color:var(--magenta)}
   <ol class="checks">
     <li><b>The two outbound longitudes.</b> The sheet reads 005&deg;40&prime;W and 005&deg;47&prime;W. Those plot off the far west of Cornwall, tens of miles from a Fowey&ndash;Dodman track; 004&deg;40&prime;W and 004&deg;47&prime;W fit the 210&deg; and 220&deg; legs and their 8 and 9 mile runs. The arrival waypoint, 005&deg;01&prime;W, is right for off St Anthony. Plot all three before you load them into anything.</li>
     <li><b>Six hours for a four-and-a-half hour passage.</b> 1600 to 2200 at 5 knots is 30 miles; round Dodman it is about 22. Either the ETA is carrying an hour and a half of slack, or the speed is optimistic, and the empty <span class="pk">Distance</span> and <span class="pk">Time</span> boxes are exactly the arithmetic that would say which.</li>
-    <li><b>HW an hour apart at ports ten minutes apart.</b> The sheet has HW Falmouth 2046 and HW Fowey 2100, and the footnote has HW Plymouth 1945. All three are within about ten minutes of each other in reality, so 1945 against 2045 looks like <b>UT against BST</b>. Almanac predictions are UT; in September you add an hour. Get it wrong and every stream hour in the plan moves.</li>
+    <li><b>HW an hour apart at ports ten minutes apart.</b> The sheet has HW Falmouth 2046 and HW Fowey 2100, and the footnote has HW Plymouth 1945. All three are within about ten minutes of each other in reality, so 1945 against 2045 looks like <b>UT against BST</b>: HW Plymouth 1945 UT <b>+ 1 h = 2045 BST</b>, which is the Falmouth figure you already wrote. Almanac predictions are UT all year; between late March and late October you add the hour yourself, to every HW, LW and stream hour on the sheet. Mix the two and the plan's whole tidal argument moves by an hour &mdash; which is why the sheet now carries a <span class="pk">Times</span> box: fill it in once, in capitals, and convert everything into it.</li>
     <li><b>A fair stream, west-bound, on the flood.</b> Three knots leaving Fowey and a knot fair all the way to Falmouth is the plan's whole margin. Check it on the tidal diamonds for the hours 1600&ndash;2200, at the corrected HW: if any of the middle legs is foul, the ETA goes.</li>
     <li><b>Nightfall eats the second half of this passage.</b> For 15 September 2026 off the Cornish coast, sunset is about <b>1857</b>, civil twilight ends about <b>1929</b>, and it is properly dark by about <b>2008</b> (computed, BST &mdash; check the almanac, whose tables are UT). The moon is four days old and 17% lit, and it follows the sun down, so there is no useful moonlight. So the plan is: daylight to Dodman, dusk across Veryan Bay, and the <b>whole Falmouth entrance in the dark</b> &mdash; past Black Rock, with commercial traffic moving. Two consequences: every mark in the arrival brief needs its light characteristic written next to it (St Anthony Head, Black Rock, the Governor; the special mark may be unlit), and the hour and a half of slack in the ETA is not spare time &mdash; spend it by leaving earlier, not by arriving later. Leave at 1600 and lose an hour anywhere and you are entering at 2300 on a falling tide.</li>
     <li><b>Contingency is empty.</b> Weather refuge, injury, gear failure, abort point &mdash; the box the whole sheet exists for is blank, on a passage that ends in the dark with an unreliable light behind it. Mevagissey and Charlestown are the obvious bolt-holes short of Dodman; what matters is the time by which you must choose one.</li>
@@ -794,11 +798,12 @@ footer a{color:var(--magenta)}
   var EXAMPLE = {
     text: {
       from: 'Fowey', to: 'Falmouth', via: 'S of Dodman Point (handover)',
+      tz: 'BST (UT+1)',
       speed: '5 kn',
       time: '6 h on the sheet (1600\u20132200) \u2014 22 NM at 5 kn is 4 h 24',
       distance: 'blank on the sheet \u2014 about 22 NM round Dodman',
       date: '15/09/26', etd: '1600', eta: '2200',
-      night: 'Sunset 1857, dark by 2008. Moon 4 days old, 17% \u2014 no useful light.',
+      night: 'Sunset 1857 BST, dark by 2008 BST. Moon 4 days old, 17% \u2014 no useful light.',
       cts: 'per leg \u2014 see waypoints', boat: 'Brunhilda', mmsi: 'blank on the sheet',
       skipper: 'Bob / Soph', callsign: 'blank on the sheet',
       crew1: '2 \u00d7 vagrants', crew2: '', crew3: '', crew4: '',
