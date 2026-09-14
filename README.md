@@ -19,9 +19,9 @@ explanation. No accounts, no tracking, no backend — just open it in a browser.
 - Electronic navigation
 - Nautical terms
 
-**Cheat sheets**
+**Cheat sheets & forms**
 
-Two printable revision sheets ship alongside the quiz and are linked from the start
+Three printable sheets ship alongside the quiz and are linked from the start
 screen and from each other:
 
 - [`cheatsheet.html`](cheatsheet.html) — Colregs, lights, sound signals and buoyage
@@ -29,6 +29,12 @@ screen and from each other:
 - [`chartwork.html`](chartwork.html) — chart datums, symbols and abbreviations,
   plotting conventions, compass correction, tidal heights, and step-by-step methods
   for the fix, EP, course to steer, running fix and pilotage.
+- [`passage-plan.html`](passage-plan.html) — a fillable, printable passage plan in the
+  standard four-column APEM layout (speed/time/distance, weather, tide and streams,
+  stores, notices to mariners, hazards, comms, waypoints, contingencies), with notes on
+  what belongs in every box and a Falmouth-to-Fowey worked example. Type into it and it
+  saves in your browser only (`localStorage`, nothing is uploaded); print it filled, or
+  print it blank and write on it. It fits one side of A4.
 
 > ⚠️ **Study practice only.** Always navigate using official, up-to-date charts and
 > publications. This project is not affiliated with or endorsed by the RYA.
