@@ -32,9 +32,12 @@ screen and from each other:
 - [`passage-plan.html`](passage-plan.html) — a fillable, printable passage plan in the
   standard four-column APEM layout (speed/time/distance, weather, tide and streams,
   stores, notices to mariners, hazards, comms, waypoints, contingencies), with notes on
-  what belongs in every box and a Falmouth-to-Fowey worked example. Type into it and it
-  saves in your browser only (`localStorage`, nothing is uploaded); print it filled, or
-  print it blank and write on it. It fits one side of A4.
+  what belongs in every box. Side two holds the departure and arrival pilotage briefs
+  with schematic sketches of the Fowey and Falmouth entrances. Type into it and it saves
+  in your browser only (`localStorage`, nothing is uploaded); print it filled, or print it
+  blank and write on it. The plan itself fits one side of A4, the briefs the next.
+  The worked example is a real hand-written Fowey-to-Falmouth plan, transcribed as
+  written, with the seven places it contradicts itself listed underneath.
 
 > ⚠️ **Study practice only.** Always navigate using official, up-to-date charts and
 > publications. This project is not affiliated with or endorsed by the RYA.
