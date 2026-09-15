@@ -154,6 +154,42 @@ p{margin:0 0 12px}
 .sk-cave{font-family:var(--note);font-style:italic;font-size:9.5px;fill:var(--ink-soft)}
 .figcap{font-family:var(--note);font-style:italic;color:var(--ink-soft);font-size:13px;margin:6px 0 0}
 
+/* ---------- tidal clock ---------- */
+.tool{background:var(--white);border:1px solid var(--rule);padding:14px 16px;margin:0 0 14px}
+.sl{display:grid;grid-template-columns:1fr auto;gap:2px 12px;align-items:baseline;margin:0 0 16px}
+.sl:last-child{margin-bottom:0}
+.sl label{font-family:var(--display);text-transform:uppercase;letter-spacing:.06em;font-size:13.5px;color:var(--deep)}
+.sl .val{font-family:var(--display);font-size:21px;color:var(--magenta);line-height:1;font-variant-numeric:tabular-nums}
+.sl .sub{grid-column:1 / -1;font-size:12.5px;color:var(--ink-soft);margin:0 0 4px}
+.sl input[type=range]{grid-column:1 / -1;width:100%;margin:0;accent-color:var(--magenta);height:26px}
+.sl input[type=range]:focus-visible{outline:2px solid var(--magenta);outline-offset:3px}
+.tidebar{background:var(--white);border:1px solid var(--rule);padding:8px 6px 4px}
+.tidebar svg{display:block;width:100%;height:auto}
+.tb-curve{fill:rgba(8,20,92,.07);stroke:var(--deep);stroke-width:1.5}
+.tb-axis{stroke:var(--rule);stroke-width:1}
+.tb-band{fill:rgba(196,0,110,.10);stroke:none}
+.tb-now{stroke:var(--magenta);stroke-width:2}
+.tb-dot{fill:var(--magenta)}
+.tb-t{font-family:var(--display);text-transform:uppercase;letter-spacing:.05em;font-size:11px;fill:var(--ink-soft)}
+.tb-t.key{fill:var(--deep);font-size:12px}
+.tb-t.now{fill:var(--magenta);font-size:12.5px;text-transform:none;letter-spacing:.02em}
+.tb-t.far{fill:var(--magenta)}
+.tb-pass{fill:rgba(8,20,92,.09);stroke:none}
+.tb-leg{stroke:var(--deep);stroke-width:1.5;stroke-dasharray:5 4}
+.tb-t.leg{fill:var(--deep);font-size:11.5px;text-transform:none;letter-spacing:.02em}
+.tb-flag{fill:var(--deep)}
+.readout{border:1px solid var(--rule);border-top:0;background:var(--white);padding:0}
+.readout .rrow{display:grid;grid-template-columns:132px 1fr;gap:10px;padding:9px 14px;border-bottom:1px dotted var(--rule);font-size:15px;align-items:baseline}
+.readout .rrow:last-child{border-bottom:0}
+.readout .rrow:nth-child(odd){background:rgba(239,225,190,.26)}
+.readout .rk{font-family:var(--display);text-transform:uppercase;letter-spacing:.06em;font-size:12.5px;color:var(--deep)}
+.readout b{color:var(--magenta)}
+.hint{font-family:var(--note);font-style:italic;color:var(--ink-soft);font-size:13.5px;margin:8px 0 0}
+@media (max-width:520px){
+  .readout .rrow{grid-template-columns:1fr}
+  .readout .rk{margin-bottom:-4px}
+}
+
 /* ---------- transcribed plan table ---------- */
 .plan{border:1px solid var(--rule);background:var(--white);margin:14px 0}
 .plan .prow{display:grid;grid-template-columns:150px 1fr;gap:12px;padding:9px 12px;border-bottom:1px dotted var(--rule);font-size:14.5px;align-items:baseline}
@@ -246,7 +282,8 @@ footer a{color:var(--magenta)}
   .cell .brief-box{min-height:300px}
   .sketchwrap{min-height:300px}
   .pic .blankpad{min-height:300px}
-  #guide,#example,#recall{page-break-before:always}
+  #tidal,#guide,#example,#recall{page-break-before:always}
+  #tidal .tool,#tidal .hint{display:none}
 }
 </style>
 </head>
@@ -266,9 +303,10 @@ footer a{color:var(--magenta)}
 
 <nav class="plates" aria-label="Plates">
   <a href="#form">I The sheet</a>
-  <a href="#guide">II What goes in each box</a>
-  <a href="#example">III Worked example</a>
-  <a href="#recall">IV If you only revise nine things</a>
+  <a href="#tidal">II Tidal clock</a>
+  <a href="#guide">III What goes in each box</a>
+  <a href="#example">IV Worked example</a>
+  <a href="#recall">V If you only revise nine things</a>
 </nav>
 
 <!-- ============================ PLATE I ============================ -->
@@ -562,8 +600,72 @@ footer a{color:var(--magenta)}
 </section>
 
 <!-- ============================ PLATE II ============================ -->
+<section class="plate" id="tidal">
+  <div class="plate-head"><span class="plate-no">Plate II</span><h2>Tidal clock</h2></div>
+
+  <p>Stream tables and tidal diamonds are not written in clock time; they are written in <b>hours before and after high water</b>. This converts between the two. Set the standard port's HW, add the secondary port's time difference, then slide the clock &mdash; or slide the hours-from-HW instead and read off what time that is. Departure and arrival get their own markers, so you can see the whole passage sitting on the curve and move it until the tide is where you want it.</p>
+
+  <p class="hint">It knows nothing about real tides. It is arithmetic on the numbers you type in, so every figure comes off the almanac first, and all four want to be in the same time zone &mdash; the one you wrote in the sheet's <span class="pk">Times</span> box.</p>
+
+  <div class="tool noprint">
+    <div class="sl">
+      <label for="swHW">High water, standard port</label>
+      <span class="val" id="vHW">2045</span>
+      <p class="sub">Straight off the almanac's own page for the standard port.</p>
+      <input type="range" id="swHW" min="0" max="1435" step="5" value="1245" aria-describedby="vHW">
+    </div>
+
+    <div class="sl">
+      <label for="swCorr">Secondary port correction</label>
+      <span class="val" id="vCorr">+0h10</span>
+      <p class="sub">The time difference for your port. Positive is later than the standard port.</p>
+      <input type="range" id="swCorr" min="-180" max="180" step="5" value="10" aria-describedby="vCorr">
+    </div>
+
+    <div class="sl">
+      <label for="swNow">Clock time</label>
+      <span class="val" id="vNow">1600</span>
+      <p class="sub">The moment you are planning for &mdash; an ETD, an ETA, or the hour you will be off a headland.</p>
+      <input type="range" id="swNow" min="0" max="1435" step="5" value="960" aria-describedby="vNow">
+    </div>
+
+    <div class="sl">
+      <label for="swETD">Departure &mdash; ETD</label>
+      <span class="val" id="vETD">1600</span>
+      <p class="sub">When you slip. Its marker sits on the curve with everything else.</p>
+      <input type="range" id="swETD" min="0" max="1435" step="5" value="960" aria-describedby="vETD">
+    </div>
+
+    <div class="sl">
+      <label for="swETA">Arrival &mdash; ETA</label>
+      <span class="val" id="vETA">2200</span>
+      <p class="sub">When you expect to be there. The shaded band between the two is the passage.</p>
+      <input type="range" id="swETA" min="0" max="1435" step="5" value="1320" aria-describedby="vETA">
+    </div>
+
+    <div class="sl">
+      <label for="swOff">Hours before / after HW</label>
+      <span class="val" id="vOff">&minus;4h55</span>
+      <p class="sub">The row you read in the stream table. Slide it to find the clock time of a tidal gate.</p>
+      <input type="range" id="swOff" min="-360" max="360" step="15" value="-295" aria-describedby="vOff">
+    </div>
+  </div>
+
+  <div class="tidebar">
+    <svg id="tideSvg" viewBox="0 0 760 212" role="img" aria-labelledby="tideSvgTitle">
+      <title id="tideSvgTitle">The tidal curve from low water through high water to low water, with the planned moment marked</title>
+      <g id="tideG"></g>
+    </svg>
+  </div>
+
+  <div class="readout" id="tideOut"></div>
+
+  <p class="hint">The stream row is the hour <i>centred</i> on that number: &ldquo;HW&minus;5&rdquo; covers 5h30 to 4h30 before high water. The twelfths line assumes a six-hour, roughly sinusoidal tide &mdash; fine for a mental check, not for deciding whether you float. Low waters are shown at a nominal 6h12 either side of HW; the almanac's are the real ones.</p>
+</section>
+
+<!-- ============================ PLATE III ============================ -->
 <section class="plate" id="guide">
-  <div class="plate-head"><span class="plate-no">Plate II</span><h2>What goes in each box</h2></div>
+  <div class="plate-head"><span class="plate-no">Plate III</span><h2>What goes in each box</h2></div>
 
   <p>The sheet is the <b>planning</b> half of APEM written down. Appraisal is the thinking you do before you touch it (is this passage sensible for this boat, this crew, this forecast?); execution and monitoring happen afterwards, at the chart table, by checking the real position against what this sheet predicted.</p>
 
@@ -636,9 +738,9 @@ footer a{color:var(--magenta)}
   </div>
 </section>
 
-<!-- ============================ PLATE III ============================ -->
+<!-- ============================ PLATE IV ============================ -->
 <section class="plate" id="example">
-  <div class="plate-head"><span class="plate-no">Plate III</span><h2>Worked example &mdash; Fowey to Falmouth</h2></div>
+  <div class="plate-head"><span class="plate-no">Plate IV</span><h2>Worked example &mdash; Fowey to Falmouth</h2></div>
 
   <p>A real sheet, filled by hand for <b>15 September 2026</b>: Fowey to Falmouth round Dodman Point, ETD 1600, ETA 2200, planning speed 5 knots, in <i>Brunhilda</i>. The <span class="noprint">&ldquo;Load worked example&rdquo; button puts</span><span class="printonly">example button puts</span> all of it into the sheet above, including the two pilotage briefs, and the entrance sketches are drawn on side two.</p>
 
@@ -675,9 +777,9 @@ footer a{color:var(--magenta)}
   </div>
 </section>
 
-<!-- ============================ PLATE IV ============================ -->
+<!-- ============================ PLATE V ============================ -->
 <section class="plate" id="recall">
-  <div class="plate-head"><span class="plate-no">Plate IV</span><h2>If you only revise nine things</h2></div>
+  <div class="plate-head"><span class="plate-no">Plate V</span><h2>If you only revise nine things</h2></div>
   <ol class="steps">
     <li>SOLAS V makes a passage plan a legal requirement for a leisure yacht going to sea: weather, tides, limitations of the vessel, crew, navigational dangers, contingency plan.</li>
     <li>APEM: appraisal, planning, execution, monitoring. The sheet is the planning; the monitoring is what keeps you alive.</li>
@@ -794,7 +896,7 @@ footer a{color:var(--magenta)}
   });
 
   /* ---- worked example: Fowey to Falmouth, 15 Sep 26, transcribed from a
-         hand-written CSA sheet. Queries on it are flagged in Plate III. ---- */
+         hand-written CSA sheet. Queries on it are flagged in Plate IV. ---- */
   var EXAMPLE = {
     text: {
       from: 'Fowey', to: 'Falmouth', via: 'S of Dodman Point (handover)',
@@ -852,6 +954,205 @@ footer a{color:var(--magenta)}
     save();
     document.getElementById('planForm').scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
+})();
+</script>
+
+<script>
+/* ===========================================================
+   Tidal clock — converts between clock time and hours from HW,
+   and lays the passage (ETD to ETA) on the same curve.
+   Pure arithmetic on the numbers the user sets; no tide data.
+   =========================================================== */
+(function () {
+  var KEY = 'dstt-tidal-clock-v1';
+  var DAY = 1440, HALF = 720, LWGAP = 372;   /* nominal 6h12 HW to LW */
+
+  var id = function (x) { return document.getElementById(x); };
+  var el = {
+    hw: id('swHW'), corr: id('swCorr'), now: id('swNow'),
+    etd: id('swETD'), eta: id('swETA'), off: id('swOff'),
+    vHW: id('vHW'), vCorr: id('vCorr'), vNow: id('vNow'),
+    vETD: id('vETD'), vETA: id('vETA'), vOff: id('vOff'),
+    g: id('tideG'), out: id('tideOut')
+  };
+  if (!el.hw) return;
+
+  function mod(n, m) { return ((n % m) + m) % m; }
+  function hhmm(min) {
+    min = mod(Math.round(min), DAY);
+    return String(Math.floor(min / 60)).padStart(2, '0') + String(min % 60).padStart(2, '0');
+  }
+  function span(min) {                       /* signed duration, e.g. −4h55 */
+    var a = Math.abs(Math.round(min));
+    return (min < 0 ? '−' : '+') + Math.floor(a / 60) + 'h' + String(a % 60).padStart(2, '0');
+  }
+  function dur(min) {
+    min = Math.round(min);
+    return Math.floor(min / 60) + 'h' + String(min % 60).padStart(2, '0');
+  }
+  function localHW() { return mod(+el.hw.value + +el.corr.value, DAY); }
+  function signed(from, to) { return mod(to - from + HALF, DAY) - HALF; }
+  function rowLabel(n) { return n === 0 ? 'HW' : (n < 0 ? 'HW−' + (-n) : 'HW+' + n); }
+  function row(off) { return Math.max(-6, Math.min(6, Math.round(off / 60))); }
+
+  var TW = [1, 2, 3, 3, 2, 1];
+  function twelfths(off) {
+    var falling = off > 0;
+    var h = falling ? off / 60 : 6 + off / 60;      /* hours since HW, or since LW */
+    if (h <= 0 || h > 6) return null;
+    var i = Math.min(6, Math.max(1, Math.ceil(h))), done = 0;
+    for (var k = 0; k < i; k++) { done += TW[k]; }
+    return ['1st', '2nd', '3rd', '4th', '5th', '6th'][i - 1] + ' hour ' +
+           (falling ? 'after HW' : 'after LW') + ': ' + TW[i - 1] +
+           '/12 of the range in this hour, ' + done + '/12 ' +
+           (falling ? 'fallen' : 'risen') + ' by the end of it';
+  }
+
+  function fromClock() {
+    var d = signed(localHW(), +el.now.value);
+    el.off.value = Math.max(-360, Math.min(360, Math.round(d / 15) * 15));
+    return d;
+  }
+  function fromOff() {
+    el.now.value = mod(localHW() + +el.off.value, DAY);
+    return +el.off.value;
+  }
+
+  var L = 46, R = 742, TOP = 40, BASE = 150;
+  function px(h) { return L + (h + 6) / 12 * (R - L); }
+  function py(h) { return BASE - (1 + Math.cos(Math.PI * h / 6)) / 2 * (BASE - TOP); }
+  function clampx(h) { return px(Math.max(-6, Math.min(6, h))); }
+
+  function draw(exact) {
+    var hw = localHW(), out = [];
+    var dOff = signed(hw, +el.etd.value), aOff = signed(hw, +el.eta.value);
+
+    /* the passage band, ETD to ETA, clipped to the visible 12 hours */
+    if (Math.abs(dOff) <= 360 || Math.abs(aOff) <= 360) {
+      var x1 = clampx(dOff / 60), x2 = clampx(aOff / 60);
+      if (x2 > x1) {
+        out.push('<rect class="tb-pass" x="' + x1.toFixed(1) + '" y="' + TOP + '" width="' +
+                 (x2 - x1).toFixed(1) + '" height="' + (BASE - TOP) + '"/>');
+      }
+    }
+
+    /* the stream-table hour we are in */
+    if (Math.abs(exact) <= 360) {
+      out.push('<rect class="tb-band" x="' + px(row(exact) - 0.5).toFixed(1) + '" y="' + TOP +
+               '" width="' + ((R - L) / 12).toFixed(1) + '" height="' + (BASE - TOP) + '"/>');
+    }
+
+    var d = '';
+    for (var h = -6; h <= 6.0001; h += 0.25) {
+      d += (d ? 'L' : 'M') + px(h).toFixed(1) + ',' + py(h).toFixed(1) + ' ';
+    }
+    out.push('<path class="tb-curve" d="' + d + 'L' + px(6).toFixed(1) + ',' + BASE +
+             ' L' + px(-6).toFixed(1) + ',' + BASE + ' Z"/>');
+    out.push('<line class="tb-axis" x1="' + L + '" y1="' + BASE + '" x2="' + R + '" y2="' + BASE + '"/>');
+
+    for (var i = -6; i <= 6; i++) {
+      var x = px(i).toFixed(1), key = (i === 0 || Math.abs(i) === 6) ? ' key' : '';
+      out.push('<line class="tb-axis" x1="' + x + '" y1="' + BASE + '" x2="' + x + '" y2="' + (BASE + 5) + '"/>');
+      out.push('<text class="tb-t' + key + '" x="' + x + '" y="' + (BASE + 18) + '" text-anchor="middle">' +
+               (i === 0 ? 'HW' : (i > 0 ? '+' + i : i)) + '</text>');
+      out.push('<text class="tb-t" x="' + x + '" y="' + (BASE + 32) + '" text-anchor="middle">' + hhmm(hw + i * 60) + '</text>');
+    }
+    out.push('<text class="tb-t key" x="' + px(-6).toFixed(1) + '" y="' + (TOP - 22) + '" text-anchor="middle">LW</text>');
+    out.push('<text class="tb-t key" x="' + px(6).toFixed(1) + '" y="' + (TOP - 22) + '" text-anchor="middle">LW</text>');
+    out.push('<text class="tb-t key" x="' + px(0).toFixed(1) + '" y="' + (TOP - 22) + '" text-anchor="middle">HW ' + hhmm(hw) + '</text>');
+
+    /* departure and arrival */
+    [['ETD', dOff, +el.etd.value, TOP + 14], ['ETA', aOff, +el.eta.value, TOP + 30]].forEach(function (m) {
+      var far = Math.abs(m[1]) > 360, xh = m[1] / 60, X = clampx(xh);
+      out.push('<line class="tb-leg" x1="' + X.toFixed(1) + '" y1="' + TOP + '" x2="' + X.toFixed(1) + '" y2="' + BASE + '"/>');
+      if (!far) {
+        out.push('<circle class="tb-flag" cx="' + X.toFixed(1) + '" cy="' + py(xh).toFixed(1) + '" r="4"/>');
+      }
+      var anchor = xh < -3.5 ? 'start' : (xh > 3.5 ? 'end' : 'middle');
+      out.push('<text class="tb-t leg" x="' + (X + (anchor === 'start' ? 4 : anchor === 'end' ? -4 : 0)).toFixed(1) +
+               '" y="' + m[3] + '" text-anchor="' + anchor + '">' + m[0] + ' ' + hhmm(m[2]) +
+               (far ? ' · off the window' : ' · ' + span(m[1])) + '</text>');
+    });
+
+    /* the scrubbed moment */
+    if (Math.abs(exact) <= 360) {
+      var xh2 = exact / 60, X2 = px(xh2);
+      out.push('<line class="tb-now" x1="' + X2.toFixed(1) + '" y1="' + (TOP - 12) + '" x2="' + X2.toFixed(1) + '" y2="' + BASE + '"/>');
+      out.push('<circle class="tb-dot" cx="' + X2.toFixed(1) + '" cy="' + py(xh2).toFixed(1) + '" r="6"/>');
+      out.push('<text class="tb-t now" x="' + X2.toFixed(1) + '" y="' + (BASE + 48) + '" text-anchor="' +
+               (xh2 < -4 ? 'start' : xh2 > 4 ? 'end' : 'middle') + '">' + hhmm(+el.now.value) +
+               ' · ' + span(exact) + '</text>');
+    } else {
+      out.push('<text class="tb-t far" x="' + ((L + R) / 2) + '" y="' + (BASE + 48) + '" text-anchor="middle">' +
+               hhmm(+el.now.value) + ' is ' + span(exact) + ' from this high water — off the end of the stream table</text>');
+    }
+    el.g.innerHTML = out.join('');
+  }
+
+  function leg(off, t) {
+    if (Math.abs(off) > 360) {
+      return hhmm(t) + ' &mdash; <b>' + span(off) + '</b> from this HW, past the next low water';
+    }
+    return hhmm(t) + ' &mdash; <b>' + span(off) + '</b>, stream row <b>' + rowLabel(row(off)) + '</b>';
+  }
+
+  function render(exact) {
+    var hw = localHW();
+    var dOff = signed(hw, +el.etd.value), aOff = signed(hw, +el.eta.value);
+    var passage = mod(+el.eta.value - +el.etd.value, DAY);
+
+    el.vHW.textContent = hhmm(+el.hw.value);
+    el.vCorr.textContent = span(+el.corr.value);
+    el.vNow.textContent = hhmm(+el.now.value);
+    el.vETD.textContent = hhmm(+el.etd.value);
+    el.vETA.textContent = hhmm(+el.eta.value);
+    el.vOff.textContent = span(exact);
+
+    var tw = twelfths(exact), far = Math.abs(exact) > 360;
+    var rows = [
+      ['Local HW', '<b>' + hhmm(hw) + '</b> &mdash; standard port ' + hhmm(+el.hw.value) +
+                   ', correction ' + span(+el.corr.value)],
+      ['Nominal LW', hhmm(hw - LWGAP) + ' and ' + hhmm(hw + LWGAP) + ' (6h12 either side &mdash; check the almanac)'],
+      ['Departure', leg(dOff, +el.etd.value)],
+      ['Arrival', leg(aOff, +el.eta.value)],
+      ['Passage', '<b>' + dur(passage) + '</b> under way' +
+                  (passage > 720 ? ' &mdash; longer than a tide, so it spans two high waters' : '')],
+      ['At ' + hhmm(+el.now.value), far
+        ? '<b>' + span(exact) + '</b> from this high water: past the next low water, so work from the other HW'
+        : '<b>' + span(exact) + '</b> from high water, stream row <b>' + rowLabel(row(exact)) + '</b> (' +
+          hhmm(hw + row(exact) * 60 - 30) + ' to ' + hhmm(hw + row(exact) * 60 + 30) + ')'],
+      ['Twelfths', tw || (Math.abs(exact) < 1 ? 'High water: slack water about now, the stream turning' : '&mdash;')]
+    ];
+    el.out.innerHTML = rows.map(function (r) {
+      return '<div class="rrow"><span class="rk">' + r[0] + '</span><span>' + r[1] + '</span></div>';
+    }).join('');
+    draw(exact);
+  }
+
+  function save() {
+    try {
+      localStorage.setItem(KEY, JSON.stringify({
+        hw: +el.hw.value, corr: +el.corr.value, now: +el.now.value,
+        etd: +el.etd.value, eta: +el.eta.value
+      }));
+    } catch (e) {}
+  }
+
+  ['hw', 'corr', 'now', 'etd', 'eta'].forEach(function (k) {
+    el[k].addEventListener('input', function () { render(fromClock()); save(); });
+  });
+  el.off.addEventListener('input', function () { fromOff(); render(+el.off.value); save(); });
+
+  try {
+    var st = JSON.parse(localStorage.getItem(KEY) || 'null');
+    if (st) {
+      el.hw.value = st.hw; el.corr.value = st.corr; el.now.value = st.now;
+      if (st.etd != null) { el.etd.value = st.etd; }
+      if (st.eta != null) { el.eta.value = st.eta; }
+    }
+  } catch (e) {}
+
+  render(fromClock());
 })();
 </script>
 
