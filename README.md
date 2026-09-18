@@ -33,13 +33,13 @@ screen and from each other:
   standard four-column APEM layout (speed/time/distance, weather, tide and streams,
   stores, notices to mariners, hazards, comms, waypoints, contingencies), with notes on
   what belongs in every box. Side two holds the departure and arrival pilotage briefs
-  with schematic sketches of the Fowey and Falmouth entrances. Type into it and it saves
+  with schematic sketches of the Trewick and Calmouth entrances. Type into it and it saves
   in your browser only (`localStorage`, nothing is uploaded); print it filled, or print it
   blank and write on it. The plan itself fits one side of A4, the briefs the next.
   It also carries a **tidal clock**: sliders for the standard port's HW, the secondary
   port correction, the clock, the ETD, the ETA and hours before/after HW, all coupled,
   with the passage drawn on a tidal curve and the stream-table row and twelfths read out.
-  The worked example is a real hand-written Fowey-to-Falmouth plan, transcribed as
+  The worked example is a hand-written Trewick-to-Calmouth plan, transcribed as
   written, with the seven places it contradicts itself listed underneath, including what nightfall does to the second half of it.
 
 > ⚠️ **Study practice only.** Always navigate using official, up-to-date charts and
